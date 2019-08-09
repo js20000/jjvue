@@ -48,7 +48,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import Sortable from 'sortablejs'
 import pagination from '@/components/jj/pagination'
 import toolbar from '@/components/jj/toolbar'
