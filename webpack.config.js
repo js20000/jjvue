@@ -1,8 +1,11 @@
 var path = require('path')
 var webpack = require('webpack')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin'); //引入这行
 
 
   module.exports = {
+    mode:"production",
     externals: {
       'vue': 'vue',
       'sortablejs':'sortablejs'
@@ -47,7 +50,6 @@ var webpack = require('webpack')
       }
     ]
   },
-
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
@@ -65,7 +67,24 @@ var webpack = require('webpack')
     hints: false
   },
   devtool: '#eval-source-map'
+  //   ,
+  // optimization: {
+  //   runtimeChunk: 'single',
+  //   minimizer: [
+  //     new UglifyJsPlugin({
+  //       uglifyOptions: {
+  //         mangle: {
+  //           safari10: true
+  //         }
+  //       },
+  //       sourceMap: true,
+  //       cache: true,
+  //       parallel: true
+  //     })
+  //   ]
+  // }
 }
+
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
@@ -76,13 +95,14 @@ if (process.env.NODE_ENV === 'production') {
       }
     })
     ,
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    })
-    ,
+    // new webpack.optimize.UglifyJsPlugin({
+    //   sourceMap: true,
+    //   compress: {
+    //     warnings: false
+    //   }
+    // })
+    // ,
+    new VueLoaderPlugin(),
     new webpack.LoaderOptionsPlugin({
       minimize: true
     })
