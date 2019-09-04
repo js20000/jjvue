@@ -1,60 +1,80 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+  <div class="app-container">
+
+    <el-container >
+      <el-aside width="100px" >
+        <el-tree
+          :data="treeData"
+          :props="defaultProps"
+          :expand-on-click-node="false"
+          :default-expand-all="true"
+          :highlight-current="true"
+
+          @node-click="handleNodeClick"/>
+      </el-aside>
+      <el-main>
+        <component v-if="node&&node.type" :is="node.type" :dev="node"></component>
+        <template v-else>
+
+
+        </template>
+      </el-main>
+    </el-container>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  }
-}
-</script>
-
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
+  .el-dialog__body {
+    padding: 0px 20px!important;
+  }
 </style>
+<script>
+ import  {listToTree} from "@/utils"
+ import  TableIndex from './test/table'
+
+ export default {
+    name: 'JJVueIndex',
+    components: { TableIndex },
+    data() {
+      return {
+        treeData: [],
+        defaultProps: {
+          children: 'children'
+        },
+        node: null,
+        domains: [],
+        domainsMap: {},
+        data() {
+          return {}
+        }
+      }
+    },
+    mounted() {
+      this.menuList()
+    },
+    methods: {
+      handleNodeClick(node) {
+        this.node = null
+        this.$nextTick(function() {
+          this.node = node
+        })
+      },
+       menuList() {
+        // (list, id, pid, parent, children) {
+        const rs = ["jj-table"]
+
+        const subs = []
+        let i = 0
+        rs.forEach(x => {
+          i++
+          subs.push({ id: x, label: x })
+          subs.push({ id: i, sparentid: x, label: '例子', md: x, type: 'TableIndex' })
+          subs.push({ id: i, sparentid: x, label: '文档', md: x, type: '' })
+        })
+        //  const { id, pid, parent, children } = para || { id: 'id', pid: 'sparentid', parent: 'parent', children: 'children' }
+
+        this.treeData = listToTree(subs)
+      }
+    }
+
+  }
+</script>

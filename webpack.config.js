@@ -47,6 +47,7 @@ var webpack = require('webpack')
       }
     ]
   },
+
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
@@ -65,7 +66,6 @@ var webpack = require('webpack')
   },
   devtool: '#eval-source-map'
 }
-
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html

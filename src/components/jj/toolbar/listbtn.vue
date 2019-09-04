@@ -31,7 +31,7 @@
           </el-dropdown-item>
         </el-dropdown-menu>
         <el-dropdown-menu v-else-if="data.editIndex<0">
-          <el-dropdown-item  v-for="(btn) in data.column.data.list ">
+          <el-dropdown-item  v-for="(btn) in data.column.data.list " :key="btn.event">
             <jj-button  v-if="!btn.state||btn.state=='normal'" :key="btn.event" :btn="btn" type="text"
                         @click="trigger(btn)"/>
           </el-dropdown-item>
