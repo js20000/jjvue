@@ -1,7 +1,7 @@
 <!--suppress ALL -->
 <template>
 
-  <xlist @xselect="onselect" :label="data.label" :url="data.data.url"  :word="data.data.word" v-model="data.data.disValue"  :field="data.data.disField" > </xlist>
+  <xlist @xselect="onselect" :label="data.label" :url="data.data.url"  :word="data.data.word" v-model="data.disValue"  :field="data.data.disField" > </xlist>
 
 </template>
 
@@ -16,7 +16,7 @@
         default() {
           return {
             data: {
-
+                disValue:''
             }
           }
         }
