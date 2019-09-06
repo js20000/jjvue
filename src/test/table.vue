@@ -40,7 +40,11 @@ export default {
       data: {
         sorts: { scode: 'ascending' },
         searchs: [
-          { field: 'search_like_scode', label: '编号', value: '' }],
+          { field: 'search_like_scode', label: '编号', value: '' },
+          { field: 'search_eq_swarehouseid', label: '仓库', value: '', type: 'jj-list', disValue:'',
+            data: {
+              url: [{val:1,id:'a'},{val:1,id:'b'}], word: 'search_like_scnname', disField: 'id', valField: 'val'
+            }}],
         toolbars: [
           {
             label: '新增', icon: 'add', event: 'add', permission: 'rfid:edit'
