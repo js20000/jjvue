@@ -193,7 +193,10 @@ export default {
           }
         }
       }
-       vm.style.display = 'block'
+      this.$nextTick(function () {
+        vm.style.display = 'block'
+      })
+
     },
     onblur: function() {
       this.style.display = 'none'
