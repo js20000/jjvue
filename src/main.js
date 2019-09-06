@@ -2,7 +2,7 @@ import button from './components/jj/button'
 import dialog from './components/jj/dialog'
 import table from './components/jj/table'
 import xlist from './components/jj/forms/xlist'
-import jjxlist from './components/jj/search/searchlist'
+import searchlist from './components/jj/search/searchlist'
 
 
 
@@ -13,7 +13,7 @@ const comment = {
     Vue.component("jj-dialog",dialog )
     Vue.component("jj-button",button )
     Vue.component("xlist",xlist )
-    Vue.component("jj-list",jjxlist )
+    Vue.component("jj-list",searchlist )
 
   }
 }

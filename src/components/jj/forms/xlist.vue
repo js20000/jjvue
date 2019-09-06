@@ -59,7 +59,6 @@ v-for="(i,index) in list"
 </style>
 
 <script>
-import jj from '@/utils/jj'
 
 export default {
   name: 'XList',
@@ -179,7 +178,7 @@ export default {
             para[k] = this.para[k]
           }
         }
-        const rs = await jj.post(this.url, para)
+        const rs = await this.$post(this.url, para)
         if (rs.data && rs.data.content) { vm.list = rs.data.content } else { vm.list = rs.data }
         vm.$emit('ondata', rs.data)
 
