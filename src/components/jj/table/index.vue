@@ -270,6 +270,8 @@ export default {
       if (vm.data.searchs) {
         for (const s of vm.data.searchs) {
           s.value = s.default || ''
+          if(s.disValue)
+             s.disValue=''
         }
       }
       vm.refresh()
