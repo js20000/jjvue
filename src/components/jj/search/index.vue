@@ -37,10 +37,8 @@ export default {
   methods: {
     // { field: 'search_eq_swarehouseid', label: '仓库', value: '', type: 'jj-warehouselist' }
     buildData(s){
-        if(s.data){
-          return s.data;
-        }
-        return {}
+
+        return s
     }
   }
 }
