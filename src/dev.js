@@ -26,7 +26,9 @@ import '@/styles/index.scss' // global css
 import jj from './main'
 
 Vue.use(jj);
-
+Vue.prototype.$post = async function(url, para) {
+  return new Promise((r,j)=>{r()})
+}
 Vue.config.productionTip = false
 const errorHandler = (error, vm) => {
   console.error('抛出全局异常')
