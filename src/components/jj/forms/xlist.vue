@@ -7,18 +7,18 @@
     <div class="el-input el-input--suffix ">
       <div class="el-input el-input--medium  el-input-group el-input-group--prepend">
         <div class="el-input-group__prepend" v-if="label">{{label}}</div>
-        <input
+        <el-input
           type="text"
           ref="thisinput"
           :class="xclass"
           v-bind:value="value"
           @blur="onblur"
-          @keydown="keydown"
+          @keydown.native="keydown"
           v-on:input="onchange"
-          @mousedown="onclick"
+          @mousedown.native="onclick"
           v-on:focus="onfocus"
 autocomplete="off"
-class="el-input__inner" />
+/>
       </div>
 
       <span class="el-input__suffix"><span class="el-input__suffix-inner">
@@ -91,16 +91,20 @@ export default {
       this.post(event.target.value)
     },
     onclick: function() {
-      //event.preventDefault()
-
-      // $(event.target).select()
-      this.$refs.thisinput.select()
-      this.$refs.thisinput.selectionStart = 0
-      this.$refs.thisinput.selectionEnd = this.$refs.thisinput.value.length
-      // event.target.selectionStart = 0
-      // event.target.selectionEnd = event.target.value.length
-
-      this.post(this.keyword)
+       event.preventDefault()
+      //
+      // // $(event.target).select()
+     // this.$refs.thisinput.select()
+      event.target.focus()
+      event.target.select()
+      event.target.selectionStart = 0
+      event.target.selectionEnd = event.target.value.length
+     // this.$refs.thisinput.$el.selectionStart = 0
+     // this.$refs.thisinput.$el.selectionEnd = this.$refs.thisinput.$el.value.length
+      // // event.target.selectionStart = 0
+      // // event.target.selectionEnd = event.target.value.length
+      //
+       this.post(this.keyword)
     },
     onclick_i: function() {
       if (this.style.display == 'block') {
@@ -112,19 +116,19 @@ export default {
     onfocus: function() {
      // event.preventDefault()
       // $(event.target).focus().select()
-      // event.target.selectionStart = 0
-      // event.target.selectionEnd = event.target.value.length
+
       // if(this.value==event.target.value)
       //     return;
       // if(this.style.display=='block')
       //     return;
-      this.post(this.keyword)
+      //this.post(this.keyword)
+      this.$emit("focus")
     },
     post: async function(val) {
       const vm = this
 
       if (val == -9999) {
-        const pos = this.$refs['thisinput']
+        const pos = this.$refs['thisinput'].$el
         this.style.top = pos.offsetTop + pos.clientHeight + 'px'
         this.style.left = pos.offsetLeft + 'px'
         this.style.width = pos.clientWidth + 'px'
@@ -214,7 +218,7 @@ export default {
       }
     },
     trclick: function(index) {
-      //event.preventDefault()
+      event.preventDefault()
       // let div = $(event.target).parent().find('div')
       // let index = div.data('index')
       this.style.display = 'none'
