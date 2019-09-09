@@ -210,6 +210,7 @@ export default {
         this.keyword = -9999
 
         this.onselected(rs)
+        this.$emit('blur')
       }
     },
     trclick: function(index) {
