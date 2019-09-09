@@ -91,7 +91,7 @@ export default {
       this.post(event.target.value)
     },
     onclick: function() {
-      event.preventDefault()
+      //event.preventDefault()
 
       // $(event.target).select()
       this.$refs.thisinput.select()
@@ -110,7 +110,7 @@ export default {
       this.post(this.keyword)
     },
     onfocus: function() {
-      event.preventDefault()
+     // event.preventDefault()
       // $(event.target).focus().select()
       // event.target.selectionStart = 0
       // event.target.selectionEnd = event.target.value.length
@@ -214,7 +214,7 @@ export default {
       }
     },
     trclick: function(index) {
-      event.preventDefault()
+      //event.preventDefault()
       // let div = $(event.target).parent().find('div')
       // let index = div.data('index')
       this.style.display = 'none'
