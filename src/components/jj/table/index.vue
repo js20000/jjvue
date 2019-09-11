@@ -232,7 +232,7 @@ export default {
       if (this.data.page && this.data.page.size) { rs = { page: this.data.page.number, limit: this.data.page.size } }
       if (this.data.searchs) {
         for (const s of this.data.searchs) {
-          if (s.value) { rs[s.field] = s.value }
+          if (!(s.value==='') && !(typeof s.value=='undefined')) { rs[s.field] = s.value }
         }
       }
       const ss = []

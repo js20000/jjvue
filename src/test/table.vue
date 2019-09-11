@@ -43,7 +43,7 @@ export default {
           { field: 'search_like_scode', label: '编号', value: '' },
           { field: 'search_eq_swarehouseid', label: '仓库', value: '', type: 'jj-list', disValue:'',
             data: {
-              url: [{val:1,id:'a'},{val:1,id:'b'}], word: 'search_like_scnname', disField: 'id', valField: 'val'
+              url: [{val:0,id:'a'},{val:1,id:'b'}], word: 'search_like_scnname', disField: 'id', valField: 'val'
             }}],
         toolbars: [
           {
@@ -91,6 +91,7 @@ export default {
   methods:
       {
         refresh:  function(data) {
+          console.log(JSON.stringify(data))
           this.data.page=[{a:1,b:"bb",c:1,d:1 ,f:{a:1,b:2,c:3}}]
         },
         add:  function({ btn }) {

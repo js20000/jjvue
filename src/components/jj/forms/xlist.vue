@@ -11,7 +11,7 @@
           type="text"
           ref="thisinput"
           :class="xclass"
-          v-bind:value="value"
+          v-bind:value="xname"
           @blur="onblur"
           @keydown.native="keydown"
           v-on:input="onchange"
@@ -33,7 +33,7 @@ class="el-dropdown-menu__item"
 :class="selected==index?'ct':''"
 v-for="(i,index) in list"
 :key="index">
-       {{templet?templet(i):(field?i[field]:i)}}
+       {{templet?templet(i):(disField?i[disField]:i)}}
       </li>
      </ul>
 <!--     <div ref="thistable" class="bigautocomplete-layout" :style="style">-->
@@ -64,6 +64,7 @@ export default {
   name: 'XList',
   data: function() {
     return {
+      xname:"",
       keyword: -9999,
       list: [],
       selected: -1,
@@ -73,22 +74,63 @@ export default {
     }
   },
 
-  props: { value: {}, label: {}, word: {}, field: {}, templet: {}, url: {}, para: { type: Object, default() { return {} } }, xclass: {}, force: { type: Boolean, default: true }},
+  props: { value: {}, label: {}, word: {},defaultWord:{
+      type:String,
+      default:null,
+    }, valField:{},disField: {},defaultVal:{},defaultDis:"", templet: {}, url: {}, para: { type: Object, default() { return {} } }, xclass: {}, force: { type: Boolean, default: true }},
   inheritAttrs: false,
   mounted: function() {
 
   },
+  async mounted(){
+    if(this.defaultWord!=null|| (! (typeof this.defaultVal=="undefined")) ||this.defaultDis){
+         if(this.defaultWord!=null || typeof this.defaultWord =="undefined")
+         {
+           this.xname=defaultWord
+         }
+         else
+           this.xname=""
+         await this.postOnly(this.xname)
+
+    }
+    for (let i = 0; i < this.list.length; i++) {
+
+
+      const xx =  this.list[i]
+      if(typeof this.defaultVal!='undefined' && this.valField)
+      {
+          if(xx[this.valField]==this.defaultVal){
+            this.selected = i
+            this.onselect(this.list[i])
+            break
+          }
+        if(xx[this.disField]==this.defaultDis){
+          this.selected = i
+          this.onselect(this.list[i])
+          break
+        }
+      }
+
+
+    }
+  },
   methods: {
     onchange: function() {
       let rs = {}
-      if (this.field) {
-        rs[this.field] = event.target.value
-      } else { rs = event.target.value }
+      if (this.disField) {
+        rs[this.disField] = event.target.value
+      }
+      if(this.valField){
+        rs[this.valField] = ""
+      }
+      else {
+        rs = event.target.value
+      }
       this.selected = -1
       this.onselected(rs)
 
       // event.target.value;
-      this.post(event.target.value)
+      this.post(this.xname)
     },
     onclick: function() {
        event.preventDefault()
@@ -124,8 +166,27 @@ export default {
       //this.post(this.keyword)
       this.$emit("focus")
     },
-    post: async function(val) {
-      const vm = this
+    post: async function(val){
+      await  this.postOnly(val)
+      this.$nextTick(function () {
+        this.style.display = 'block'
+      })
+    },
+    getValByXname(){
+      this.selected = -1
+      for (let i = 0; i < this.list.length; i++) {
+        const xx = (this.disField ? this.list[i][this.disField] : this.list[i])
+
+        if (xx == this.xname) {
+          this.selected = i
+          this.onselected(this.list[i])
+          this.scrollto()
+          break
+        }
+      }
+    },
+    postOnly: async function(val) {
+
 
       if (val == -9999) {
         const pos = this.$refs['thisinput'].$el
@@ -135,18 +196,8 @@ export default {
         val = ''
       }
 
-      if (val == this.keyword) {
-        this.selected = -1
-        for (let i = 0; i < this.list.length; i++) {
-          const xx = (this.field ? this.list[i][this.field] : this.list[i])
-
-          if (xx == vm.value) {
-            this.selected = i
-            this.scrollto()
-            break
-          }
-        }
-        this.style.display = 'block'
+      if (val == this.keyword) {//无须提交请求
+        this.getValByXname()
         return
       }
       if (typeof this.url == 'object') {
@@ -183,36 +234,28 @@ export default {
           }
         }
         const rs = await this.$post(this.url, para)
-        if (rs.data && rs.data.content) { vm.list = rs.data.content } else { vm.list = rs.data }
-        vm.$emit('ondata', rs.data)
+        if (rs.data && rs.data.content) { this.list = rs.data.content } else { this.list = rs.data }
+        this.$emit('ondata', rs.data)
 
-        vm.selected = -1
-        for (let i = 0; i < vm.list.length; i++) {
-          const xx = (vm.field ? vm.list[i][vm.field] : vm.list[i])
-
-          if (xx == vm.value) {
-            vm.selected = i
-            vm.scrollto()
-            break
-          }
-        }
+        this.getValByXname()
       }
-      this.$nextTick(function () {
-        vm.style.display = 'block'
-      })
+
 
     },
     onblur: function() {
       this.style.display = 'none'
+      this.getValByXname()
       if (this.selected < 0 && this.force == true) {
         let rs = {}
+        if (this.disField) {
+          rs[this.disField] = ''
+        } else { rs = '' }
 
-        if (this.field) {
-          rs[this.field] = ''
+        if (this.valField) {
+          rs[this.valField] = ''
         } else { rs = '' }
 
         this.keyword = -9999
-
         this.onselected(rs)
         this.$emit('blur')
       }
@@ -229,8 +272,13 @@ export default {
     onselected: function(obj) {
       this.$emit('xselect', obj)
       let rs = {}
-      if (this.field) {
-        rs = obj[this.field]
+      if(this.disField){
+        this.xname=obj[this.disField]
+      }
+      else
+        this.xname=obj
+      if (this.valField) {
+        rs = obj[this.valField]
       } else { rs = obj }
       this.$emit('input', rs)
     },
