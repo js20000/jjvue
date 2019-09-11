@@ -179,7 +179,7 @@ export default {
         const xx = (this.disField ? this.list[i][this.disField] : this.list[i])
 
         if (xx == this.xname) {
-          if(this.selected==lastSelected)
+          if(i==lastSelected)
             break
           this.selected = i
           this.onselected(this.list[i])
