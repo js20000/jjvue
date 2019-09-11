@@ -173,11 +173,14 @@ export default {
       })
     },
     getValByXname(){
+      let lastSelected=this.selected
       this.selected = -1
       for (let i = 0; i < this.list.length; i++) {
         const xx = (this.disField ? this.list[i][this.disField] : this.list[i])
 
         if (xx == this.xname) {
+          if(this.selected==lastSelected)
+            break
           this.selected = i
           this.onselected(this.list[i])
           this.scrollto()
