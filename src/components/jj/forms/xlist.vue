@@ -129,7 +129,7 @@ export default {
       this.selected = -1
       this.onselected(rs)
 
-      // event.target.value;
+      this.xname= event.target.value;
       this.post(this.xname)
     },
     onclick: function() {
