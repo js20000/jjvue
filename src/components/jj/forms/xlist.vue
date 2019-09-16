@@ -116,18 +116,18 @@ export default {
   },
   methods: {
     onchange: function() {
-      let rs = {}
-      if (this.disField) {
-        rs[this.disField] = event.target.value
-      }
-      if(this.valField){
-        rs[this.valField] = ""
-      }
-      else {
-        rs = event.target.value
-      }
-      this.selected = -1
-      this.onselected(rs)
+      // let rs = {}
+      // if (this.disField) {
+      //   rs[this.disField] = event.target.value
+      // }
+      // if(this.valField){
+      //   rs[this.valField] = ""
+      // }
+      // else {
+      //   rs = event.target.value
+      // }
+      // this.selected = -1
+      // this.onselected(rs)
 
       this.xname= event.target.value;
       this.post(this.xname)
@@ -183,9 +183,10 @@ export default {
         const xx = (this.disField ? this.list[i][this.disField] : this.list[i])
 
         if (xx == this.xname) {
+          this.selected = i
           if(i==lastSelected)
             break
-          this.selected = i
+
           this.onselected(this.list[i])
           this.scrollto()
           break
