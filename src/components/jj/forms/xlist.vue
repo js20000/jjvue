@@ -134,6 +134,10 @@ export default {
     },
     onclick: function() {
        event.preventDefault()
+      if (this.style.display == 'block') {
+       // this.style.display = 'none'
+        return
+      }
       //
       // // $(event.target).select()
      // this.$refs.thisinput.select()
