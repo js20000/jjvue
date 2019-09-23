@@ -93,22 +93,28 @@ export default {
          await this.postOnly(this.xname)
 
     }
+    let val=this.value
+    if (val == "" || val == null){
+      val = this.defaultVal
+    }
     for (let i = 0; i < this.list.length; i++) {
 
 
       const xx =  this.list[i]
-      if(typeof this.defaultVal!='undefined' && this.valField)
+      if (this.value)
+        this.defaultVal=this.value
+      if(typeof val!='undefined' && this.valField)
       {
-          if(xx[this.valField]==this.defaultVal){
+          if(xx[this.valField]==val){
             this.selected = i
             this.onselect(this.list[i])
             break
           }
-        if(xx[this.disField]==this.defaultDis){
-          this.selected = i
-          this.onselect(this.list[i])
-          break
-        }
+        // if(xx[this.disField]==this.defaultDis){
+        //   this.selected = i
+        //   this.onselect(this.list[i])
+        //   break
+        // }
       }
 
 
