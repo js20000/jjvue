@@ -83,7 +83,11 @@ export default {
 
   },
   async mounted(){
-    if(this.defaultWord!=null|| (! (typeof this.defaultVal=="undefined")) ||this.defaultDis){
+    let val=this.value
+    if (val == "" || val == null){
+      val = this.defaultVal
+    }
+    if(this.defaultWord!=null|| (typeof val!="undefined")){
          if(this.defaultWord!=null || typeof this.defaultWord =="undefined")
          {
            this.xname=defaultWord
@@ -93,21 +97,16 @@ export default {
          await this.postOnly(this.xname)
 
     }
-    let val=this.value
-    if (val == "" || val == null){
-      val = this.defaultVal
-    }
+
     for (let i = 0; i < this.list.length; i++) {
 
 
       const xx =  this.list[i]
-      if (this.value)
-        this.defaultVal=this.value
       if(typeof val!='undefined' && this.valField)
       {
           if(xx[this.valField]==val){
             this.selected = i
-            this.onselect(this.list[i])
+            this.onselected(this.list[i])
             break
           }
         // if(xx[this.disField]==this.defaultDis){
