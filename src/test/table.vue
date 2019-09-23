@@ -41,7 +41,7 @@ export default {
         sorts: { scode: 'ascending' },
         searchs: [
           { field: 'search_like_scode', label: '编号', value: '' },
-          { field: 'search_eq_swarehouseid', label: '仓库', value: 1, type: 'jj-list', disValue:'',
+          { field: 'search_eq_swarehouseid', label: '仓库', value: 0, type: 'jj-list', disValue:'',
             data: {
               url: [{val:0,id:'a'},{val:1,id:'b'}], word: 'search_like_scnname', disField: 'id', valField: 'val'
             }}],
