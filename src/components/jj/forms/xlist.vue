@@ -84,7 +84,7 @@ export default {
   },
   async mounted(){
     let val=this.value
-    if (val == "" || (val === null)){
+    if (val == "" || (val == null)){
       val = this.defaultVal
     }
     if(this.defaultWord!=null|| (typeof val!="undefined")){
