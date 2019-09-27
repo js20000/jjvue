@@ -8,6 +8,7 @@
       <div class="el-input el-input--medium  el-input-group el-input-group--prepend">
         <div class="el-input-group__prepend" v-if="label">{{label}}</div>
         <el-input
+          :size="size"
           type="text"
           ref="thisinput"
           :class="xclass"
@@ -77,7 +78,11 @@ export default {
   props: { value: {}, label: {}, word: {},defaultWord:{
       type:String,
       default:null,
-    }, valField:{},disField: {},defaultVal:{},defaultDis:"", templet: {}, url: {}, para: { type: Object, default() { return {} } }, xclass: {}, force: { type: Boolean, default: true }},
+    }, valField:{},disField: {},defaultVal:{},defaultDis:"", templet: {}, url: {},
+    para: { type: Object, default() { return {} } }, xclass: {},
+    force: { type: Boolean, default: true },
+    size: { type: String, default: "small" }
+    },
   inheritAttrs: false,
   mounted: function() {
 
