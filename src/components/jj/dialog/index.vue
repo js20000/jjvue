@@ -2,6 +2,7 @@
 <template>
   <el-dialog :visible.sync="showflag" append-to-body :close-on-click-modal="false" :title="data.title" :width="data.width" :fullscreen="data.fullscreen" @close="close" >
     <slot />
+
     <div v-if="data.btns.length===0" slot="footer" class="dialog-footer">
       <jj-button
         :btn="{
@@ -14,7 +15,7 @@
         }"
         @click="ok" />
     </div>
-    <div v-else slot="footer" class="dialog-footer" >
+    <div v-else-if="data.btns.length > 0" slot="footer" class="dialog-footer" >
       <jj-button v-for="btn in data.btns" :key="btn.event" :btn="btn" @click="trigger(btn)"/>
     </div>
     <div v-if="data.icon" slot="title" class="el-dialog__title">
