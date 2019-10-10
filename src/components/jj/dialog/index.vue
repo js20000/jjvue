@@ -63,6 +63,7 @@ export default {
     },
     close() {
       this.showflag = false
+      this.$emit('close')
     },
     ok() {
       this.$emit('ok')
