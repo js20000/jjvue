@@ -61,7 +61,7 @@
 
       showFlag(){
         if (typeof this.btn.hidden === 'function') {
-          this.btn.hidden({row:this.row,btn:this.btn})
+          return !this.btn.hidden({row:this.row,btn:this.btn})
         }
         else
           return !this.btn.hidden

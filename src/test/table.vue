@@ -108,7 +108,6 @@ export default {
         },
         add:  function({ btn }) {
           this.dlg.icon = btn.icon
-
           this.editObj = getRfid()
           this.$refs.dlg.show()
         },
