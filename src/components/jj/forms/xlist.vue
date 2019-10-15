@@ -52,6 +52,7 @@ v-for="(i,index) in list"
   </div></div>
 </template>
 <style>
+
   .ct{
     background: none repeat scroll 0 0 #D2DEE8 !important;
   }
