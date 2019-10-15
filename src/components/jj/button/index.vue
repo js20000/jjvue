@@ -26,8 +26,8 @@
         Type: String,
         default:'primary'
       },
-      type:{
-        row: Object,
+      row:{
+        Type: Object,
         default:null
       },
       btn: {
