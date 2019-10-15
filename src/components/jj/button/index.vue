@@ -16,7 +16,7 @@
 </style>
 <style>
   .ml50 {
-    margin-left: 5px;
+    margin-left: 5px;git
   }
 </style>
 <script>
@@ -25,6 +25,10 @@
       type:{
         Type: String,
         default:'primary'
+      },
+      type:{
+        row: Object,
+        default:null
       },
       btn: {
         Type: Object,
@@ -41,6 +45,7 @@
       }
     },
     mounted(){
+
 
       if(this.btn.needRow) {
         this.disabled = true
