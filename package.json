@@ -8,7 +8,7 @@
   "private": false,
   "scripts": {
     "Dev": "cross-env BABEL_ENV=development webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "build": "cross-env NODE_ENV=development webpack --progress --hide-modules",
     "buildTest": "cross-env NODE_ENV=production env_config=prod node build/build.js",
     "newPatch": "npm version patch && npm run build && npm publish",
     "publishIt": "npm  publish  "
