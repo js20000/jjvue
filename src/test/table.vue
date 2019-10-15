@@ -9,8 +9,17 @@
       @add="add"
       @edit="edit"
       @delit="deleteit"/>
-    <jj-dialog ref="dlg" :data="dlg" @ok="ok">
-      <edit ref="editForm" :data="editObj"/>
+
+
+    <jj-dialog ref="dlg1"  :data="dlg">
+      <template>
+        <el-form  :model="dlg.formData" label-width="80px" >
+          <el-form-item  label="处理意见" prop="sremark">
+            <el-input v-model="dlg.formData.sremark" />
+          </el-form-item>
+        </el-form>
+      </template>
+
     </jj-dialog>
   </div>
 
@@ -29,10 +38,11 @@ export default {
     return {
       editObj: {},
       dlg: {
+        formData: { sremark: '', id: '', posid: '' },
         icon: '',
-        title: '标签管理',
+        title: '处理报警',
         btns: [{
-          label: '保存', icon: 'ok', event: 'ok', permission: 'rfid:edit'
+          label: '保存', icon: 'ok', event: 'ok', permission: ''
         }, {
           label: '取消', icon: 'cancel', event: 'cancel'
         }]

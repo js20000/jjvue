@@ -21,7 +21,6 @@
 autocomplete="off"
 />
       </div>
-
       <span class="el-input__suffix"><span class="el-input__suffix-inner">
       <i class="el-select__caret el-input__icon el-icon-arrow-up "  @mousedown="onclick_i"></i>
     </span></span>
