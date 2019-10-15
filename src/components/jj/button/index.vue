@@ -53,7 +53,7 @@
       hasP(){
          if(!this.btn.permission)
            return true
-        return this.$store.has(this.btn.permission)
+        return this.$store.getters.has(this.btn.permission)
       }
     },
     watch:{
