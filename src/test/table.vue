@@ -104,7 +104,7 @@ export default {
       {
         refresh:  function(data) {
           console.log(JSON.stringify(data))
-          this.data.page=[{a:1,b:"bb",c:1,d:1 ,f:{a:1,b:2,c:3}}]
+          this.data.page=[{a:1,b:"bb",c:1,d:1 ,f:{a:1,b:2,c:3}},{a:2,b:"bb",c:1,d:1 ,f:{a:1,b:2,c:3}}]
         },
         add:  function({ btn }) {
           this.dlg.icon = btn.icon
