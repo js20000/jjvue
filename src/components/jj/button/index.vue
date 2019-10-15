@@ -1,7 +1,7 @@
 <!--suppress ALL -->
 <template>
 
-  <el-button :disabled="disabled"  plain size="small" @click="$emit('click')" :type="btn.type?btn.type:type" >
+  <el-button :disabled="disabled"  plain size="small" @click="$emit('click')" :type="btn.type?btn.type:type" v-if="hasP">
     <template v-if="btn.icon">
       <i v-if="btn.icon.indexOf(`el-icon`)==0" :class="btn.icon"/>
       <svg-icon v-else :icon-class="btn.icon"/>
@@ -48,6 +48,13 @@
       }
       else
         this.$set(this.btn,"disabled",false)
+    },
+    computed:{
+      hasP(){
+         if(!this.btn.permission)
+           return true
+        return this.$store.has(this.btn.permission)
+      }
     },
     watch:{
       'btn.disabled'(v){
