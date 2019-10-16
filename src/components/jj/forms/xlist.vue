@@ -72,8 +72,8 @@ export default {
       list: [],
       selected: -1,
       style: {
+        maxHeight:"400px",
         "overflow-y":"scroll",
-        maxHeight:"300px",
         display: 'none'
       }
     }
@@ -146,7 +146,7 @@ export default {
       this.xname= event.target.value;
       clearTimeout(this.bakTimer)
       this.bakName=this.xname
-      this.bakTimer=setTimeout(this.sendData,500)
+      this.bakTimer=setTimeout(this.sendData,300)
 
     },
     sendData(){
