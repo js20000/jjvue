@@ -3,9 +3,9 @@
 <template>
   <div>
 
-   <div class="el-select" >
+   <div class="el-select"  >
     <div class="el-input el-input--suffix ">
-      <div class="el-input el-input--medium  el-input-group el-input-group--prepend">
+      <div class="el-input el-input--medium  el-input-group el-input-group--prepend" v-loading="loading">
         <div class="el-input-group__prepend" v-if="label">{{label}}</div>
         <el-input
           :size="size"
@@ -25,7 +25,7 @@ autocomplete="off"
       <i class="el-select__caret el-input__icon el-icon-arrow-up "  @mousedown="onclick_i"></i>
     </span></span>
     </div>
-     <ul ref="thistable" class="el-dropdown-menu el-popper" :style="style">
+     <ul ref="thistable" class="el-dropdown-menu el-popper" :style="style" >
        <li
 tabindex="-1"
 class="el-dropdown-menu__item"
@@ -72,6 +72,7 @@ export default {
       list: [],
       selected: -1,
       style: {
+        maxHeight:"300px",
         display: 'none'
       }
     }
@@ -249,6 +250,9 @@ export default {
 
       }
       else{
+        if(this.$store){
+          this.$store.dispatch('myloading', true)
+        }
         this.keyword = val
         let word = 'keyword'
         if (this.word) { word = this.word }
@@ -348,6 +352,12 @@ export default {
     }
   },
   watch: {
+    loading(){
+      if(this.$store)
+         return this.$store.getters.myloading
+      else
+        false
+    }
     // 'style.display': {
     //     handler(newName, oldName) {
     //
