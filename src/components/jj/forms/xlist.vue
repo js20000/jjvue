@@ -72,6 +72,7 @@ export default {
       list: [],
       selected: -1,
       style: {
+        "overflow-y":"scroll",
         maxHeight:"300px",
         display: 'none'
       }
