@@ -66,6 +66,8 @@ export default {
   data: function() {
     return {
       xname:"",
+      bakName:"",
+      bakTimer:0,
       keyword: -9999,
       list: [],
       selected: -1,
@@ -140,6 +142,12 @@ export default {
       // this.onselected(rs)
 
       this.xname= event.target.value;
+      clearTimeout(bakTimer)
+      this.bakName=this.xname
+      this.bakTimer=setTimeout(this.sendData,500)
+
+    },
+    sendData(){
       this.post(this.xname)
     },
     onclick: function() {
