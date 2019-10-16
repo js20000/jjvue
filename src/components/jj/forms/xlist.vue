@@ -142,7 +142,7 @@ export default {
       // this.onselected(rs)
 
       this.xname= event.target.value;
-      clearTimeout(bakTimer)
+      clearTimeout(this.bakTimer)
       this.bakName=this.xname
       this.bakTimer=setTimeout(this.sendData,500)
 
