@@ -82,15 +82,12 @@ export default {
   props: { value: {}, label: {}, word: {},defaultWord:{
       type:String,
       default:null,
-    }, valField:{},disField: {},defaultVal:{},defaultDis:"", templet: {}, url: {},
+    }, valField:{},disField: {},defaultVal:{}, templet: {}, url: {},
     para: { type: Object, default() { return {} } }, xclass: {},
     force: { type: Boolean, default: true },
     size: { type: String, default: "small" }
     },
   inheritAttrs: false,
-  mounted: function() {
-
-  },
   async mounted(){
     let val=this.value
     if (val == "" || (val == null)){
@@ -106,7 +103,6 @@ export default {
          await this.postOnly(this.xname)
 
     }
-
     for (let i = 0; i < this.list.length; i++) {
 
 
@@ -124,8 +120,6 @@ export default {
         //   break
         // }
       }
-
-
     }
   },
   methods: {
@@ -358,6 +352,20 @@ export default {
          return this.$store.getters.myloading
       else
         false
+    },
+    value(val){
+
+      for (let i = 0; i < this.list.length; i++) {
+        const xx =  this.list[i]
+        if(typeof val!='undefined' && this.valField)
+        {
+          if(xx[this.valField]==val){
+            this.selected = i
+            this.onselected(this.list[i])
+            break
+          }
+        }
+      }
     }
     // 'style.display': {
     //     handler(newName, oldName) {
