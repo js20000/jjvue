@@ -361,7 +361,9 @@ export default {
         {
           if(xx[this.valField]==val){
             this.selected = i
-            this.onselected(this.list[i])
+            if(this.disField){
+              this.xname=xx[this.disField]
+            }
             break
           }
         }
