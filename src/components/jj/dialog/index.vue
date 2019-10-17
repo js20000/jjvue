@@ -1,7 +1,7 @@
 <!--suppress ALL -->
 <template>
-  <el-dialog :visible.sync="showflag" v-if="showflag" append-to-body :close-on-click-modal="false" :title="data.title" :width="data.width" :fullscreen="data.fullscreen" @close="close" >
-    <slot />
+  <el-dialog :visible.sync="showflag"  append-to-body :close-on-click-modal="false" :title="data.title" :width="data.width" :fullscreen="data.fullscreen" @close="close" >
+    <slot v-if="showflag" />
 
     <div v-if="data.btns && data.btns.length===0" slot="footer" class="dialog-footer">
       <jj-button
