@@ -1,6 +1,6 @@
 <!--suppress ALL -->
 <template>
-  <el-dialog :visible.sync="showflag" append-to-body :close-on-click-modal="false" :title="data.title" :width="data.width" :fullscreen="data.fullscreen" @close="close" >
+  <el-dialog :visible.sync="showflag" v-if="showflag" append-to-body :close-on-click-modal="false" :title="data.title" :width="data.width" :fullscreen="data.fullscreen" @close="close" >
     <slot />
 
     <div v-if="data.btns && data.btns.length===0" slot="footer" class="dialog-footer">
