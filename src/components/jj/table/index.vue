@@ -1,6 +1,6 @@
 <template>
   <div >
-    <jj-search :searchs="data.searchs" @refresh="refresh" @search="search">
+    <jj-search :searchs="data.searchs" @refresh="refresh" @onSearch="onSearch">
       <slot name="searchs"/>
     </jj-search>
     <jj-toolbar :data="data.toolbars" @event="toolbarevent" @refresh="refresh" @reset="reset">
@@ -103,8 +103,8 @@ export default {
 
   },
   methods: {
-    search(data){
-      this.$emit('search',data)
+    onSearch(data){
+      this.$emit('onSearch',data)
     },
     getValue(row, column) {
       let rs = row

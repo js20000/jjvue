@@ -1,7 +1,7 @@
 <!--suppress ALL -->
 <template>
   <div class="app-container">
-    <jj-table
+    <jj-table @onSearch="$message.info('search msg ok')"
       ref="table"
       :data="data"
       :columns="columns"

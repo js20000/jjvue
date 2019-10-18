@@ -346,13 +346,15 @@ export default {
       }
     }
   },
-  watch: {
+  computed:{
     loading(){
       if(this.$store)
-         return this.$store.getters.myloading
+        return this.$store.getters.myloading
       else
         false
-    },
+    }
+  },
+  watch: {
     value(val){
 
       for (let i = 0; i < this.list.length; i++) {

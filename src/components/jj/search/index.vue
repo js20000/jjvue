@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     onSearch(data){
-      this.$emit("search" ,data)
+      this.$emit("onSearch" ,data)
     },
     // { field: 'search_eq_swarehouseid', label: '仓库', value: '', type: 'jj-warehouselist' }
     buildData(s){
