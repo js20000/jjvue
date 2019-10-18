@@ -10,6 +10,7 @@
         :defaultWord="data.data.defaultWord"
         :defaultVal="data.data.defaultVal"
         :defaultDis="data.data.defaultDis"
+        @xselect="xselect"
 
 
  > </xlist>
@@ -37,6 +38,9 @@
       console.log(JSON.stringify(this.data))
     },
     methods: {
+      xselect(){
+        this.$emit("onSearch" ,this.data)
+      }
       // onselect(obj){
       //   if(this.data.data.valField)
       //     this.data.value=obj[this.data.data.valField]
