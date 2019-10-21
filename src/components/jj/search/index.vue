@@ -4,7 +4,7 @@
       <template v-if="s.type&&(s.type.indexOf('jj-')==0 )" >
         <component :is="s.type" :data="buildData(s)"  @onSearch="onSearch" />
       </template>
-      <el-input v-else :placeholder="s.placeholder" v-model="s.value" @blur="onSearch(s)">
+      <el-input v-else :placeholder="s.placeholder" v-model="s.value"   @keydown.native="keyDown($event,s)">
         <template slot="prepend">{{ s.label }}</template>
       </el-input>
     </el-col>
@@ -35,10 +35,14 @@ export default {
 
   },
   methods: {
-    onSearch(data){
-      this.$emit("onSearch" ,data)
+    keyDown(event,data) {
+      if (event.keyCode == 13) {
+        this.onSearch(data)
+      }
     },
-    // { field: 'search_eq_swarehouseid', label: '仓库', value: '', type: 'jj-warehouselist' }
+    onSearch(data){
+      this.$emit("onSearch", data)
+    },
     buildData(s){
 
         return s
