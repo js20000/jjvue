@@ -11,7 +11,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "buildTest": "cross-env NODE_ENV=production env_config=prod node build/build.js",
     "yarninstall": "yarn install",
-    "publishIt": "yarn  publish  --registry http://nexus.frogsing.cn/repository/npm-hosted",
+    "publishIt": "yarn  publish",
     "registry": "yarn  config set registry  http://nexus.frogsing.cn/repository/npm-group/"
   },
   "dependencies": {
