@@ -3,9 +3,9 @@
 <template>
   <div>
 
-   <div class="el-select" >
+   <div class="el-select"  >
     <div class="el-input el-input--suffix ">
-      <div class="el-input el-input--medium  el-input-group el-input-group--prepend">
+      <div class="el-input el-input--medium  el-input-group el-input-group--prepend" v-loading="loading">
         <div class="el-input-group__prepend" v-if="label">{{label}}</div>
         <el-input
           :size="size"
@@ -25,7 +25,7 @@ autocomplete="off"
       <i class="el-select__caret el-input__icon el-icon-arrow-up "  @mousedown="onclick_i"></i>
     </span></span>
     </div>
-     <ul ref="thistable" class="el-dropdown-menu el-popper" :style="style">
+     <ul ref="thistable" class="el-dropdown-menu el-popper" :style="style" >
        <li
 tabindex="-1"
 class="el-dropdown-menu__item"
@@ -52,6 +52,7 @@ v-for="(i,index) in list"
   </div></div>
 </template>
 <style>
+
   .ct{
     background: none repeat scroll 0 0 #D2DEE8 !important;
   }
@@ -65,10 +66,14 @@ export default {
   data: function() {
     return {
       xname:"",
+      bakName:"",
+      bakTimer:0,
       keyword: -9999,
       list: [],
       selected: -1,
       style: {
+        maxHeight:"400px",
+        "overflow-y":"scroll",
         display: 'none'
       }
     }
@@ -77,18 +82,15 @@ export default {
   props: { value: {}, label: {}, word: {},defaultWord:{
       type:String,
       default:null,
-    }, valField:{},disField: {},defaultVal:{},defaultDis:"", templet: {}, url: {},
+    }, valField:{},disField: {},defaultVal:{}, templet: {}, url: {},
     para: { type: Object, default() { return {} } }, xclass: {},
     force: { type: Boolean, default: true },
     size: { type: String, default: "small" }
     },
   inheritAttrs: false,
-  mounted: function() {
-
-  },
   async mounted(){
     let val=this.value
-    if (val == "" || (val == null)){
+    if (val === "" || (val === null)){
       val = this.defaultVal
     }
     if(this.defaultWord!=null|| (typeof val!="undefined")){
@@ -101,7 +103,6 @@ export default {
          await this.postOnly(this.xname)
 
     }
-
     for (let i = 0; i < this.list.length; i++) {
 
 
@@ -110,7 +111,9 @@ export default {
       {
           if(xx[this.valField]==val){
             this.selected = i
-            this.onselected(this.list[i])
+            if(this.disField){
+              this.xname=xx[this.disField]
+            }
             break
           }
         // if(xx[this.disField]==this.defaultDis){
@@ -119,8 +122,6 @@ export default {
         //   break
         // }
       }
-
-
     }
   },
   methods: {
@@ -139,6 +140,12 @@ export default {
       // this.onselected(rs)
 
       this.xname= event.target.value;
+      clearTimeout(this.bakTimer)
+      this.bakName=this.xname
+      this.bakTimer=setTimeout(this.sendData,300)
+
+    },
+    sendData(){
       this.post(this.xname)
     },
     onclick: function() {
@@ -240,6 +247,9 @@ export default {
 
       }
       else{
+        if(this.$store){
+          this.$store.dispatch('myloading', true)
+        }
         this.keyword = val
         let word = 'keyword'
         if (this.word) { word = this.word }
@@ -338,7 +348,31 @@ export default {
       }
     }
   },
+  computed:{
+    loading(){
+      if(this.$store)
+        return this.$store.getters.myloading
+      else
+        false
+    }
+  },
   watch: {
+    value(val){
+
+      for (let i = 0; i < this.list.length; i++) {
+        const xx =  this.list[i]
+        if(typeof val!='undefined' && this.valField)
+        {
+          if(xx[this.valField]==val){
+            this.selected = i
+            if(this.disField){
+              this.xname=xx[this.disField]
+            }
+            break
+          }
+        }
+      }
+    }
     // 'style.display': {
     //     handler(newName, oldName) {
     //

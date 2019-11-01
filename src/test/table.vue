@@ -1,7 +1,7 @@
 <!--suppress ALL -->
 <template>
   <div class="app-container">
-    <jj-table
+    <jj-table @onSearch="$message.info('search msg ok')"
       ref="table"
       :data="data"
       :columns="columns"
@@ -51,7 +51,13 @@ export default {
         sorts: { scode: 'ascending' },
         searchs: [
           { field: 'search_like_scode', label: '编号', value: '' },
-          { field: 'search_eq_swarehouseid', label: '仓库', value: 0, type: 'jj-list', disValue:'',
+          { field: 'search_eq_a', label: '日期', value: 0, type: 'jj-date',
+            data:{
+                el:"el-date-picker",
+                type:"daterange"
+            }
+          },
+          { field: 'search_eq_swarehouseid', label: '列表', value: 0, type: 'jj-list', disValue:'',
             data: {
               url: [{val:0,id:'a'},{val:1,id:'b'}], word: 'search_like_scnname', disField: 'id', valField: 'val'
             }}],
@@ -80,7 +86,9 @@ export default {
           } },
         { label: '操作', width: 500, type: 'jj-listbtn', data: {
             buttons: [
-              { label: '编辑', icon: 'edit', event: 'edit' },
+              { label: '编辑', icon: 'edit', event: 'edit' ,templet:function ({btn,row}) {
+                  btn.hidden=true
+                } },
               { label: '确定', icon: 'ok', event: 'editOk', state: 'edit' },
               { label: '撤销', icon: 'cancel', event: 'editCancel', state: 'edit' }
             ], list: [
@@ -102,11 +110,10 @@ export default {
       {
         refresh:  function(data) {
           console.log(JSON.stringify(data))
-          this.data.page=[{a:1,b:"bb",c:1,d:1 ,f:{a:1,b:2,c:3}}]
+          this.data.page=[{a:1,b:"bb",c:1,d:1 ,f:{a:1,b:2,c:3}},{a:2,b:"bb",c:1,d:1 ,f:{a:1,b:2,c:3}}]
         },
         add:  function({ btn }) {
           this.dlg.icon = btn.icon
-
           this.editObj = getRfid()
           this.$refs.dlg.show()
         },

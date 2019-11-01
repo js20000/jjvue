@@ -1,11 +1,12 @@
 <template>
   <div >
-
-    <jj-search :searchs="data.searchs" @refresh="refresh">
+    <jj-search :searchs="data.searchs" @refresh="refresh" @onSearch="onSearch">
       <slot name="searchs"/>
     </jj-search>
-    <jj-toolbar :data="data.toolbars" @event="toolbarevent" @refresh="refresh" @reset="reset"/>
-    <slot name="top"/>
+    <jj-toolbar :data="data.toolbars" @event="toolbarevent" @refresh="refresh" @reset="reset">
+      <slot name="toolbar"/>
+    </jj-toolbar>
+    <slot name="tops"/>
     <el-form ref="tableform" :model="vdata" >
       <el-table
         :data="list"
@@ -102,6 +103,9 @@ export default {
 
   },
   methods: {
+    onSearch(data){
+      this.$emit('onSearch',data)
+    },
     getValue(row, column) {
       let rs = row
       if (column.field) {

@@ -1,7 +1,7 @@
 {
   "name": "jjvue",
   "description": "jj framework for vue",
-  "version": "1.0.60",
+  "version": "1.0.95",
   "author": "fanyijie <fanyijie@frogsing.com>",
   "main": "dist/jjvue.js",
   "license": "MIT",
@@ -10,8 +10,9 @@
     "Dev": "cross-env BABEL_ENV=development webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "buildTest": "cross-env NODE_ENV=production env_config=prod node build/build.js",
-    "newPatch": "npm version patch && npm run build && npm publish",
-    "publishIt": "npm  publish  "
+    "yarninstall": "yarn install",
+    "publishIt": "yarn  publish",
+    "registry": "yarn  config set registry  http://nexus.frogsing.cn/repository/npm-group/"
   },
   "dependencies": {
     "element-ui": "2.9.1",
@@ -89,5 +90,8 @@
     "webpack-cli": "3.1.0",
     "webpack-dev-server": "3.1.14",
     "webpack-merge": "4.1.4"
+  },
+  "publishConfig": {
+    "registry": "http://nexus.frogsing.cn/repository/npm-hosted"
   }
 }

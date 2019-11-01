@@ -1,6 +1,10 @@
 <!--suppress ALL -->
 <template>
-  <el-dialog :visible.sync="showflag" append-to-body :close-on-click-modal="false" :title="data.title" :width="data.width" :fullscreen="data.fullscreen" @close="close" >
+  <el-dialog :visible.sync="showflag"  v-if="showflag"
+             :append-to-body="append_to_body"
+             :modal-append-to-body="modal_append_to_body"
+             :modal="modal"
+             :close-on-click-modal="false" :title="data.title" :width="data.width" :fullscreen="data.fullscreen" @close="close" >
     <slot />
 
     <div v-if="data.btns && data.btns.length===0" slot="footer" class="dialog-footer">
@@ -53,6 +57,15 @@ export default {
     }
   },
   computed: {
+      append_to_body(){
+        return data.append_to_body?append_to_body:false
+      },
+      modal_append_to_body(){
+        return data.modal_append_to_body?modal_append_to_body:false
+      },
+      modal(){
+        return data.modal?modal:true
+      }
   },
   mounted() {
 
