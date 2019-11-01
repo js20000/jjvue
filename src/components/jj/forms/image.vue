@@ -1,5 +1,5 @@
 <template>
-  <el-image :src="data.row[data.column.field]" :preview-src-list="data.row[data.column.field]">
+  <el-image :src="url" :preview-src-list="urllist">
     <div slot="error" class="image-slot">
       <i class="el-icon-picture-outline"></i>
     </div>
@@ -22,6 +22,14 @@
     export default {
         name: `jj-image`,
         props: ['data'],
+        data(){
+            return {
+                url:this.data.row[this.data.column.field],
+                urllist:[
+                    this.data.row[this.data.column.field]
+                ]
+            }
+        },
         computed: {
         },
         mounted: function () {
