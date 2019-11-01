@@ -1,5 +1,5 @@
 <template>
-  <el-image :src="data.row[data.column.field]">
+  <el-image :src="data.row[data.column.field]" :preview-src-list="data.row[data.column.field]">
     <div slot="error" class="image-slot">
       <i class="el-icon-picture-outline"></i>
     </div>
