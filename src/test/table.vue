@@ -73,6 +73,7 @@ export default {
       },
       columns: [
         { label: 'a', field: 'a', sort: true, width: 120 ,type:"jj-yesno"},
+        { label: 'x', field: 'x', sort: true, width: 120 ,type:"jj-image"},
         { label: 'b', field: 'b', sort: true, width: 320, templet: function({ row }) {
             return row.b
           } },
@@ -110,7 +111,7 @@ export default {
       {
         refresh:  function(data) {
           console.log(JSON.stringify(data))
-          this.data.page=[{a:1,b:"bb",c:1,d:1 ,f:{a:1,b:2,c:3}},{a:2,b:"bb",c:1,d:1 ,f:{a:1,b:2,c:3}}]
+          this.data.page=[{a:1,b:"bb",c:1,d:1 ,f:{a:1,b:2,c:3},x:'https://www.baidu.com/img/dongd_36a8aab08b12ba911d74444058393b08.gif'},{a:2,b:"bb",c:1,d:1 ,f:{a:1,b:2,c:3}}]
         },
         add:  function({ btn }) {
           this.dlg.icon = btn.icon
