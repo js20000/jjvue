@@ -20,10 +20,11 @@ import listbtn from '@/components/jj/toolbar/listbtn'
 import checkbox from '@/components/jj/forms/checkbox'
 import yesno from '@/components/jj/forms/yesno'
 import select from '@/components/jj/forms/select'
+import image from '@/components/jj/forms/image'
 
 export default {
   name: 'JjColumn',
-  components: { 'jj-listbtn': listbtn, 'jj-checkbox': checkbox, 'jj-yesno': yesno, 'jj-select': select },
+  components: { 'jj-listbtn': listbtn, 'jj-checkbox': checkbox, 'jj-yesno': yesno, 'jj-select': select, 'jj-image': image },
   props: {
     column: {
       type: Object,
