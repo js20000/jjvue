@@ -58,13 +58,13 @@ export default {
   },
   computed: {
       append_to_body(){
-        return data.append_to_body?append_to_body:false
+        return this.data.append_to_body?this.data.append_to_body:false
       },
       modal_append_to_body(){
-        return data.modal_append_to_body?modal_append_to_body:false
+        return this.data.modal_append_to_body?this.data.modal_append_to_body:false
       },
       modal(){
-        return data.modal?modal:true
+        return this.data.modal?this.data.modal:true
       }
   },
   mounted() {
