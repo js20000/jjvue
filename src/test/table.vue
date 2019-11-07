@@ -88,7 +88,7 @@ export default {
         { label: '操作', width: 500, type: 'jj-listbtn', data: {
             buttons: [
               { label: '编辑', icon: 'edit', event: 'edit' ,templet:function ({btn,row}) {
-                  btn.hidden=true
+                  // btn.hidden=true
                 } },
               { label: '确定', icon: 'ok', event: 'editOk', state: 'edit' },
               { label: '撤销', icon: 'cancel', event: 'editCancel', state: 'edit' }
