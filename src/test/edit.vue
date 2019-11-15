@@ -23,6 +23,9 @@
     <el-form-item :rules="[rules.enname]" label="后缀" prop="ssuffix">
       <el-input v-model="obj.ssuffix" />
     </el-form-item>
+    <el-form-item :rules="[rules.enname]" label="后缀" prop="ssuffix">
+      <xlist :url="list" dis-field="name" val-field="id"/>
+    </el-form-item>
 
   </el-form>
 </template>
@@ -45,7 +48,14 @@ export default {
   },
   data() {
     return {
-      rules: {}
+      rules: {},
+        list:[
+            {id:1,name:'选择一'},
+            {id:2,name:'选择二'},
+            {id:3,name:'选择三'},
+            {id:4,name:'选择四'},
+            {id:5,name:'选择五'}
+        ]
     }
   },
   computed: {

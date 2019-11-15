@@ -70,7 +70,7 @@ export default {
       bakTimer:0,
       keyword: -9999,
       list: [],
-      selected: -1,
+      selected: 0,
       style: {
         maxHeight:"400px",
         "overflow-y":"scroll",
