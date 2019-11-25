@@ -59,6 +59,7 @@
             }
         },
         mounted() {
+            console.log(JSON.stringify(this.data))
             this.initSelect()
         },
         methods: {
