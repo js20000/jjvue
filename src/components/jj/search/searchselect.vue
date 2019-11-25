@@ -63,8 +63,11 @@
         },
         methods: {
             initSelect: async function () {
-                if(this.data.data.url != null && this.data.data.url != ''){
-                    const rs = await this.$post(this.data.data.url, para)
+                console.log(this.data.data.url)
+                if(typeof this.data.data.url != "undefined" && this.data.data.url != null && this.data.data.url != ''){
+                    console.log(this.data.data.url)
+                    const rs = await this.$post(this.data.data.url, this.data.data.param?this.data.data.param:{})
+                    console.log(rs)
                     if (rs.data && rs.data.content) {
                         this.list = rs.data.content
                     } else {
