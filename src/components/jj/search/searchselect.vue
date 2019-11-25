@@ -63,8 +63,8 @@
         },
         methods: {
             initSelect: async function () {
-                if(this.data.url != null && this.data.url != ''){
-                    const rs = await this.$post(this.url, para)
+                if(this.data.data.url != null && this.data.data.url != ''){
+                    const rs = await this.$post(this.data.data.url, para)
                     if (rs.data && rs.data.content) {
                         this.list = rs.data.content
                     } else {
