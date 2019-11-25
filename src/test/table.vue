@@ -59,8 +59,13 @@ export default {
           },
           { field: 'search_eq_swarehouseid', label: '列表', value: 0, type: 'jj-list', disValue:'',
             data: {
-              url: [{val:0,id:'a'},{val:1,id:'b'}], word: 'search_like_scnname', disField: 'id', valField: 'val'
-            }}],
+              url: [{val:0,id:'a'},{val:1,id:'b'}], word: 'search_like_scnname', disField: 'id', valField: 'val',defaultVal:1
+            }},
+            { field: 'search_eq_sotherid', label: '选择', type: 'jj-xselect',placeholder: '请选择',
+                data: {
+                    list: [{val:0,id:'a'},{val:1,id:'b'}], disField: 'id', valField: 'val',force:true
+                }}
+        ],
         toolbars: [
           {
             label: '新增', icon: 'add', event: 'add', permission: 'rfid:edit'

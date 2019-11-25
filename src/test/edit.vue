@@ -24,7 +24,7 @@
       <el-input v-model="obj.ssuffix" />
     </el-form-item>
     <el-form-item :rules="[rules.enname]" label="后缀" prop="ssuffix">
-      <xlist :url="list" dis-field="name" val-field="id"/>
+      <xlist :url="list" dis-field="name" val-field="id" default-val=""/>
     </el-form-item>
 
   </el-form>
