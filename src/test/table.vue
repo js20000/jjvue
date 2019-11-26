@@ -63,7 +63,7 @@ export default {
             }},
             { field: 'search_eq_sotherid', label: '选择', type: 'jj-xselect',placeholder: '请选择',
                 data: {
-                    url:'/jj/warehouse/list.json', disField: 'id', valField: 'val',force:true
+                    list: [{val:0,id:'a'},{val:1,id:'b'}], disField: 'id', valField: 'val',force:true
                 }}
         ],
         toolbars: [
