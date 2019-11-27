@@ -1,40 +1,40 @@
 <!--suppress ALL -->
 <template>
 
-  <div class="block">
-    <el-select v-model="data.value"
-               :value-key="data.data.valuekey?data.data.valuekey:data.data.valField"
-               clearable
-               filterable
-               :size="data.data.size"
-               :remote="data.data.remote"
-               :remote-method="data.data.remoteMethod"
-               :placeholder="data.placeholder?data.placeholder:data.label"
-               @change="onselect"
-               @clear="onselect"
-      >
-      <el-option
-        v-for="item in list"
-        :key="item[data.data.valField]"
-        :label="item[data.data.disField]"
-        :value="item[data.data.valField]"/>
-    </el-select>
-  </div>
-<!--  <xselect-->
-<!--    :field="data.field"-->
-<!--    :size="data.data.size?data.data.size:'small'"-->
-<!--    :data="data.data.list"-->
-<!--    :url="data.data.url"-->
-<!--    :val-field="data.data.valField"-->
-<!--    :dis-field="data.data.disField"-->
-<!--    :param="data.data.param"-->
-<!--    :force="data.data.force"-->
-<!--    :remote="data.data.remotemethod?true:false"-->
-<!--    :remote-method="data.data.remotemethod"-->
-<!--    :placeholder="data.data.placeholder?data.placeholder:data.label"-->
-<!--    @onselect="onselect"-->
-<!--    @onclear="onselect"-->
-<!--    />-->
+<!--  <div class="block">-->
+<!--    <el-select v-model="data.value"-->
+<!--               :value-key="data.data.valuekey?data.data.valuekey:data.data.valField"-->
+<!--               clearable-->
+<!--               filterable-->
+<!--               :size="data.data.size"-->
+<!--               :remote="data.data.remote"-->
+<!--               :remote-method="data.data.remoteMethod"-->
+<!--               :placeholder="data.placeholder?data.placeholder:data.label"-->
+<!--               @change="onselect"-->
+<!--               @clear="onselect"-->
+<!--      >-->
+<!--      <el-option-->
+<!--        v-for="item in list"-->
+<!--        :key="item[data.data.valField]"-->
+<!--        :label="item[data.data.disField]"-->
+<!--        :value="item[data.data.valField]"/>-->
+<!--    </el-select>-->
+<!--  </div>-->
+  <xselect
+    v-model="data.value"
+    :size="data.data.size?data.data.size:'small'"
+    :data="data.data.list"
+    :url="data.data.url"
+    :val-field="data.data.valField"
+    :dis-field="data.data.disField"
+    :param="data.data.param"
+    :force="data.data.force"
+    :remote="data.data.remotemethod?true:false"
+    :remote-method="data.data.remotemethod"
+    :placeholder="data.data.placeholder?data.placeholder:data.label"
+    @onselect="onselect"
+    @onclear="onselect"
+    />
 
 </template>
 
@@ -60,7 +60,7 @@
         },
         mounted() {
             console.log(JSON.stringify(this.data))
-            this.initSelect()
+            // this.initSelect()
         },
         methods: {
             initSelect: async function () {

@@ -1,7 +1,7 @@
 <!--suppress ALL -->
 <template>
 
-    <el-select v-model="field"
+    <el-select v-model="bindfield"
                :value-key="valField"
                clearable
                filterable
@@ -17,6 +17,7 @@
         v-for="item in list"
         :key="item[valField]"
         :label="item[disField]"
+        :disabled="typeof item.disabled != 'undefined' ? item.disabled : false"
         :value="item[valField]"/>
     </el-select>
 
@@ -29,6 +30,7 @@
         name: "XSelect",
         components: {},
         props: {
+            field:{},
             placeholder: {type: String, default: ""},
             valField: {type: String, default: ""},
             disField: {type: String, default: ""},
@@ -50,7 +52,7 @@
         },
         data: function () {
             return {
-                field: '',
+                bindfield:this.field,
                 list: (this.data == null || typeof this.data == "undefined") ? [] : this.data
             }
         },
@@ -72,21 +74,22 @@
                     }
                     this.$emit('ondata', rs.data)
                 }
-                console.log(this.field == '')
-                console.log(this.force === true)
-                if(this.field == ''
+                console.log(this.bindfield == null)
+                console.log(this.bindfield == '')
+                console.log(this.bindfield === true)
+                if((this.bindfield == null || this.bindfield == '')
                     && this.list.length > 0
                     && this.force === true
                 ){
-                    this.field = this.list[0][this.valField]
+                    this.bindfield = this.list[0][this.valField]
                     this.onselect()
                 }
             },
             onselect() {
-                this.$emit("change", this.field)
+                this.$emit("change", this.bindfield)
             },
             onclear() {
-                this.$emit("change", this.field)
+                this.$emit("change", this.bindfield)
             }
 
         }

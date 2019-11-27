@@ -9,7 +9,7 @@
       <xlist :url="list" dis-field="name" val-field="id" default-val=""/>
     </el-form-item>
     <el-form-item label="后缀" >
-      <xselect v-model="xselect" :force="true" :data="list" val-field="id" dis-field="name"/>
+      <xselect v-model="xselect" :force="false" :data="list" val-field="id" dis-field="name" placeholder="请选择"/>
     </el-form-item>
 
   </el-form>
@@ -38,7 +38,7 @@ export default {
             {id:1,name:'选择一'},
             {id:2,name:'选择二'},
             {id:3,name:'选择三'},
-            {id:4,name:'选择四'},
+            {id:4,name:'选择四',disabled:true},
             {id:5,name:'选择五'}
         ],
         xselect:''

@@ -55,7 +55,7 @@ export default {
             data: {
               url: [{val:0,id:'a'},{val:1,id:'b'}], word: 'search_like_scnname', disField: 'id', valField: 'val',defaultVal:1
             }},
-            { field: 'search_eq_sotherid', label: '选择', type: 'jj-xselect',placeholder: '请选择',
+            { field: 'search_eq_sotherid', label: '选择', type: 'jj-xselect',placeholder: '请选择', value: 1,
                 data: {
                     list: [{val:0,id:'a'},{val:1,id:'b'}], disField: 'id', valField: 'val',force:true
                 }}
