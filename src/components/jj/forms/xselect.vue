@@ -11,6 +11,8 @@
                :remote="remote"
                :remote-method="remoteMethod"
                :placeholder="placeholder"
+               loading-text="数据加载中"
+               :loading="loading"
                @change="onselect"
                @clear="onclear"
       >
@@ -54,6 +56,7 @@
         },
         data: function () {
             return {
+                loading:false,
                 bindfield:this.field,
                 list: (this.data == null || typeof this.data == "undefined") ? [] : this.data
             }
@@ -68,12 +71,14 @@
         methods: {
             initSelect: async function () {
                 if(this.url != null && this.url != ''){
+                    this.loading=true
                     const rs = await this.$post(this.url, this.param)
                     if (rs.data && rs.data.content) {
                         this.list = rs.data.content
                     } else {
                         this.list = rs.data
                     }
+                    this.loading=false
                     this.$emit('ondata', rs.data)
                 }
                 if((this.bindfield == null || this.bindfield == '')
