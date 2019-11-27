@@ -9,7 +9,7 @@
       <xlist :url="list" dis-field="name" val-field="id" default-val=""/>
     </el-form-item>
     <el-form-item label="后缀" >
-      <xselect v-model="xselect" :force="false" :data="list" val-field="id" dis-field="name" placeholder="请选择"/>
+      <xselect v-model="xselect" :force="false" :data="list" val-field="id" dis-field="name" placeholder="请选择" @select="select"/>
     </el-form-item>
 
   </el-form>
@@ -56,7 +56,10 @@ export default {
     async validate() {
       await this.$refs.dataForm.validate()
       return this.data
-    }
+    },
+      select:function (item) {
+          console.log(item)
+      }
   }
 
 }

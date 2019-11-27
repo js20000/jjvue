@@ -1,7 +1,8 @@
 <!--suppress ALL -->
 <template>
 
-    <el-select v-model="bindfield"
+
+  <el-select v-model="bindfield"
                :value-key="valField"
                clearable
                filterable
@@ -31,6 +32,7 @@
         components: {},
         props: {
             field:{},
+            label: {type: String, default: ""},
             placeholder: {type: String, default: ""},
             valField: {type: String, default: ""},
             disField: {type: String, default: ""},
@@ -84,9 +86,17 @@
             },
             onselect() {
                 this.$emit("change", this.bindfield)
+                this.$emit("select", this.getItem())
             },
             onclear() {
                 this.$emit("change", this.bindfield)
+                this.$emit("clear")
+            },
+            getItem:function () {
+                const item = this.list.filter(obj=>obj[this.valField] === this.bindfield)
+                if(item.length > 0){
+                    return item[0]
+                }
             }
 
         }

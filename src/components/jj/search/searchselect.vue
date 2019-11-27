@@ -22,6 +22,7 @@
 <!--  </div>-->
   <xselect
     v-model="data.value"
+    :label="data.label"
     :size="data.data.size?data.data.size:'small'"
     :data="data.data.list"
     :url="data.data.url"
@@ -32,8 +33,8 @@
     :remote="data.data.remotemethod?true:false"
     :remote-method="data.data.remotemethod"
     :placeholder="data.data.placeholder?data.placeholder:data.label"
-    @onselect="onselect"
-    @onclear="onselect"
+    @select="onselect"
+    @clear="onselect"
     />
 
 </template>
