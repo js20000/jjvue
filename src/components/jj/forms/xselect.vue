@@ -94,7 +94,7 @@
                 }
             },
             onselect() {
-                this.$emit("select", this.getItem())
+                this.$emit("change", this.getItem())
             },
             onclear() {
                 this.$emit("clear")
