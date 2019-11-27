@@ -33,7 +33,7 @@
         name: "XSelect",
         components: {},
         props: {
-            field:{},
+            value:{},
             label: {type: String, default: ""},
             placeholder: {type: String, default: ""},
             valField: {type: String, default: ""},
@@ -57,16 +57,21 @@
         data: function () {
             return {
                 loading:false,
-                bindfield:this.field,
+                bindfield:(this.value == null || typeof this.value == "undefined") ? '' : this.value,
                 list: (this.data == null || typeof this.data == "undefined") ? [] : this.data
             }
         },
-        model:{
-          prop:'field',
-            event:'change'
-        },
         mounted() {
             this.initSelect()
+        },
+        watch:{
+            value(val) {
+                this.bindfield = val;
+            },
+            bindfield(val) {
+                this.$emit("input",val);
+            }
+
         },
         methods: {
             initSelect: async function () {
@@ -86,15 +91,12 @@
                     && this.force === true
                 ){
                     this.bindfield = this.list[0][this.valField]
-                    this.onselect()
                 }
             },
             onselect() {
-                this.$emit("change", this.bindfield)
                 this.$emit("select", this.getItem())
             },
             onclear() {
-                this.$emit("change", this.bindfield)
                 this.$emit("clear")
             },
             getItem:function () {
