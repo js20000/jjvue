@@ -9,7 +9,7 @@
       <xlist :url="list" dis-field="name" val-field="id" default-val=""/>
     </el-form-item>
     <el-form-item label="后缀" >
-      <xselect v-model="xselect" :force="false" :data="list" val-field="id" dis-field="name" placeholder="请选择" @select="select"/>
+      <xselect v-model="xselect" :force="true" :data="list" val-field="id" dis-field="name" placeholder="请选择" @select="select"/>
     </el-form-item>
 
   </el-form>
