@@ -63,33 +63,33 @@
             // this.initSelect()
         },
         methods: {
-            initSelect: async function () {
-                console.log(this.data.data.url)
-                if(typeof this.data.data.url != "undefined" && this.data.data.url != null && this.data.data.url != ''){
-                    console.log(this.data.data.url)
-                    const rs = await this.$post(this.data.data.url, this.data.data.param?this.data.data.param:{})
-                    console.log(rs)
-                    if (rs.data && rs.data.content) {
-                        this.list = rs.data.content
-                    } else {
-                        this.list = rs.data
-                    }
-                    this.$emit('ondata', rs.data)
-                }
-                if((this.data.value == null
-                    || this.data.value == '')
-                    && this.list.length > 0
-                    && this.data.data.force != null
-                    && this.data.data.force === true
-                    ){
-                    if("value" in this.data){
-                        this.data.value = this.list[0][this.data.data.valField]
-                    }else{
-                        this.$set(this.data,'value',this.list[0][this.data.data.valField])
-                    }
-                    this.$emit("onSearch", this.data)
-                }
-            },
+            // initSelect: async function () {
+            //     console.log(this.data.data.url)
+            //     if(typeof this.data.data.url != "undefined" && this.data.data.url != null && this.data.data.url != ''){
+            //         console.log(this.data.data.url)
+            //         const rs = await this.$post(this.data.data.url, this.data.data.param?this.data.data.param:{})
+            //         console.log(rs)
+            //         if (rs.data && rs.data.content) {
+            //             this.list = rs.data.content
+            //         } else {
+            //             this.list = rs.data
+            //         }
+            //         this.$emit('ondata', rs.data)
+            //     }
+            //     if((this.data.value == null
+            //         || this.data.value == '')
+            //         && this.list.length > 0
+            //         && this.data.data.force != null
+            //         && this.data.data.force === true
+            //         ){
+            //         if("value" in this.data){
+            //             this.data.value = this.list[0][this.data.data.valField]
+            //         }else{
+            //             this.$set(this.data,'value',this.list[0][this.data.data.valField])
+            //         }
+            //         this.$emit("onSearch", this.data)
+            //     }
+            // },
             onselect() {
                 this.$emit("onSearch", this.data)
             }

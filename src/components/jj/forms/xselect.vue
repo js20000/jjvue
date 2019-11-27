@@ -74,9 +74,6 @@
                     }
                     this.$emit('ondata', rs.data)
                 }
-                console.log(this.bindfield == null)
-                console.log(this.bindfield == '')
-                console.log(this.bindfield === true)
                 if((this.bindfield == null || this.bindfield == '')
                     && this.list.length > 0
                     && this.force === true
