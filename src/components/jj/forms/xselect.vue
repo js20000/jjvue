@@ -29,7 +29,6 @@
         name: "XSelect",
         components: {},
         props: {
-            field: {},
             placeholder: {type: String, default: ""},
             valField: {type: String, default: ""},
             disField: {type: String, default: ""},
@@ -51,8 +50,13 @@
         },
         data: function () {
             return {
+                field: '',
                 list: (this.data == null || typeof this.data == "undefined") ? [] : this.data
             }
+        },
+        model:{
+          prop:'field',
+            event:'change'
         },
         mounted() {
             this.initSelect()
@@ -75,15 +79,14 @@
                     && this.force === true
                 ){
                     this.field = this.list[0][this.valField]
-                    console.log(this.field)
-                    this.onselect(this.field)
+                    this.onselect()
                 }
             },
             onselect() {
-                this.$emit("onselect", this.data)
+                this.$emit("change", this.field)
             },
             onclear() {
-                this.$emit("onclear", this.data)
+                this.$emit("change", this.field)
             }
 
         }

@@ -30,10 +30,11 @@
 <script>
  import  {listToTree} from "@/utils"
  import  TableIndex from './test/table'
+ import  SequenceEdit from './test/edit'
 
  export default {
     name: 'JJVueIndex',
-    components: { TableIndex },
+    components: { TableIndex,SequenceEdit },
     data() {
       return {
         treeData: [],
@@ -68,6 +69,7 @@
           i++
           subs.push({ id: x, label: x })
           subs.push({ id: i, sparentid: x, label: '例子', md: x, type: 'TableIndex' })
+          subs.push({ id: i, sparentid: x, label: '编辑例子', md: x, type: 'SequenceEdit' })
           subs.push({ id: i, sparentid: x, label: '文档', md: x, type: '' })
         })
         //  const { id, pid, parent, children } = para || { id: 'id', pid: 'sparentid', parent: 'parent', children: 'children' }

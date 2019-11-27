@@ -16,7 +16,7 @@ const comment = {
     Vue.component("jj-dialog",dialog )
     Vue.component("jj-button",button )
     Vue.component("xlist",xlist )
-    // Vue.component("xselect",xselect )
+    Vue.component("xselect",xselect )
     Vue.component("jj-list",searchlist )
     Vue.component("jj-date",searchdate )
     Vue.component("jj-xselect",searchselect )

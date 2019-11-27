@@ -11,14 +11,8 @@
       @delit="deleteit"/>
 
 
-    <jj-dialog ref="dlg1"  :data="dlg">
-      <template>
-        <el-form  :model="dlg.formData" label-width="80px" >
-          <el-form-item  label="处理意见" prop="sremark">
-            <el-input v-model="dlg.formData.sremark" />
-          </el-form-item>
-        </el-form>
-      </template>
+    <jj-dialog ref="dlg"  :data="dlg">
+      <edit :data="dlg.formData"/>
 
     </jj-dialog>
   </div>
@@ -68,7 +62,7 @@ export default {
         ],
         toolbars: [
           {
-            label: '新增', icon: 'add', event: 'add', permission: 'rfid:edit'
+            label: '新增', icon: 'add', event: 'add'
           },
           {
             label: '删除', icon: 'cancel', event: 'delit', permission: 'rfid:edit', needRow: 1
@@ -120,7 +114,6 @@ export default {
         },
         add:  function({ btn }) {
           this.dlg.icon = btn.icon
-          this.editObj = getRfid()
           this.$refs.dlg.show()
         },
         edit: function({ row, index, btn }) {
