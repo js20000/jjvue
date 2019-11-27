@@ -44,7 +44,6 @@ export default {
       this.$emit("onSearch", data)
     },
     buildData(s){
-
         return s
     }
   }

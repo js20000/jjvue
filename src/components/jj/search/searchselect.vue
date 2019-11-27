@@ -82,11 +82,11 @@
                     && this.data.data.force != null
                     && this.data.data.force === true
                     ){
-                    // if("value" in this.data){
-                    //     this.data.value = this.list[0][this.data.data.valField]
-                    // }else{
+                    if("value" in this.data){
+                        this.data.value = this.list[0][this.data.data.valField]
+                    }else{
                         this.$set(this.data,'value',this.list[0][this.data.data.valField])
-                    // }
+                    }
                     this.$emit("onSearch", this.data)
                 }
             },
