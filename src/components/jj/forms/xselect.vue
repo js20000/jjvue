@@ -70,8 +70,8 @@
             },
             bindfield(val) {
                 this.$emit("input",val);
+                this.$emit("change", this.getItem())
             }
-
         },
         methods: {
             initSelect: async function () {
