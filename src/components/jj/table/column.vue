@@ -3,11 +3,15 @@
     <template v-if="column.type&&(column.type.indexOf('jj-')==0 )" >
       <component :is="column.type" :data="buildData()" @event="event" />
     </template>
-    <template v-else-if="column.type&&(column.type.indexOf('sim-')==0 )" >
-      <component :is="column.type" :value="filedValue" @event="event" />
-    </template>
+
     <template v-else-if="column.templet&&(typeof column.templet === 'string')" >
-      <component :is="column.templet" :data="buildData()" @event="event" />
+      <template v-if="column.templet.indexOf('sim-')==0 " >
+        <component :is="column.templet" :data="filedValue" @event="event" />
+      </template>
+      <template v-else>
+        <component :is="column.templet" :data="buildData()" @event="event" />
+      </template>
+
     </template>
     <el-form-item v-else-if="index==editIndex && column.field &&!column.readOnly" :prop="column.field" :rules="column.rules?column.rules:[]">
       <el-input v-model="filedValue" size="small" />
