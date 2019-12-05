@@ -35,6 +35,7 @@
                           :width="getWidth(column,'')"
                           :key="index+1000"
                           :prop="column.field?column.field:''"
+                          :align="column.align?column.align:'left'"
                           :fixed="column.fixed?column.fixed:false"
                           :sortable="column.sort?'custom':false" >
           <template slot-scope="scope">
