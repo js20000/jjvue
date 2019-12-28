@@ -113,7 +113,7 @@ export default {
         const keys = column.field.split('.')
         for (const key of keys) {
           rs = rs[key]
-          if (typeof rs === undefined) { return '' }
+          if ( rs === undefined) { return '' }
         }
         return rs
       }

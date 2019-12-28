@@ -9,7 +9,6 @@
           :expand-on-click-node="false"
           :default-expand-all="true"
           :highlight-current="true"
-
           @node-click="handleNodeClick"/>
       </el-aside>
       <el-main>

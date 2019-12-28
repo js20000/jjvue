@@ -89,9 +89,8 @@ export default {
       const keys = this.column.field.split('.')
       for (const key of keys) {
         rs = rs[key]
-        if (typeof rs === undefined) {
-          this.$set(rs, key, '')
-          return rs[key]
+        if (rs === undefined) {
+            return ''
         }
       }
       return rs
@@ -103,7 +102,7 @@ export default {
         const key = keys[i]
         if (i < keys.length - 1) {
           rs = rs[key]
-          if (typeof rs === undefined) {
+          if (rs === undefined) {
             rs[key] = {}
             rs = rs[key]
           }

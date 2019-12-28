@@ -81,9 +81,8 @@ export default {
           } },
 
         { label: 'd', field: 'd', sort: true, width: 120 ,type:"jj-checkbox"},
-        { field: 'f.a', label: 'f.a', sort: true, width: 200 , templet: function({ row }) {
-            return row.f.a
-          } },
+        { label: 'f.b', field: 'f.b', sort: true, width: 120 },
+        { field: 'f.a', label: 'f.a', sort: true, width: 200 },
         { label: '操作', width: 500, type: 'jj-listbtn', data: {
             buttons: [
               { label: '编辑', icon: 'edit', event: 'edit' ,templet:function ({btn,row}) {
@@ -110,7 +109,7 @@ export default {
       {
         refresh:  function(data) {
           console.log(JSON.stringify(data))
-          this.data.page=[{a:1,b:"bb",c:1,d:1 ,f:{a:1,b:2,c:3},x:'https://www.baidu.com/img/dongd_36a8aab08b12ba911d74444058393b08.gif'},{a:2,b:"bb",c:1,d:1 ,f:{a:1,b:2,c:3}}]
+          this.data.page=[{a:1,b:"bb",c:1,d:1 ,f:{a:1,b:2,c:3},x:'https://www.baidu.com/img/dongd_36a8aab08b12ba911d74444058393b08.gif'},{a:2,b:"bb",c:1,d:1 }]
         },
         add:  function({ btn }) {
           this.dlg.icon = btn.icon
