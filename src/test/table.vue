@@ -86,11 +86,12 @@ export default {
         { label: '操作', width: 500, type: 'jj-listbtn', data: {
             buttons: [
               { label: '编辑', icon: 'edit', event: 'edit' ,templet:function ({btn,row}) {
-                  // btn.hidden=true
+                  return true
                 } },
               { label: '确定', icon: 'ok', event: 'editOk', state: 'edit' },
               { label: '撤销', icon: 'cancel', event: 'editCancel', state: 'edit' }
-            ], list: [
+            ],
+            list: [
               { label: '重建表', icon: 'el-icon-refresh', event: 'makeSqlTable' },
               { label: '修改SQl', icon: 'ok', event: 'makeSqlAddCol' },
               { label: '生成jpa', icon: 'edit', event: 'makeSingle' },
