@@ -1,7 +1,7 @@
 {
   "name": "jjvue",
   "description": "jj framework for vue",
-  "version": "1.0.128",
+  "version": "1.0.130",
   "author": "fanyijie <fanyijie@frogsing.com>",
   "main": "dist/jjvue.js",
   "license": "MIT",
@@ -11,7 +11,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "buildTest": "cross-env NODE_ENV=production env_config=prod node build/build.js",
     "yarninstall": "yarn install",
-    "publishIt": "yarn  publish",
+    "publishIt": " yarn  publish",
     "registry": "yarn  config set registry  http://nexus.frogsing.cn/repository/npm-group/"
   },
   "dependencies": {
