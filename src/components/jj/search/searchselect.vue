@@ -92,7 +92,9 @@
             //     }
             // },
             onselect() {
-                this.$emit("onSearch", this.data)
+               this.$nextTick(function(){
+                 this.$emit("onSearch", this.data)
+               })
             }
             // onselect(obj){
             //   if(this.data.data.valField)

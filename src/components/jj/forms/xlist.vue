@@ -64,17 +64,17 @@
 
     export default {
         name: 'XList',
-        data: function () {
+        data: function() {
             return {
-                xname: "",
-                bakName: "",
+                xname: '',
+                bakName: '',
                 bakTimer: 0,
                 keyword: -9999,
                 list: [],
                 selected: 0,
                 style: {
-                    maxHeight: "400px",
-                    "overflow-y": "scroll",
+                    maxHeight: '400px',
+                    'overflow-y': 'scroll',
                     display: 'none'
                 }
             }
@@ -83,33 +83,29 @@
         props: {
             value: {}, label: {}, word: {}, defaultWord: {
                 type: String,
-                default: null,
+                default: null
             }, valField: {}, disField: {}, defaultVal: {}, templet: {}, url: {},
             para: {
                 type: Object, default() {
                     return {}
                 }
             }, xclass: {},
-            force: {type: Boolean, default: true},
-            size: {type: String, default: "small"}
+            force: { type: Boolean, default: true },
+            size: { type: String, default: 'small' }
         },
         inheritAttrs: false,
         async mounted() {
             let val = this.value
-            if (val === "" || (val === null)) {
+            if (val === '' || (val === null)) {
                 val = this.defaultVal
             }
-            if (this.defaultWord != null || (typeof val != "undefined")) {
-                if (this.defaultWord != null || typeof this.defaultWord == "undefined") {
+            if (this.defaultWord != null || (typeof val != 'undefined')) {
+                if (this.defaultWord != null || typeof this.defaultWord == 'undefined') {
                     this.xname = defaultWord
-                } else
-                    this.xname = ""
+                } else { this.xname = '' }
                 await this.postOnly(this.xname)
-
             }
             for (let i = 0; i < this.list.length; i++) {
-
-
                 const xx = this.list[i]
                 if (typeof val != 'undefined' && this.valField) {
                     if (xx[this.valField] == val) {
@@ -128,7 +124,7 @@
             }
         },
         methods: {
-            onchange: function () {
+            onchange: function() {
                 // let rs = {}
                 // if (this.disField) {
                 //   rs[this.disField] = event.target.value
@@ -142,16 +138,15 @@
                 // this.selected = -1
                 // this.onselected(rs)
 
-                this.xname = event.target.value;
+                this.xname = event.target.value
                 clearTimeout(this.bakTimer)
                 this.bakName = this.xname
                 this.bakTimer = setTimeout(this.sendData, 300)
-
             },
             sendData() {
                 this.post(this.xname)
             },
-            onclick: function () {
+            onclick: function() {
                 event.preventDefault()
                 if (this.style.display == 'block') {
                     // this.style.display = 'none'
@@ -171,14 +166,14 @@
                 //
                 this.post(this.keyword)
             },
-            onclick_i: function () {
+            onclick_i: function() {
                 if (this.style.display == 'block') {
                     this.style.display = 'none'
                     return
                 }
                 this.post(this.keyword)
             },
-            onfocus: function () {
+            onfocus: function() {
                 // event.preventDefault()
                 // $(event.target).focus().select()
 
@@ -186,25 +181,24 @@
                 //     return;
                 // if(this.style.display=='block')
                 //     return;
-                //this.post(this.keyword)
-                this.$emit("focus")
+                // this.post(this.keyword)
+                this.$emit('focus')
             },
-            post: async function (val) {
+            post: async function(val) {
                 await this.postOnly(val)
-                this.$nextTick(function () {
+                this.$nextTick(function() {
                     this.style.display = 'block'
                 })
             },
             getValByXname() {
-                let lastSelected = this.selected
+                const lastSelected = this.selected
                 this.selected = -1
                 for (let i = 0; i < this.list.length; i++) {
                     const xx = (this.disField ? this.list[i][this.disField] : this.list[i])
 
                     if (xx == this.xname) {
                         this.selected = i
-                        if (i == lastSelected)
-                            break
+                        if (i == lastSelected) { break }
 
                         this.onselected(this.list[i])
                         this.scrollto()
@@ -212,9 +206,7 @@
                     }
                 }
             },
-            postOnly: async function (val) {
-
-
+            postOnly: async function(val) {
                 if (val == -9999) {
                     const pos = this.$refs['thisinput'].$el
                     this.style.top = pos.offsetTop + pos.clientHeight + 'px'
@@ -223,12 +215,12 @@
                     val = ''
                 }
 
-                if (val == this.keyword) {//无须提交请求
+                if (val == this.keyword) { // 无须提交请求
                     this.getValByXname()
                     return
                 }
                 if (typeof this.url == 'object') {
-                    let flist = this.url.map(x => {
+                    const flist = this.url.map(x => {
                         if (typeof x == 'string') {
                             if (x && x.indexOf(val) >= 0) {
                                 return null
@@ -237,7 +229,6 @@
                             }
                         } else {
                             for (const i in x) {
-
                                 if (typeof x[i] == 'string') {
                                     return x
                                 }
@@ -245,8 +236,7 @@
                             return null
                         }
                     })
-                    this.list = flist;
-
+                    this.list = flist
                 } else {
                     if (this.$store) {
                         this.$store.dispatch('myloading', true)
@@ -273,10 +263,8 @@
 
                     this.getValByXname()
                 }
-
-
             },
-            onblur: function () {
+            onblur: function() {
                 this.style.display = 'none'
                 this.getValByXname()
                 if (this.selected < 0 && this.force == true) {
@@ -298,7 +286,7 @@
                     this.$emit('blur')
                 }
             },
-            trclick: function (index) {
+            trclick: function(index) {
                 event.preventDefault()
                 // let div = $(event.target).parent().find('div')
                 // let index = div.data('index')
@@ -307,13 +295,12 @@
                 this.onselected(this.list[index])
                 this.selected = index
             },
-            onselected: function (obj) {
+            onselected: function(obj) {
                 this.$emit('xselect', obj)
                 let rs = {}
                 if (this.disField) {
                     this.xname = obj[this.disField]
-                } else
-                    this.xname = obj
+                } else { this.xname = obj }
                 if (this.valField) {
                     rs = obj[this.valField]
                 } else {
@@ -321,12 +308,12 @@
                 }
                 this.$emit('input', rs)
             },
-            scrollto: function () {
+            scrollto: function() {
                 // let div = this.$refs['thistable']
                 // let h = $(div).find('tr:first').height()
                 // $(div).scrollTop(h * (this.selected + 5) - $(div).height())
             },
-            keydown: function () {
+            keydown: function() {
                 const node = event.currentTarget
                 switch (event.keyCode) {
                     case 13:
@@ -370,15 +357,15 @@
         },
         computed: {
             loading() {
-                if (this.$store)
-                    return this.$store.getters.myloading
-                else
-                    false
+                if (this.$store) { return this.$store.getters.myloading } else { false }
             }
         },
         watch: {
             value(val) {
-
+                if (val === '') {
+                  this.xname = ''
+                  return
+                }
                 for (let i = 0; i < this.list.length; i++) {
                     const xx = this.list[i]
                     if (typeof val != 'undefined' && this.valField) {
