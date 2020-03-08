@@ -296,7 +296,6 @@
                 this.selected = index
             },
             onselected: function(obj) {
-                this.$emit('xselect', obj)
                 let rs = {}
                 if (this.disField) {
                     this.xname = obj[this.disField]
@@ -306,7 +305,8 @@
                 } else {
                     rs = obj
                 }
-                this.$emit('input', rs)
+              this.$emit('xselect', obj)
+              this.$emit('input', rs)
             },
             scrollto: function() {
                 // let div = this.$refs['thistable']
