@@ -39,7 +39,7 @@
                           :fixed="column.fixed?column.fixed:false"
                           :sortable="column.sort?'custom':false" >
           <template slot-scope="scope">
-            <jj-column :row="scope.row" :index="scope.$index" :column="column" :edit-index="editIndex" @event="event"/>
+            <jj-column :row="scope.row" :index="scope.$index" :column="column" :vm="$parent" :edit-index="editIndex" @event="event"/>
           </template>
         </el-table-column>
 

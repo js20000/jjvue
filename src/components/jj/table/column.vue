@@ -33,6 +33,9 @@ export default {
   name: 'JjColumn',
   components: { 'jj-listbtn': listbtn, 'jj-checkbox': checkbox, 'jj-yesno': yesno, 'jj-select': select, 'jj-image': image },
   props: {
+    vm: {
+      type: Object
+    },
     column: {
       type: Object,
       default() {
@@ -72,7 +75,7 @@ export default {
       const templet = this.column['templet']
       if (templet) {
         if (typeof templet === 'function') {
-          return templet.apply(null, [{ row: this.row, column: this.column, index: this.index }])
+          return templet.apply(this.vm, [{ row: this.row, column: this.column, index: this.index }])
         }
         return 'templet not imp'
       }
