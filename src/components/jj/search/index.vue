@@ -9,14 +9,16 @@
       </el-input>
     </el-col>
 
-
     <slot/>
   </el-row>
 </template>
-<style>
+<style type="scoped">
   .el-input-group__prepend {
     min-width: 100px;
     text-align: right;
+  }
+  .el-select{
+    width:100%;
   }
 </style>
 <script>
@@ -35,15 +37,15 @@ export default {
 
   },
   methods: {
-    keyDown(event,data) {
+    keyDown(event, data) {
       if (event.keyCode == 13) {
         this.onSearch(data)
       }
     },
-    onSearch(data){
-      this.$emit("onSearch", data)
+    onSearch(data) {
+      this.$emit('onSearch', data)
     },
-    buildData(s){
+    buildData(s) {
         return s
     }
   }

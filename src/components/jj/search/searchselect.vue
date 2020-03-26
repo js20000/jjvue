@@ -35,7 +35,9 @@
     :placeholder="data.data.placeholder?data.placeholder:data.label"
     @select="onselect"
     @clear="onselect"
-    />
+    style="width: 100%;"
+
+  />
 
 </template>
 

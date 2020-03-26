@@ -11,6 +11,7 @@
         :defaultVal="data.data.defaultVal"
         :defaultDis="data.data.defaultDis"
         @xselect="xselect"
+        style="width: 100%;"
 
 
  > </xlist>
