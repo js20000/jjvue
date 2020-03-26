@@ -44,21 +44,21 @@ export default {
       data: {
         sorts: { scode: 'ascending' },
         searchs: [
-          { field: 'search_like_scode', label: '编号', value: '' },
-          { field: 'search_eq_a', label: '日期', value: 0, type: 'jj-date',
-            data:{
-                el:"el-date-picker",
-                type:"daterange"
-            }
-          },
-          { field: 'search_eq_swarehouseid', label: '列表', value: 0, type: 'jj-list', disValue:'',
-            data: {
-              url: [{val:0,id:'a'},{val:1,id:'b'}], word: 'search_like_scnname', disField: 'id', valField: 'val',defaultVal:1
-            }},
-            { field: 'search_eq_sotherid', label: '选择', type: 'jj-xselect',placeholder: '请选择', value: 1,
-                data: {
-                    list: [{val:0,id:'a'},{val:1,id:'b'}], disField: 'id', valField: 'val',force:true
-                }}
+          { field: 'search_like_scode', label: '编号', value: '' }
+          // { field: 'search_eq_a', label: '日期', value: 0, type: 'jj-date',
+          //   data:{
+          //       el:"el-date-picker",
+          //       type:"daterange"
+          //   }
+          // },
+          // { field: 'search_eq_swarehouseid', label: '列表', value: 0, type: 'jj-list', disValue:'',
+          //   data: {
+          //     url: [{val:0,id:'a'},{val:1,id:'b'}], word: 'search_like_scnname', disField: 'id', valField: 'val',defaultVal:1
+          //   }},
+          //   { field: 'search_eq_sotherid', label: '选择', type: 'jj-xselect',placeholder: '请选择', value: 1,
+          //       data: {
+          //           list: [{val:0,id:'a'},{val:1,id:'b'}], disField: 'id', valField: 'val',force:true
+          //       }}
         ],
         toolbars: [
           {

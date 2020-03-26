@@ -1,9 +1,9 @@
 <template>
   <div >
-    <jj-search :searchs="data.searchs" @refresh="refresh" @onSearch="onSearch">
+    <jj-search :searchs="data.searchs" @refresh="refresh" @onSearch="onSearch" v-if="data.searchs.length > 1">
       <slot name="searchs"/>
     </jj-search>
-    <jj-toolbar :data="data.toolbars" @event="toolbarevent" @refresh="refresh" @reset="reset">
+    <jj-toolbar :data="data.toolbars" :searchs="data.searchs" @event="toolbarevent" @refresh="refresh" @reset="reset">
       <slot name="toolbar"/>
     </jj-toolbar>
     <slot name="tops"/>

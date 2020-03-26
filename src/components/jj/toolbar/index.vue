@@ -7,11 +7,17 @@
       <slot/>
     </el-col>
     <el-col :span="12">
-      <div style="text-align: right">
+
+      <div style="text-align: right" v-if="searchs.length != 1">
         <el-button-group>
           <jj-button :btn="{label: '查询', icon: 'el-icon-search'}" @click="refresh" />
           <jj-button :btn="{label: '重置', icon: 'el-icon-refresh'}" @click="reset" />
         </el-button-group>
+      </div>
+      <div style="text-align: right" v-if="searchs.length == 1">
+        <el-input :placeholder="searchs[0].placeholder" v-model="searchs[0].value" class="input-with-select">
+          <el-button slot="append" icon="el-icon-search" @click="refresh"></el-button>
+        </el-input>
       </div>
     </el-col>
   </el-row>
@@ -30,6 +36,12 @@ export default {
   name: `jj-toolbar`,
   props: {
     data: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
+    searchs: {
       type: Array,
       default() {
         return []
