@@ -1,21 +1,20 @@
 var path = require('path')
 var webpack = require('webpack')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const VueLoaderPlugin = require('vue-loader/lib/plugin'); //引入这行
-
+const VueLoaderPlugin = require('vue-loader/lib/plugin') // 引入这行
 
   module.exports = {
-    mode:"production",
+    mode: 'production',
     externals: {
       'vue': 'vue',
-      'sortablejs':'sortablejs'
+      'sortablejs': 'sortablejs'
     },
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
     filename: 'jjvue.js',
-    library: "jjvue", // 指定的就是你使用require时的模块名
+    library: 'jjvue', // 指定的就是你使用require时的模块名
     libraryTarget: 'umd', // libraryTarget会生成不同umd的代码,可以只是commonjs标准的，也可以是指amd标准的，也可以只是通过script标签引入的
     umdNamedDefine: true // 会对 UMD 的构建过程中的 AMD 模块进行命名。否则就使用匿名的 define
   },
@@ -26,8 +25,8 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin'); //引入这行
         use: [
           'vue-style-loader',
           'css-loader'
-        ],
-      },      {
+        ]
+      }, {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
@@ -66,23 +65,11 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin'); //引入这行
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
-  //   ,
-  // optimization: {
-  //   runtimeChunk: 'single',
-  //   minimizer: [
-  //     new UglifyJsPlugin({
-  //       uglifyOptions: {
-  //         mangle: {
-  //           safari10: true
-  //         }
-  //       },
-  //       sourceMap: true,
-  //       cache: true,
-  //       parallel: true
-  //     })
-  //   ]
-  // }
+  devtool: '#eval-source-map',
+  optimization: {
+    minimize: false
+  }
+
 }
 
 if (process.env.NODE_ENV === 'production') {
@@ -93,18 +80,7 @@ if (process.env.NODE_ENV === 'production') {
       'process.env': {
         NODE_ENV: '"production"'
       }
-    })
-    ,
-    // new webpack.optimize.UglifyJsPlugin({
-    //   sourceMap: true,
-    //   compress: {
-    //     warnings: false
-    //   }
-    // })
-    // ,
-    new VueLoaderPlugin(),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })
+    }),
+    new VueLoaderPlugin()
   ])
 }

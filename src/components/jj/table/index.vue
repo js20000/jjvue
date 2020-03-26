@@ -37,9 +37,9 @@
                           :prop="column.field?column.field:''"
                           :align="column.align?column.align:'left'"
                           :fixed="column.fixed?column.fixed:false"
-                          :sortable="column.sort?'custom':false" >
+                          :sortable="column.sort?'custom':(column.sort==''?true:false)" >
           <template slot-scope="scope">
-            <jj-column :row="scope.row" :index="scope.$index" :column="column" :edit-index="editIndex" @event="event"/>
+            <jj-column :row="scope.row" :index="scope.$index" :column="column" :vm="$parent" :edit-index="editIndex" @event="event"/>
           </template>
         </el-table-column>
 
@@ -104,8 +104,8 @@ export default {
 
   },
   methods: {
-    onSearch(data){
-      this.$emit('onSearch',data)
+    onSearch(data) {
+      this.$emit('onSearch', data)
     },
     getValue(row, column) {
       let rs = row
@@ -113,7 +113,7 @@ export default {
         const keys = column.field.split('.')
         for (const key of keys) {
           rs = rs[key]
-          if ( rs === undefined) { return '' }
+          if (rs === undefined) { return '' }
         }
         return rs
       }
@@ -237,7 +237,7 @@ export default {
       if (this.data.page && this.data.page.size) { rs = { page: this.data.page.number, limit: this.data.page.size } }
       if (this.data.searchs) {
         for (const s of this.data.searchs) {
-          if (!(s.value==='') && !(typeof s.value=='undefined')) { rs[s.field] = s.value }
+          if (!(s.value === '') && !(typeof s.value == 'undefined')) { rs[s.field] = s.value }
         }
       }
       const ss = []
@@ -254,7 +254,7 @@ export default {
         this.data.sorts = {}
         this.data.sorts[prop] = order
       }
-      this.refresh()
+      if (column.sortable == 'custom') { this.refresh() }
     },
     refresh: function() {
       this.restore()
@@ -275,8 +275,7 @@ export default {
       if (vm.data.searchs) {
         for (const s of vm.data.searchs) {
           s.value = s.default || ''
-          if(s.disValue)
-             s.disValue=''
+          if (s.disValue) { s.disValue = '' }
         }
       }
       vm.refresh()

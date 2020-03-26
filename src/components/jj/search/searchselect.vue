@@ -35,7 +35,9 @@
     :placeholder="data.data.placeholder?data.placeholder:data.label"
     @select="onselect"
     @clear="onselect"
-    />
+    style="width: 100%;"
+
+  />
 
 </template>
 
@@ -92,7 +94,9 @@
             //     }
             // },
             onselect() {
-                this.$emit("onSearch", this.data)
+               this.$nextTick(function(){
+                 this.$emit("onSearch", this.data)
+               })
             }
             // onselect(obj){
             //   if(this.data.data.valField)
