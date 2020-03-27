@@ -1,9 +1,9 @@
 <template>
   <div >
-    <jj-search :searchs="data.searchs" @refresh="refresh" @onSearch="onSearch" v-if="data.searchs.length > 1">
+    <jj-search :searchs="data.searchs" @refresh="refresh" @onSearch="onSearch" :searchType="searchType">
       <slot name="searchs"/>
     </jj-search>
-    <jj-toolbar :data="data.toolbars" :searchs="data.searchs" @event="toolbarevent" @refresh="refresh" @reset="reset">
+    <jj-toolbar :data="data.toolbars" :searchs="data.searchs" @event="toolbarevent" :searchType="searchType" @refresh="refresh" @reset="reset" >
       <slot name="toolbar"/>
     </jj-toolbar>
     <slot name="tops"/>
@@ -77,6 +77,9 @@ export default {
     }
   },
   computed: {
+    searchType() {
+      return this.data.searchType ? this.data.searchType : 0
+    },
     innerColumns() {
       return this.columns.filter(column => column.type && (column.type == 'index' || column.type == 'selection'))
     },

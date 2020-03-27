@@ -49,6 +49,7 @@ Vue.prototype.copyFrom = function(a, b) {
 Vue.prototype.$throw = (error) => errorHandler(error, this)
 init()
 
+
 function init() {
   new Vue({
     el: '#app',
