@@ -1,12 +1,12 @@
 <template>
-  <el-row>
+  <el-row >
     <el-col :span="12">
       <el-button-group>
         <jj-button v-for="(btn) in data " :key="btn.event" :btn="btn" @click="trigger(btn)" />
       </el-button-group>
       <slot/>
     </el-col>
-    <el-col :span="12">
+    <el-col :span="12" >
 
       <div style="text-align: right" v-if="searchType == 0">
         <el-button-group>
@@ -14,24 +14,36 @@
           <jj-button :btn="{label: '重置', icon: 'el-icon-refresh'}" @click="reset" />
         </el-button-group>
       </div>
-      <div style="text-align: right" v-if="searchType == 1 && searchs.length == 1 " v-for="(s) in searchs">
-        <template v-if="s.type&&(s.type.indexOf('jj-')==0 )" >
-          <el-button slot="append" icon="el-icon-search" @click="refresh" style="float:right;" size="small"></el-button>
-          <component :is="s.type" :data="buildData(s)"  @onSearch="onSearch"  style="float:right;">
+      <div style="display:flex;" v-if="searchType == 1 && searchs.length == 1 " v-for="(s) in searchs">
+        <template v-if="s.type&&(s.type.indexOf('jj-')==0 )"  >
+          <component :is="s.type" :data="buildData(s)"  @onSearch="onSearch"   style="flex:1;">
           </component>
+          <el-button style="float:right;display:inline-block;" icon="el-icon-refresh" @click="reset"  size="small"></el-button>
+
         </template>
+
         <el-input v-else :placeholder="s.placeholder" v-model="s.value"  clearable="true" @keydown.native="keyDown($event,s)">
           <template  v-if="s.label" slot="prepend">{{ s.label }}</template>
           <el-button slot="append" icon="el-icon-search" @click="refresh" ></el-button>
         </el-input>
       </div>
-        <div style="text-align: right" v-if="searchType == 1 && searchs.length > 1">
-
-        </div>
+          <el-row class="flex"  justify="center" :gutter="10" v-if="searchType==1 && searchs.length>1">
+            <el-col v-for="(s) in searchs" :xs="24" :sm="12" :md="8" :lg="6" :xl="4" :key="s.label" >
+              <template v-if="s.type&&(s.type.indexOf('jj-')==0 )" >
+                <component :is="s.type" :data="buildData(s)"  @onSearch="onSearch" />
+              </template>
+              <el-input v-else :placeholder="s.placeholder" v-model="s.value"  clearable="true" @keydown.native="keyDown($event,s)">
+                <template slot="prepend">{{ s.label }}</template>
+              </el-input>
+            </el-col>
+            <el-col  :xs="24" :sm="12" :md="8" :lg="6" :xl="4" >
+              <el-button icon="el-icon-search"  size="small" @click="refresh" ></el-button>
+            </el-col>
+          </el-row>
     </el-col>
   </el-row>
 </template>
-<style>
+<style scoped>
   .el-row {
     margin-bottom: 10px;
   :last-child {
@@ -39,6 +51,7 @@
   }
   }
 </style>
+
 <script>
 
 export default {

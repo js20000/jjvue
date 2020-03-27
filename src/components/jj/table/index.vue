@@ -3,7 +3,7 @@
     <jj-search :searchs="data.searchs" @refresh="refresh" @onSearch="onSearch" :searchType="searchType">
       <slot name="searchs"/>
     </jj-search>
-    <jj-toolbar :data="data.toolbars" :searchs="data.searchs" @event="toolbarevent" :searchType="searchType" @refresh="refresh" @reset="reset" >
+    <jj-toolbar :data="data.toolbars"  @onSearch="onSearch" :searchs="data.searchs" @event="toolbarevent" :searchType="searchType" @refresh="refresh" @reset="reset" >
       <slot name="toolbar"/>
     </jj-toolbar>
     <slot name="tops"/>
@@ -108,6 +108,10 @@ export default {
   },
   methods: {
     onSearch(data) {
+      if (this.data.searchType == 1) {
+        this.refresh()
+        return
+      }
       this.$emit('onSearch', data)
     },
     getValue(row, column) {
