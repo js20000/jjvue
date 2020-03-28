@@ -1,69 +1,66 @@
 <template>
   <div v-if="data.column.data  instanceof Array">
-    <el-button-group v-if="data.editIndex==data.index">
+    <div v-if="data.editIndex==data.index">
       <jj-link
-v-for="(btn) in data.column.data "
-v-if="btn.state&&btn.state=='edit'"
-:key="btn.event"
-:btn="btn"
-                 :row="data.row"
-                 @click="trigger(btn)"/>
-    </el-button-group>
+        v-for="(btn) in data.column.data "
+        v-if="btn.state&&btn.state=='edit'"
+        :key="btn.event"
+        :btn="btn"
+        :row="data.row"
+        @click="trigger(btn)"/>
+    </div>
     <div v-else-if="data.editIndex<0">
-      <el-button-group>
         <jj-link
-v-for="(btn) in data.column.data "
-v-if="!btn.state||btn.state=='normal'"
-:key="btn.event"
-:btn="btn"
-                   :row="data.row"
-                   @click="trigger(btn)"/>
-      </el-button-group>
-
+          v-for="(btn) in data.column.data "
+          v-if="!btn.state||btn.state=='normal'"
+          :key="btn.event"
+          :btn="btn"
+          :row="data.row"
+          @click="trigger(btn)"/>
     </div>
   </div>
   <div v-else>
-    <el-button-group v-if="data.editIndex==data.index">
+    <div v-if="data.editIndex==data.index">
       <jj-link
-v-for="(btn) in data.column.data.buttons "
-v-if="btn.state&&btn.state=='edit'"
-:key="btn.event"
-                 :btn="btn"
-:row="data.row"
-                 @click="trigger(btn)"/>
-    </el-button-group>
+        v-for="(btn) in data.column.data.buttons "
+        v-if="btn.state&&btn.state=='edit'"
+        :key="btn.event"
+        :btn="btn"
+        :row="data.row"
+        @click="trigger(btn)"/>
+    </div>
     <div v-else-if="data.editIndex<0">
-      <el-button-group>
         <jj-link
-v-for="(btn) in data.column.data.buttons "
-v-if="!btn.state||btn.state=='normal'"
-:key="btn.event"
-                   :btn="btn"
-:row="data.row"
-                   @click="trigger(btn)"/>
-      </el-button-group>
+          v-for="(btn) in data.column.data.buttons "
+          v-if="!btn.state||btn.state=='normal'"
+          :key="btn.event"
+          :btn="btn"
+          :row="data.row"
+          @click="trigger(btn)"/>
       <el-dropdown>
-        <el-button size="small" type="text">更多操作<i class="el-icon-arrow-down el-icon--right"></i></el-button>
+        <span class="el-dropdown-link">
+          更多操作<i class="el-icon-arrow-down el-icon--right"></i>
+        </span>
         <el-dropdown-menu v-if="data.editIndex==data.index">
           <el-dropdown-item v-for="(btn) in data.column.data.list ">
             <jj-link
-v-if="btn.state&&btn.state=='edit'"
-:key="btn.event"
-:btn="btn"
-type="text"
-:row="data.row"
-                       @click="trigger(btn)"/>
+              v-if="btn.state&&btn.state=='edit'"
+              :key="btn.event"
+              :btn="btn"
+              type="text"
+              :row="data.row"
+              @click="trigger(btn)"/>
           </el-dropdown-item>
         </el-dropdown-menu>
         <el-dropdown-menu v-else-if="data.editIndex<0">
           <el-dropdown-item v-for="(btn) in data.column.data.list " :key="btn.event">
             <jj-link
-v-if="!btn.state||btn.state=='normal'"
-:key="btn.event"
-:btn="btn"
-type="text"
-:row="data.row"
-                       @click="trigger(btn)"/>
+              v-if="!btn.state||btn.state=='normal'"
+              :key="btn.event"
+              :btn="btn"
+              type="text"
+              :row="data.row"
+              @click="trigger(btn)"/>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -85,9 +82,11 @@ type="text"
 
   .el-row {
     margin-bottom: 10px;
-    :last-child {
-      margin-bottom: 0;
-    }
+
+  :last-child {
+    margin-bottom: 0;
+  }
+
   }
 
   .el-button-group .el-button--primary:nth-last-child(1):first-child {
@@ -97,22 +96,23 @@ type="text"
 
 </style>
 <script>
-    import link from '@/components/jj/button/link'
-    export default {
-        name: `jj-listlink`,
-        props: ['data'],
-        components: { 'jj-link': link },
-        mounted: function() {
+  import link from '@/components/jj/button/link'
 
-        },
-        methods: {
-            trigger(btn) {
-                if (btn.event) {
-                    this.$emit('event', { row: this.data.row, index: this.data.index, btn })
-                }
-            }
+  export default {
+    name: `jj-listlink`,
+    props: ['data'],
+    components: {'jj-link': link},
+    mounted: function () {
 
+    },
+    methods: {
+      trigger(btn) {
+        if (btn.event) {
+          this.$emit('event', {row: this.data.row, index: this.data.index, btn})
         }
+      }
+
     }
+  }
 </script>
 
