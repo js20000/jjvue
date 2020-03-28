@@ -4,7 +4,7 @@
       <template v-if="s.type&&(s.type.indexOf('jj-')==0 )" >
         <component :is="s.type" :data="buildData(s)"  @onSearch="onSearch" />
       </template>
-      <el-input v-else :placeholder="s.placeholder" v-model="s.value"  clearable="true" @keydown.native="keyDown($event,s)">
+      <el-input v-else :placeholder="s.placeholder" v-model="s.value"  clearable @keydown.native="keyDown($event,s)">
         <template slot="prepend">{{ s.label }}</template>
       </el-input>
     </el-col>
