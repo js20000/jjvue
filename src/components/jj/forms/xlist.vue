@@ -84,7 +84,10 @@
             value: {}, label: {}, word: {}, defaultWord: {
                 type: String,
                 default: null
-            }, valField: {}, disField: {}, defaultVal: {}, templet: {}, url: {},
+            }, valField: {}, disField: {},
+          defaultVal: {
+              default() { return '' }
+          }, templet: {}, url: {},
             para: {
                 type: Object, default() {
                     return {}
@@ -97,7 +100,7 @@
         async mounted() {
             let val = this.value
             if (val === '' || (val === null)) {
-                val = this.defaultVal
+              if (typeof this.defaultVal != 'undefined') { val = this.defaultVal }
             }
             if (this.defaultWord != null || (typeof val != 'undefined')) {
                 if (this.defaultWord != null || typeof this.defaultWord == 'undefined') {
