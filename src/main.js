@@ -7,8 +7,6 @@ import xselect from './components/jj/forms/xselect'
 import searchlist from './components/jj/search/searchlist'
 import searchdate from './components/jj/search/searchdate'
 import searchselect from './components/jj/search/searchselect'
-import listbtn from './components/jj/toolbar/listbtn'
-import listlink from './components/jj/toolbar/listlink'
 
 const comment = {
   install: function(Vue) {
@@ -19,8 +17,6 @@ const comment = {
     Vue.component('xlist', xlist)
     Vue.component('xselect', xselect)
     Vue.component('jj-list', searchlist)
-    Vue.component('jj-listbtn', listbtn)
-    Vue.component('jj-listlink', listlink)
     Vue.component('jj-date', searchdate)
     Vue.component('jj-xselect', searchselect)
   }
