@@ -96,19 +96,17 @@
 
 </style>
 <script>
-  import link from '@/components/jj/button/link'
 
   export default {
     name: `jj-listlink`,
     props: ['data'],
-    components: {'jj-link': link},
-    mounted: function () {
+    mounted: function() {
 
     },
     methods: {
       trigger(btn) {
         if (btn.event) {
-          this.$emit('event', {row: this.data.row, index: this.data.index, btn})
+          this.$emit('event', { row: this.data.row, index: this.data.index, btn })
         }
       }
 

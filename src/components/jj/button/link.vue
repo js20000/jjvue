@@ -1,9 +1,9 @@
 <!--suppress ALL -->
 <template>
-
-  <el-button type="text" :disabled="disabled"  plain size="small" @click="$emit('click')"  v-if="showFlag && hasP " style="padding-right: 5px;" >
-    {{ btn.label }}
-  </el-button>
+  <el-link type="primary" @click="$emit('click')"  v-if="showFlag && hasP "  :disabled="disabled" style="padding-right: 5px;">{{ btn.label }}</el-link>
+<!--  <el-button type="text" :disabled="disabled"  plain size="small" @click="$emit('click')"  v-if="showFlag && hasP " style="padding-right: 5px;" >-->
+<!--    {{ btn.label }}-->
+<!--  </el-button>-->
 </template>
 
 <style>
