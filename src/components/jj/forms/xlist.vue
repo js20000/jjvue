@@ -108,25 +108,23 @@
                 } else { this.xname = '' }
                 await this.postOnly(this.xname)
             }
-            for (let i = 0; i < this.list.length; i++) {
-                const xx = this.list[i]
-                if (typeof val != 'undefined' && this.valField) {
-                    if (xx[this.valField] == val) {
-                        this.selected = i
-                        if (this.disField) {
-                            this.xname = xx[this.disField]
-                        }
-                        break
-                    }
-                    // if(xx[this.disField]==this.defaultDis){
-                    //   this.selected = i
-                    //   this.onselect(this.list[i])
-                    //   break
-                    // }
-                }
-            }
+            this.initVal(val)
         },
         methods: {
+            initVal(val) {
+              for (let i = 0; i < this.list.length; i++) {
+                const xx = this.list[i]
+                if (typeof val != 'undefined' && this.valField) {
+                  if (xx[this.valField] == val) {
+                    this.selected = i
+                    if (this.disField) {
+                      this.xname = xx[this.disField]
+                    }
+                    break
+                  }
+                }
+              }
+            },
             onchange: function() {
                 // let rs = {}
                 // if (this.disField) {
@@ -381,12 +379,12 @@
                         }
                     }
                 }
+            },
+            url(val) {
+              this.postOnly(this.value)
+              this.initVal(this.value)
             }
-            // 'style.display': {
-            //     handler(newName, oldName) {
-            //
-            //     }
-            // }
+
         }
 
     }
