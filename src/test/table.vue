@@ -46,6 +46,7 @@ export default {
       },
       data: {
         searchType: 1,
+        hiddenHeader: false,
         sorts: { scode: 'ascending' },
         searchs: [
           { field: 'search_like_scode', label: '编号', value: '' }
