@@ -27,7 +27,7 @@
           v-if="!data.hiddenSelection"
           type="selection"
           width="50"/>
-        <el-table-column v-for="(column, index) in innerColumns" :type="column.type" :width="getWidth(column,50)" :key="index" />
+        <el-table-column v-for="(column, index) in innerColumns" :type="column.type" :label="column.label" :width="getWidth(column,50)" :key="index" />
         <el-table-column
                           v-for="(column, index) in outerColumns"
                           :type="getType(column)"
