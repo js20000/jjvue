@@ -46,10 +46,10 @@ export default {
       },
       data: {
         searchType: 1,
-        hiddenHeader: false,
+        hiddenHeader: true,
         sorts: { scode: 'ascending' },
         searchs: [
-          { field: 'search_like_scode', label: '编号', value: '' }
+          // { field: 'search_like_scode', label: '编号', value: '' }
           // { field: 'search_eq_a', label: '日期', value: 0, type: 'jj-date',
           //   data:{
           //       el:"el-date-picker",

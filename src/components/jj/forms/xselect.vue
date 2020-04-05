@@ -77,7 +77,7 @@
             initSelect: async function () {
                 if(this.url != null && this.url != ''){
                     this.loading=true
-                    const rs = await this.$post(this.url, this.param)
+                    const rs = await this.$get(this.url, this.param)
                     if (rs.data && rs.data.content) {
                         this.list = rs.data.content
                     } else {
