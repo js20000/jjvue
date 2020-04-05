@@ -3,7 +3,7 @@
     <jj-search v-if="!data.hiddenHeader" :searchs="data.searchs" @refresh="refresh" @onSearch="onSearch" :searchType="searchType">
       <slot name="searchs"/>
     </jj-search>
-    <jj-toolbar v-if="!data.hiddenHeader" :data="data.toolbars"  @onSearch="onSearch" :searchs="data.searchs" @event="toolbarevent" :searchType="searchType" @refresh="refresh" @reset="reset" >
+    <jj-toolbar :data="data.toolbars"  @onSearch="onSearch" :searchs="data.searchs" @event="toolbarevent" :searchType="searchType" @refresh="refresh" @reset="reset" >
       <slot name="toolbar"/>
     </jj-toolbar>
     <slot name="tops"/>
