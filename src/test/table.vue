@@ -66,12 +66,12 @@ export default {
           //       }}
         ],
         toolbars: [
-          {
-            label: '新增', icon: 'add', event: 'add'
-          },
-          {
-            label: '删除', icon: 'cancel', event: 'delit', permission: 'rfid:edit', needRow: 1
-          }
+          // {
+          //   label: '新增', icon: 'add', event: 'add'
+          // },
+          // {
+          //   label: '删除', icon: 'cancel', event: 'delit', permission: 'rfid:edit', needRow: 1
+          // }
         ],
         page: {}
       },
