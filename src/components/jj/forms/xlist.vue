@@ -5,7 +5,7 @@
 
     <div class="el-select">
       <div class="el-input el-input--suffix ">
-        <div class="el-input el-input--medium  el-input-group el-input-group--prepend" v-loading="loading">
+        <div class="el-input el-input--medium  el-input-group el-input-group--prepend">
           <div class="el-input-group__prepend" v-if="label">{{label}}</div>
           <el-input
             :size="size"
@@ -306,8 +306,9 @@
                 } else {
                     rs = obj
                 }
-              this.$emit('xselect', obj)
               this.$emit('input', rs)
+              this.$emit('xselect', obj)
+
             },
             scrollto: function() {
                 // let div = this.$refs['thistable']
