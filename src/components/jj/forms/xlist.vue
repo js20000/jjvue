@@ -115,8 +115,8 @@
             initVal(val) {
               for (let i = 0; i < this.list.length; i++) {
                 const xx = this.list[i]
-                if (typeof val != 'undefined' && this.valField) {
-                  if (xx[this.valField] == val) {
+                if (typeof val != 'undefined' && !(this.valField==='')) {
+                  if (xx[this.valField] === val) {
                     this.selected = i
                     if (this.disField) {
                       this.xname = xx[this.disField]
@@ -192,7 +192,7 @@
                     this.style.display = 'block'
                 })
             },
-            getValByXname() {
+             getValByXname() {
                 const lastSelected = this.selected
                 this.selected = -1
                 for (let i = 0; i < this.list.length; i++) {
@@ -374,8 +374,8 @@
                 }
                 for (let i = 0; i < this.list.length; i++) {
                     const xx = this.list[i]
-                    if (typeof val != 'undefined' && this.valField) {
-                        if (xx[this.valField] == val) {
+                    if (typeof val != 'undefined' && !(this.valField==='')) {
+                        if (xx[this.valField] === val) {
                             this.selected = i
                             if (this.disField) {
                                 this.xname = xx[this.disField]
