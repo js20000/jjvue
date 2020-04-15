@@ -277,7 +277,7 @@
                         rs = ''
                     }
 
-                    if (this.valField) {
+                    if (typeof this.valField != 'undefined') {
                         rs[this.valField] = ''
                     } else {
                         rs = ''
