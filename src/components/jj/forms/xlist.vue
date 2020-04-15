@@ -8,6 +8,7 @@
         <div class="el-input el-input--medium  el-input-group el-input-group--prepend">
           <div class="el-input-group__prepend" v-if="label">{{label}}</div>
           <el-input
+            clearable
             :size="size"
             type="text"
             ref="thisinput"
