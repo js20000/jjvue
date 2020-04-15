@@ -5,7 +5,7 @@
 
     <div class="el-select">
       <div class="el-input el-input--suffix ">
-        <div class="el-input el-input--medium  el-input-group el-input-group--prepend" v-loading="loading">
+        <div class="el-input el-input--medium  el-input-group el-input-group--prepend">
           <div class="el-input-group__prepend" v-if="label">{{label}}</div>
           <el-input
             :size="size"
@@ -72,6 +72,7 @@
                 keyword: -9999,
                 list: [],
                 selected: 0,
+                inited: false,
                 style: {
                     maxHeight: '400px',
                     'overflow-y': 'scroll',
@@ -208,11 +209,15 @@
                 }
             },
             postOnly: async function(val) {
+                if (!this.inited) {
+                  const pos = this.$refs['thisinput'].$el
+                  this.style.top = pos.offsetTop + pos.clientHeight + 'px'
+                  this.style.left = pos.offsetLeft + 'px'
+                  this.style.width = pos.clientWidth + 'px'
+                  this.inited = true
+                }
+
                 if (val == -9999) {
-                    const pos = this.$refs['thisinput'].$el
-                    this.style.top = pos.offsetTop + pos.clientHeight + 'px'
-                    this.style.left = pos.offsetLeft + 'px'
-                    this.style.width = pos.clientWidth + 'px'
                     val = ''
                 }
 
@@ -276,7 +281,7 @@
                         rs = ''
                     }
 
-                    if (this.valField) {
+                    if (typeof this.valField != 'undefined') {
                         rs[this.valField] = ''
                     } else {
                         rs = ''
@@ -306,8 +311,8 @@
                 } else {
                     rs = obj
                 }
-              this.$emit('xselect', obj)
               this.$emit('input', rs)
+              this.$emit('xselect', obj)
             },
             scrollto: function() {
                 // let div = this.$refs['thistable']
