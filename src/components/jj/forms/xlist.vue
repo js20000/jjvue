@@ -72,6 +72,7 @@
                 keyword: -9999,
                 list: [],
                 selected: 0,
+                inited: false,
                 style: {
                     maxHeight: '400px',
                     'overflow-y': 'scroll',
@@ -208,11 +209,14 @@
                 }
             },
             postOnly: async function(val) {
+                if (!this.inited) {
+                  const pos = this.$refs['thisinput'].$el
+                  this.style.top = pos.offsetTop + pos.clientHeight + 'px'
+                  this.style.left = pos.offsetLeft + 'px'
+                  this.style.width = pos.clientWidth + 'px'
+                  this.inited = true
+                }
 
-                    const pos = this.$refs['thisinput'].$el
-                    this.style.top = pos.offsetTop + pos.clientHeight + 'px'
-                    this.style.left = pos.offsetLeft + 'px'
-                    this.style.width = pos.clientWidth + 'px'
                 if (val == -9999) {
                     val = ''
                 }
@@ -309,7 +313,6 @@
                 }
               this.$emit('input', rs)
               this.$emit('xselect', obj)
-
             },
             scrollto: function() {
                 // let div = this.$refs['thistable']
