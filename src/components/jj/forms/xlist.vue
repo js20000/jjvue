@@ -208,11 +208,12 @@
                 }
             },
             postOnly: async function(val) {
-                if (val == -9999) {
+
                     const pos = this.$refs['thisinput'].$el
                     this.style.top = pos.offsetTop + pos.clientHeight + 'px'
                     this.style.left = pos.offsetLeft + 'px'
                     this.style.width = pos.clientWidth + 'px'
+                if (val == -9999) {
                     val = ''
                 }
 
