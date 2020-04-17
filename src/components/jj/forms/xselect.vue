@@ -86,10 +86,9 @@ v-model="bindfield"
                     this.$emit('ondata', rs.data)
                 }
                 if ((this.bindfield == null || this.bindfield == '') &&
-                    this.list.length > 0 &&
                     this.force === true
                 ) {
-                    this.bindfield = this.list[0][this.valField]
+                    if (this.list.length > 0) { this.bindfield = this.list[0][this.valField] } else { this.bindfield = '' }
                 }
             },
             onselect() {
