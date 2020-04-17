@@ -65,7 +65,11 @@ v-model="bindfield"
         watch: {
             value(val) {
                 this.bindfield = val
-                this.initSelect()
+                if ((this.bindfield == null || this.bindfield == '') &&
+                  this.force === true
+                ) {
+                  if (this.list.length > 0) { this.bindfield = this.list[0][this.valField] } else { this.bindfield = '' }
+                }
             },
             bindfield(val) {
                 this.$emit('input', val)
