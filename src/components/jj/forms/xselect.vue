@@ -1,8 +1,8 @@
 <!--suppress ALL -->
 <template>
 
-
-  <el-select v-model="bindfield"
+  <el-select
+v-model="bindfield"
                :value-key="valField"
                clearable
                filterable
@@ -26,82 +26,81 @@
 
 </template>
 
-
-
 <script>
     export default {
-        name: "XSelect",
+        name: 'XSelect',
         components: {},
         props: {
-            value:{},
-            label: {type: String, default: ""},
-            placeholder: {type: String, default: ""},
-            valField: {type: String, default: ""},
-            disField: {type: String, default: ""},
-            url: {type: String, default: ""},
+            value: {},
+            label: { type: String, default: '' },
+            placeholder: { type: String, default: '' },
+            valField: { type: String, default: '' },
+            disField: { type: String, default: '' },
+            url: { type: String, default: '' },
             data: {
                 type: Array, default() {
                     return []
                 }
             },
-            defaultVal:{},
-            disabled: {type: Boolean, default: false},
-            force: {type: Boolean, default: false},
-            param: {type: Object, default(){
+            defaultVal: {},
+            disabled: { type: Boolean, default: false },
+            force: { type: Boolean, default: false },
+            param: { type: Object, default() {
                 return {}
-                }},
-            remote: {type: Boolean, default: false},
-            remoteMethod: {type: Function, default: function () {}},
-            size: {type: String, default: "small"}
+                } },
+            remote: { type: Boolean, default: false },
+            remoteMethod: { type: Function, default: function() {} },
+            size: { type: String, default: 'small' }
         },
-        data: function () {
+        data: function() {
             return {
-                loading:false,
-                bindfield:(this.value == null || typeof this.value == "undefined") ? '' : this.value,
-                list: (this.data == null || typeof this.data == "undefined") ? [] : this.data
+                loading: false,
+                bindfield: (this.value == null || typeof this.value == 'undefined') ? '' : this.value,
+                list: (this.data == null || typeof this.data == 'undefined') ? [] : this.data
             }
         },
         mounted() {
             this.initSelect()
         },
-        watch:{
+        watch: {
             value(val) {
-                this.bindfield = val;
+                this.bindfield = val
+                this.initSelect()
             },
             bindfield(val) {
-                this.$emit("input",val);
-                this.$emit("change", this.getItem())
+                this.$emit('input', val)
+                this.$emit('change', this.getItem())
             }
         },
         methods: {
-            initSelect: async function () {
-                if(this.url != null && this.url != ''){
-                    this.loading=true
+            initSelect: async function() {
+                if (this.url != null && this.url != '') {
+                    this.loading = true
                     const rs = await this.$get(this.url, this.param)
                     if (rs.data && rs.data.content) {
                         this.list = rs.data.content
                     } else {
                         this.list = rs.data
                     }
-                    this.loading=false
+                    this.loading = false
                     this.$emit('ondata', rs.data)
                 }
-                if((this.bindfield == null || this.bindfield == '')
-                    && this.list.length > 0
-                    && this.force === true
-                ){
+                if ((this.bindfield == null || this.bindfield == '') &&
+                    this.list.length > 0 &&
+                    this.force === true
+                ) {
                     this.bindfield = this.list[0][this.valField]
                 }
             },
             onselect() {
-                this.$emit("change", this.getItem())
+                this.$emit('change', this.getItem())
             },
             onclear() {
-                this.$emit("clear")
+                this.$emit('clear')
             },
-            getItem:function () {
-                const item = this.list.filter(obj=>obj[this.valField] === this.bindfield)
-                if(item.length > 0){
+            getItem: function() {
+                const item = this.list.filter(obj => obj[this.valField] === this.bindfield)
+                if (item.length > 0) {
                     return item[0]
                 }
             }
