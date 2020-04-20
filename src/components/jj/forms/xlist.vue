@@ -368,12 +368,14 @@
             }
         },
         watch: {
-            value(val) {
+            async value(val) {
                 if (val === '') {
                   this.xname = ''
                   return
                 }
-                for (let i = 0; i < this.list.length; i++) {
+              if (!this.inited && (val || val === 0)) { await this.postOnly(val) }
+
+              for (let i = 0; i < this.list.length; i++) {
                     const xx = this.list[i]
                     if (typeof val != 'undefined' && !(this.valField==='')) {
                         if (xx[this.valField] === val) {
@@ -386,8 +388,8 @@
                     }
                 }
             },
-            url(val) {
-              this.postOnly(this.value)
+            async url(val) {
+              await this.postOnly(this.value)
               this.initVal(this.value)
             }
 
