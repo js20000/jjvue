@@ -1,20 +1,20 @@
 <template>
   <div>
     <template v-if="column.type&&(column.type.indexOf('jj-')==0 )" >
-      <component :is="column.type" :data="buildData()" @event="event" />
+      <component :is="column.type" :data="buildData()" @event="event" :class="cls" :style="style" />
     </template>
 
     <template v-else-if="column.templet&&(typeof column.templet === 'string')" >
       <template v-if="column.templet.indexOf('sim-')==0 " >
-        <component :is="column.templet" :data="filedValue" @event="event" />
+        <component :is="column.templet" :data="filedValue" @event="event" :class="cls" :style="style" />
       </template>
       <template v-else>
-        <component :is="column.templet" :data="buildData()" @event="event" />
+        <component :is="column.templet" :data="buildData()" @event="event" :class="cls" :style="style" />
       </template>
 
     </template>
     <el-form-item v-else-if="index==editIndex && column.field &&!column.readOnly" :prop="column.field" :rules="column.rules?column.rules:[]">
-      <el-input v-model="filedValue" size="small" />
+      <el-input v-model="filedValue" size="small" :class="cls" :style="style" />
     </el-form-item>
     <div v-else v-html="formatValue">
     </div>
@@ -83,6 +83,24 @@ export default {
       }
 
       return this.getValue()
+    },
+   cls() {
+     if (this.column.class) {
+       if (typeof this.column.class === 'function') {
+         return this.column.class.apply(this.vm, [{ row: this.row, column: this.column, index: this.index }])
+       }
+       return this.column.class
+     }
+     return {}
+   },
+    style() {
+      if (this.column.style) {
+        if (typeof this.column.style === 'function') {
+          return this.column.style.apply(this.vm, [{ row: this.row, column: this.column, index: this.index }])
+        }
+        return this.column.style
+      }
+      return {}
     }
 
   },
@@ -118,8 +136,12 @@ export default {
       this.$emit('event', { row, index, btn })
     },
     buildData: function() {
+      const templet = this.column.data
+      if (typeof templet === 'function') {
+        this.column.data = templet.apply(this.vm, [{ row: this.row, column: this.column, index: this.index }])
+      }
       return { row: this.row, index: this.index, editIndex: this.editIndex, column: this.column }
-    }
+}
 
   }
 }

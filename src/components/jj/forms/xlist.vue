@@ -1,8 +1,6 @@
 <!--suppress ALL -->
 
 <template>
-  <div>
-
     <div class="el-select">
       <div class="el-input el-input--suffix ">
         <div class="el-input el-input--medium  el-input-group el-input-group--prepend">
@@ -51,7 +49,6 @@
       <!--       </table>-->
       <!--     </div>-->
     </div>
-  </div>
 </template>
 <style>
 

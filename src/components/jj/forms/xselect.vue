@@ -63,7 +63,7 @@ v-model="bindfield"
             this.initSelect()
         },
         watch: {
-            value(val) {
+          value(val) {
                 this.bindfield = val
                 if ((this.bindfield == null || this.bindfield == '') &&
                   this.force === true
