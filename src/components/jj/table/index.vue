@@ -14,7 +14,6 @@
         :fit="true"
         :default-sort="defaultSort()"
         tooltip-effect="dark"
-        border
         style="width: 100%"
         @sort-change="sort"
         @selection-change="SelectionChange">

@@ -1,10 +1,12 @@
 <!--suppress ALL -->
 <template>
-  <el-dialog :visible.sync="showflag"  v-if="showflag"
+  <el-dialog :visible.sync="showflag"  v-if="showflag" v-bind="$attrs"
              :append-to-body="append_to_body"
              :modal-append-to-body="modal_append_to_body"
              :modal="modal"
-             :close-on-click-modal="false" :title="data.title" :width="data.width" :fullscreen="data.fullscreen" @close="close" v-loading="$store.getters.myloading">
+             :close-on-click-modal="false" :title="data.title" :width="data.width" :fullscreen="data.fullscreen" @close="close"
+             v-loading.fullscreen.lock="$store.getters.loading"
+  >
     <slot />
 
     <div v-if="data.btns && data.btns.length===0" slot="footer" class="dialog-footer">
