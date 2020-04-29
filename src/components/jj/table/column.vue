@@ -13,9 +13,8 @@
       </template>
 
     </template>
-    <el-form-item v-else-if="index==editIndex && column.field &&!column.readOnly" :prop="column.field" :rules="column.rules?column.rules:[]">
-      <el-input v-model="filedValue" size="small" :class="cls" :style="style" />
-    </el-form-item>
+    <jj-xinput v-else-if="index==editIndex && column.field &&!column.readOnly"  :data="buildData()" @event="event" :class="cls" :style="style" >
+    </jj-xinput>
     <div v-else v-html="formatValue">
     </div>
   </div>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form-item
+    <jj-form-item
       v-if="data.index==data.editIndex && data.column.field"
       :prop="data.column.field"
       :rules="data.column.rules?data.column.rules:[]">
@@ -12,7 +12,7 @@
           :value="item.val"/>
       </el-select>
 
-    </el-form-item>
+    </jj-form-item>
 
     <div v-else v-html="formatValue">
     </div>

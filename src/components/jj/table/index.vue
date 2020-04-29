@@ -9,6 +9,7 @@
     <slot name="tops"/>
     <el-form ref="tableform" :model="vdata" >
       <el-table
+        :border="border"
         :data="list"
         v-bind="$attrs"
         :fit="true"
@@ -62,6 +63,10 @@ export default {
     data: {
       type: [Object, Array],
       required: true
+    },
+    border: {
+      type: Boolean,
+      default: () => true
     },
     columns: {
       type: Array,

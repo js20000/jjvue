@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form-item
+    <jj-form-item
       v-if="data.index==data.editIndex && data.column.field"
       :prop="data.column.field"
       :rules="data.column.rules?data.column.rules:[]">
@@ -10,7 +10,7 @@
         inactive-value="0"
         active-text="是"
         inactive-text="否"/>
-    </el-form-item>
+    </jj-form-item>
     <template v-else>
       {{ $parent.formatValue }}
     </template>
