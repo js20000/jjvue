@@ -1,10 +1,7 @@
 <template>
   <div>
-    <jj-form-item
-      v-if="data.index==data.editIndex && data.column.field"
-      :prop="data.column.field"
-      :rules="data.column.rules?data.column.rules:[]">
-      <el-select v-model="fieldValue" filterable placeholder="请选择">
+    <jj-form-item v-if="data.index==data.editIndex && data.column.field" :data="data">
+    <el-select v-model="fieldValue" filterable placeholder="请选择">
         <el-option
           v-for="item in data.column.data"
           :key="item.val"

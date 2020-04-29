@@ -1,5 +1,5 @@
 <template>
-  <jj-form-item :data="data" >
+  <jj-form-item v-if="data.index==data.editIndex && data.column.field" :data="data">
       <el-input
         v-model="fieldValue"
       />

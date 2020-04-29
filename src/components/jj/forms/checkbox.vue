@@ -1,10 +1,7 @@
 <template>
   <div>
-    <jj-form-item
-      v-if="data.index==data.editIndex && data.column.field"
-      :prop="data.column.field"
-      :rules="data.column.rules?data.column.rules:[]">
-      <el-switch
+    <jj-form-item v-if="data.index==data.editIndex && data.column.field" :data="data">
+    <el-switch
         v-model="data.row[data.column.field]"
         active-value="1"
         inactive-value="0"
