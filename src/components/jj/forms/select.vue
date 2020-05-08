@@ -58,7 +58,7 @@
           if (Array.isArray(t)) {
             return { val: t[0], label: t[1] }
           } else {
-            return x
+            return t
           }
         })
       },

@@ -34,8 +34,8 @@ v-model="bindfield"
             value: {},
             label: { type: String, default: '' },
             placeholder: { type: String, default: '' },
-            valField: { type: String, default: '' },
-            disField: { type: String, default: '' },
+            valField: { type: String, default: 'val' },
+            disField: { type: String, default: 'label' },
             url: { type: String, default: '' },
             data: {
                 type: Array, default() {
