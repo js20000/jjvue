@@ -39,7 +39,7 @@
         }
       },
       requiredValidate(r, v, b) {
-        if (typeof v == 'undefined' || v === '') {
+        if (v == null || typeof v == 'undefined' || v === '') {
           b('这是必填字段')
         } else { b() }
       },
