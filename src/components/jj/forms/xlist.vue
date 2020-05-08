@@ -18,6 +18,7 @@
           @mousedown.native="onclick"
           v-on:focus="onfocus"
           autocomplete="off"
+          v-bind="$attrs"
         />
       </div>
       <span class="el-input__suffix"><span class="el-input__suffix-inner">
