@@ -329,8 +329,12 @@
     },
     watch: {
       async value(val) {
-        await this.postOnly()
-        this.initVal(val)
+        if(!this.inited){
+
+          await this.postOnly()
+          this.initVal(val)
+        }
+
       },
       async url(val) {
         await this.postOnly()
