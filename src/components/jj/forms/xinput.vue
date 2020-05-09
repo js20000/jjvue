@@ -1,5 +1,5 @@
 <template>
-  <jj-form-item v-if="data.index==data.editIndex && data.column.field" :data="data">
+  <jj-form-item  data.column.field" :data="data">
       <el-input
         v-model="fieldValue"
       />
@@ -9,10 +9,12 @@
 
 </style>
 <script>
+import formitem from '@/components/jj/forms/formitem'
 
 export default {
   name: `jj-xinput`,
   props: ['data'],
+  components: { 'jj-form-item': formitem },
   computed: {
     fieldValue: {
       get: function() {

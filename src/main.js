@@ -8,7 +8,6 @@ import searchlist from './components/jj/search/searchlist'
 import searchdate from './components/jj/search/searchdate'
 import searchselect from './components/jj/search/searchselect'
 import xinput from './components/jj/forms/xinput'
-import formitem from './components/jj/forms/formitem'
 
 const comment = {
   install: function(Vue) {
@@ -22,7 +21,6 @@ const comment = {
     Vue.component('jj-date', searchdate)
     Vue.component('jj-xselect', searchselect)
     Vue.component('jj-xinput', xinput)
-    Vue.component('jj-form-item', formitem)
   }
 }
 if (typeof window !== 'undefined' && window.Vue) {
