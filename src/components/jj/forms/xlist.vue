@@ -104,13 +104,18 @@
       initVal(val) {
         for (let i = 0; i < this.list.length; i++) {
           const xx = this.list[i]
-          if (typeof val != 'undefined' && !(this.valField==='')) {
+          if (typeof this.valField != 'undefined' && !(this.valField==='')) {
             if (xx[this.valField] === val) {
               this.selected = i
               if (this.disField) {
                 this.xname = xx[this.disField]
               }
               break
+            }
+          }else{
+            if(xx===val){
+              this.selected = i
+              this.xname = xx
             }
           }
         }
