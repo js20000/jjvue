@@ -23,7 +23,7 @@
         }
         if (this.data.column.rules) {
           return this.data.column.rules.map(x => {
-            return { message: x.message, _pattern: x.pattern, validator: this.validator, _validator: this.getValidator(x), value: this.$parent.fieldValue, tooltips: this.tooltips }
+            return { trigger: x.trigger, message: x.message, _pattern: x.pattern, validator: this.validator, _validator: this.getValidator(x), value: this.$parent.fieldValue, tooltips: this.tooltips }
           })
         } else { return [] }
       }
