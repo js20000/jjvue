@@ -102,6 +102,9 @@
     },
     methods: {
       initVal(val) {
+        if (!this.force) {
+          this.xname = val
+        }
         for (let i = 0; i < this.list.length; i++) {
           const xx = this.list[i]
           if (typeof this.valField != 'undefined' && !(this.valField==='')) {
