@@ -200,20 +200,7 @@
         }
         if (typeof this.url == 'object') {
           const flist = this.url.map(x => {
-            if (typeof x == 'string') {
-              if (x && x.indexOf(val) >= 0) {
-                return null
-              } else {
-                return x
-              }
-            } else {
-              for (const i in x) {
-                if (typeof x[i] == 'string') {
-                  return x
-                }
-              }
-              return null
-            }
+            return x
           })
           this.list = flist
         } else {
