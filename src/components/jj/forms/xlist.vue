@@ -173,6 +173,10 @@
             break
           }
         }
+        if(!this.force){
+          this.$emit('input',this.xname);
+          return;
+        }
       },
       postOnly: async function(val) {
         if (!this.inited) {
