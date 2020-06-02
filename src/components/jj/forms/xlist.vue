@@ -98,7 +98,10 @@
     },
     inheritAttrs: false,
     async mounted() {
-
+      if(!this.inited){
+        await this.postOnly()
+        this.initVal(this.value)
+      }
     },
     methods: {
       initVal(val) {

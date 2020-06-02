@@ -36,7 +36,7 @@
       }
     },
     mounted(){
-      console.log(JSON.stringify(this.data))
+      //console.log(JSON.stringify(this.data))
     },
     methods: {
       xselect(){
