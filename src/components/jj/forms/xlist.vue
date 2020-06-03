@@ -1,7 +1,7 @@
 <!--suppress ALL -->
 
 <template>
-  <div class="el-select" :class="'el-select--'+size">
+  <div>
         <el-input
           :size="size"
           type="text"
@@ -16,13 +16,11 @@
           autocomplete="off"
           v-bind="$attrs"
         >
-          <template slot="prepend" v-if="label">{{ label }}</template>
+            <template slot="prepend" v-if="label">{{ label }} </template>
+          <i class="el-input__icon" :class="updown" slot="suffix" @click="onclick_i">
+          </i>
         </el-input>
-        <span class="el-input__suffix">
-          <span class="el-input__suffix-inner">
-            <i class="el-select__caret el-input__icon" :class="updown" @mousedown="onclick_i"></i>
-          </span>
-        </span>
+
     <ul ref="thistable" class="el-dropdown-menu el-popper" :style="style">
       <li
         tabindex="-1"
@@ -34,20 +32,7 @@
         {{templet?templet(i):(disField?i[disField]:i)}}
       </li>
     </ul>
-    <!--     <div ref="thistable" class="bigautocomplete-layout" :style="style">-->
-    <!--       <table class="layui-table">-->
-    <!--         <tbody>-->
-
-    <!--         <tr @mousedown="trclick(index)" :class="selected==index?'ct':''" v-for="(i,index) in list" :key="index">-->
-    <!--           <td>-->
-    <!--             <div :data-index="index">{{templet?templet(i):(field?i[field]:i)}}</div>-->
-    <!--           </td>-->
-    <!--         </tr>-->
-
-    <!--         </tbody>-->
-    <!--       </table>-->
-    <!--     </div>-->
-  </div>
+</div>
 </template>
 <style>
 
