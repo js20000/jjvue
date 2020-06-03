@@ -124,7 +124,7 @@
            // this.style.display = 'none'
           return
         }
-        var t=this.$refs.thisinput.$refs.input;
+        var t = this.$refs.thisinput.$refs.input
         t.focus()
         t.select()
         t.selectionStart = 0
@@ -171,7 +171,7 @@
       },
       postOnly: async function(val) {
         if (!this.inited) {
-          const pos = this.$refs.thisinput.$refs.input;
+          const pos = this.$refs.thisinput.$el
           this.style.top = pos.offsetTop + pos.clientHeight + 'px'
           this.style.left = pos.offsetLeft + 'px'
           this.style.width = pos.clientWidth + 'px'
