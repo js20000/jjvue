@@ -1,8 +1,7 @@
 <template>
-  <jj-form-item  data.column.field" :data="data">
+  <jj-form-item  :data="data">
       <el-input
-        v-model="fieldValue"
-      />
+        v-model="fieldValue"></el-input>
   </jj-form-item>
 </template>
 <style>

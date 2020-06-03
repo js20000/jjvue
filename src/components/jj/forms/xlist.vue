@@ -1,12 +1,8 @@
 <!--suppress ALL -->
 
 <template>
-  <div class="el-select">
-    <div class="el-input el-input--suffix ">
-      <div class="el-input el-input--medium  el-input-group el-input-group--prepend">
-        <div class="el-input-group__prepend" v-if="label">{{label}}</div>
+  <div class="el-select" :class="'el-select--'+size">
         <el-input
-          clearable
           :size="size"
           type="text"
           ref="thisinput"
@@ -19,12 +15,14 @@
           v-on:focus="onfocus"
           autocomplete="off"
           v-bind="$attrs"
-        />
-      </div>
-      <span class="el-input__suffix"><span class="el-input__suffix-inner">
-      <i class="el-select__caret el-input__icon el-icon-arrow-up " @mousedown="onclick_i"></i>
-    </span></span>
-    </div>
+        >
+          <template slot="prepend" v-if="label">{{ label }}</template>
+        </el-input>
+        <span class="el-input__suffix">
+          <span class="el-input__suffix-inner">
+            <i class="el-select__caret el-input__icon" :class="updown" @mousedown="onclick_i"></i>
+          </span>
+        </span>
     <ul ref="thistable" class="el-dropdown-menu el-popper" :style="style">
       <li
         tabindex="-1"
@@ -98,7 +96,7 @@
     },
     inheritAttrs: false,
     async mounted() {
-      if(!this.inited){
+      if (!this.inited) {
         await this.postOnly()
         this.initVal(this.value)
       }
@@ -110,7 +108,7 @@
         }
         for (let i = 0; i < this.list.length; i++) {
           const xx = this.list[i]
-          if (typeof this.valField != 'undefined' && !(this.valField==='')) {
+          if (typeof this.valField != 'undefined' && !(this.valField === '')) {
             if (xx[this.valField] === val) {
               this.selected = i
               if (this.disField) {
@@ -118,8 +116,8 @@
               }
               break
             }
-          }else{
-            if(xx===val){
+          } else {
+            if (xx === val) {
               this.selected = i
               this.xname = xx
             }
@@ -179,9 +177,9 @@
             break
           }
         }
-        if(!this.force){
-          this.$emit('input',this.xname);
-          return;
+        if (!this.force) {
+          this.$emit('input', this.xname)
+          return
         }
       },
       postOnly: async function(val) {
@@ -327,16 +325,22 @@
     computed: {
       loading() {
         if (this.$store) { return this.$store.getters.myloading } else { false }
+      },
+      updown() {
+        if (this.style.display == 'none') {
+          return 'el-icon-arrow-up'
+        } else {
+          return 'el-icon-arrow-down'
+        }
       }
+
     },
     watch: {
       async value(val) {
-        if(!this.inited){
-
+        if (!this.inited) {
           await this.postOnly()
           this.initVal(val)
         }
-
       },
       async url(val) {
         await this.postOnly()

@@ -1,17 +1,26 @@
 <!--suppress ALL -->
 <template>
-  <el-form ref="dataForm" :model="obj" label-width="80px" >
+  <el-form ref="dataForm" :model="obj" label-width="80px" size="large">
     <el-form-item label="格式">
       <el-input v-model="obj.sfromat" placeholer="yymmdd0000"/>
     </el-form-item>
 
-    <el-form-item  label="后缀" >
-      <xlist :url="list" dis-field="name" val-field="id" default-val=""/>
+    <el-form-item  label="large" >
+      <xlist :url="list" dis-field="name" val-field="id" default-val="" size="large"/>
     </el-form-item>
+    <el-form-item  label="medium" >
+      <xlist :url="list" dis-field="name" val-field="id" default-val="" size="medium"/>
+    </el-form-item>
+    <el-form-item  label="small" >
+      <xlist :url="list" dis-field="name" val-field="id" default-val="" size="small"/>
+    </el-form-item>
+    <el-form-item  label="mini" >
+      <xlist :url="list" dis-field="name" val-field="id" default-val="" size="mini"/>
+    </el-form-item>
+
     <el-form-item label="后缀" >
       <xselect v-model="xselect" :force="true" :data="list" val-field="id" dis-field="name" placeholder="请选择" @select="select"/>
     </el-form-item>
-
   </el-form>
 </template>
 <style>
