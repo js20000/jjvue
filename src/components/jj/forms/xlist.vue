@@ -17,7 +17,7 @@
           v-bind="$attrs"
         >
             <template slot="prepend" v-if="label">{{ label }} </template>
-          <i class="el-input__icon" :class="updown" slot="suffix" @click="onclick_i">
+          <i class="el-input__icon" :class="updown" slot="suffix" @click="onclick">
           </i>
         </el-input>
 
@@ -121,17 +121,19 @@
       onclick: function() {
         event.preventDefault()
         if (this.style.display == 'block') {
-          // this.style.display = 'none'
+           // this.style.display = 'none'
           return
         }
-        event.target.focus()
-        event.target.select()
-        event.target.selectionStart = 0
-        event.target.selectionEnd = event.target.value.length
+        var t=this.$refs.thisinput.$refs.input;
+        t.focus()
+        t.select()
+        t.selectionStart = 0
+        t.selectionEnd = t.value.length
 
         this.post(this.keyword)
       },
       onclick_i: function() {
+        event.preventDefault()
         if (this.style.display == 'block') {
           this.style.display = 'none'
           return
@@ -169,7 +171,7 @@
       },
       postOnly: async function(val) {
         if (!this.inited) {
-          const pos = this.$refs['thisinput'].$el
+          const pos = this.$refs.thisinput.$refs.input;
           this.style.top = pos.offsetTop + pos.clientHeight + 'px'
           this.style.left = pos.offsetLeft + 'px'
           this.style.width = pos.clientWidth + 'px'
@@ -313,9 +315,9 @@
       },
       updown() {
         if (this.style.display == 'none') {
-          return 'el-icon-arrow-up'
-        } else {
           return 'el-icon-arrow-down'
+        } else {
+          return 'el-icon-arrow-up'
         }
       }
 
