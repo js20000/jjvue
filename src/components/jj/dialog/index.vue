@@ -5,7 +5,6 @@
              :modal-append-to-body="modal_append_to_body"
              :modal="modal"
              :close-on-click-modal="false" :title="data.title" :width="data.width" :fullscreen="data.fullscreen" @close="close"
-             v-loading.fullscreen.lock="$store.getters.loading"
   >
     <slot />
 
