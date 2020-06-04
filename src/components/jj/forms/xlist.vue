@@ -91,6 +91,8 @@
         if (!this.force) {
           this.xname = val
         }
+        this.xname = ''
+        this.selected=-1
         for (let i = 0; i < this.list.length; i++) {
           const xx = this.list[i]
           if (typeof this.valField != 'undefined' && !(this.valField === '')) {
@@ -234,8 +236,7 @@
           } else {
             rs = ''
           }
-
-          this.keyword = -9999
+          
           this.onselected(rs)
           this.$emit('blur')
         }
@@ -327,6 +328,8 @@
         if (!this.inited) {
           await this.postOnly()
           this.initVal(val)
+        } else {
+         this.initVal(val)
         }
       },
       async url(val) {

@@ -281,15 +281,16 @@ export default {
       return {}
     },
     reset: function() {
-      const vm = this
       const rs = {}
-      if (vm.data.searchs) {
-        for (const s of vm.data.searchs) {
+      if (this.data.searchs) {
+        for (let i = 0; i < this.data.searchs.length; i++) {
+          const s = this.data.searchs[i]
           s.value = s.default || ''
           if (s.disValue) { s.disValue = '' }
+          this.$set(this.data.searchs, i, s)
         }
       }
-      vm.refresh()
+      this.refresh()
       return rs
     }
   }
