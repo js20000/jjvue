@@ -254,6 +254,14 @@ export default {
         }
       }
       rs.sort = ss
+      // 组装检索的keys
+      const keys = []
+      this.columns.forEach(item => {
+        if (item.search && item.search === true) {
+          keys.push(item.field)
+        }
+      })
+      rs.keys = keys.toString()
       return rs
     },
     sort: function({ column, prop, order }) {
