@@ -9,12 +9,12 @@
     <slot name="tops"/>
     <el-form ref="tableform" :model="vdata" >
       <el-table
+        :border="border"
         :data="list"
         v-bind="$attrs"
         :fit="true"
         :default-sort="defaultSort()"
         tooltip-effect="dark"
-        border
         style="width: 100%"
         @sort-change="sort"
         @selection-change="SelectionChange">
@@ -63,6 +63,10 @@ export default {
     data: {
       type: [Object, Array],
       required: true
+    },
+    border: {
+      type: Boolean,
+      default: () => true
     },
     columns: {
       type: Array,
@@ -285,15 +289,16 @@ export default {
       return {}
     },
     reset: function() {
-      const vm = this
       const rs = {}
-      if (vm.data.searchs) {
-        for (const s of vm.data.searchs) {
+      if (this.data.searchs) {
+        for (let i = 0; i < this.data.searchs.length; i++) {
+          const s = this.data.searchs[i]
           s.value = s.default || ''
           if (s.disValue) { s.disValue = '' }
+          this.$set(this.data.searchs, i, s)
         }
       }
-      vm.refresh()
+      this.refresh()
       return rs
     }
   }

@@ -1,21 +1,20 @@
 <template>
   <div>
     <template v-if="column.type&&(column.type.indexOf('jj-')==0 )" >
-      <component :is="column.type" :data="buildData()" @event="event" />
+      <component :is="column.type" :data="buildData()" @event="event" :class="cls" :style="style" />
     </template>
 
     <template v-else-if="column.templet&&(typeof column.templet === 'string')" >
       <template v-if="column.templet.indexOf('sim-')==0 " >
-        <component :is="column.templet" :data="filedValue" @event="event" />
+        <component :is="column.templet" :data="filedValue" @event="event" :class="cls" :style="style" />
       </template>
       <template v-else>
-        <component :is="column.templet" :data="buildData()" @event="event" />
+        <component :is="column.templet" :data="buildData()" @event="event" :class="cls" :style="style" />
       </template>
 
     </template>
-    <el-form-item v-else-if="index==editIndex && column.field &&!column.readOnly" :prop="column.field" :rules="column.rules?column.rules:[]">
-      <el-input v-model="filedValue" size="small" />
-    </el-form-item>
+    <jj-xinput v-else-if="index==editIndex && column.field &&!column.readOnly"  :data="buildData()" @event="event" :class="cls" :style="style" >
+    </jj-xinput>
     <div v-else v-html="formatValue">
     </div>
   </div>
@@ -30,10 +29,12 @@ import checkbox from '@/components/jj/forms/checkbox'
 import yesno from '@/components/jj/forms/yesno'
 import select from '@/components/jj/forms/select'
 import image from '@/components/jj/forms/image'
+import formitem from '@/components/jj/forms/formitem'
+import xinput from '@/components/jj/forms/xinput'
 
 export default {
   name: 'JjColumn',
-  components: { 'jj-listbtn': listbtn, 'jj-listlink': listlink, 'jj-checkbox': checkbox, 'jj-yesno': yesno, 'jj-select': select, 'jj-image': image },
+  components: { 'jj-form-item': formitem, 'jj-xinput': xinput, 'jj-listbtn': listbtn, 'jj-listlink': listlink, 'jj-checkbox': checkbox, 'jj-yesno': yesno, 'jj-select': select, 'jj-image': image },
   props: {
     vm: {
       type: Object
@@ -83,6 +84,24 @@ export default {
       }
 
       return this.getValue()
+    },
+   cls() {
+     if (this.column.class) {
+       if (typeof this.column.class === 'function') {
+         return this.column.class.apply(this.vm, [{ row: this.row, column: this.column, index: this.index }])
+       }
+       return this.column.class
+     }
+     return {}
+   },
+    style() {
+      if (this.column.style) {
+        if (typeof this.column.style === 'function') {
+          return this.column.style.apply(this.vm, [{ row: this.row, column: this.column, index: this.index }])
+        }
+        return this.column.style
+      }
+      return {}
     }
 
   },
@@ -118,8 +137,12 @@ export default {
       this.$emit('event', { row, index, btn })
     },
     buildData: function() {
+      const templet = this.column.data
+      if (typeof templet === 'function') {
+        this.column.data = templet.apply(this.vm, [{ row: this.row, column: this.column, index: this.index }])
+      }
       return { row: this.row, index: this.index, editIndex: this.editIndex, column: this.column }
-    }
+}
 
   }
 }

@@ -10,6 +10,7 @@
         :defaultWord="data.data.defaultWord"
         :defaultVal="data.data.defaultVal"
         :defaultDis="data.data.defaultDis"
+        :size="size"
         @xselect="xselect"
         style="width: 100%;"
 
@@ -35,8 +36,13 @@
         }
       }
     },
+    computed: {
+      size: function() {
+        return this.data.data.size ? this.data.data.size : 'medium'
+      }
+    },
     mounted(){
-      console.log(JSON.stringify(this.data))
+      //console.log(JSON.stringify(this.data))
     },
     methods: {
       xselect(){
