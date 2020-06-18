@@ -18,7 +18,7 @@
         <template v-if="s.type&&(s.type.indexOf('jj-')==0 )"  >
           <component :is="s.type" :data="buildData(s)"  @onSearch="onSearch"   style="flex:1;">
           </component>
-          <el-button style="float:right;display:inline-block;" icon="el-icon-refresh" @click="reset"  size="small"></el-button>
+<!--          <el-button style="float:right;display:inline-block;" icon="el-icon-refresh" @click="reset"  size="small"></el-button>-->
 
         </template>
 
