@@ -19,9 +19,10 @@
 
 </style>
 <script>
-
+  import formitem from '@/components/jj/forms/formitem'
   export default {
     name: `jj-select`,
+    components: { 'jj-form-item': formitem },
     props: ['data'],
     data() {
       return {
