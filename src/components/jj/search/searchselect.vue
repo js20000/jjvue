@@ -13,7 +13,7 @@
     :force="data.data.force"
     :remote="data.data.remotemethod?true:false"
     :remote-method="data.data.remotemethod"
-    :placeholder="data.data.placeholder?data.placeholder:data.label"
+    :placeholder="data.placeholder?data.placeholder:data.label"
     @change="onselect"
     @clear="onselect"
     style="width: 100%;"
