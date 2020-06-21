@@ -1,6 +1,6 @@
 <!--suppress ALL -->
 <template>
-  <el-link type="primary" @click="$emit('click')"  v-if="showFlag && hasP "  :disabled="disabled" style="padding-right: 5px;">{{ btn.label }}</el-link>
+  <el-link v-re-click  @click="on_click"  type="primary"  v-if="showFlag && hasP "  :disabled="disabled" style="padding-right: 5px;">{{ btn.label }}</el-link>
 <!--  <el-button type="text" :disabled="disabled"  plain size="small" @click="$emit('click')"  v-if="showFlag && hasP " style="padding-right: 5px;" >-->
 <!--    {{ btn.label }}-->
 <!--  </el-button>-->
@@ -15,6 +15,7 @@
   }
 </style>
 <script>
+
   export default {
     props: {
       type: {
@@ -46,7 +47,9 @@
       } else { this.$set(this.btn, 'disabled', false) }
     },
     methods: {
-
+      on_click(){
+        this.$emit('click')
+      }
     },
     computed: {
 

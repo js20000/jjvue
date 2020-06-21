@@ -1,7 +1,7 @@
 <!--suppress ALL -->
 <template>
 
-  <el-button :disabled="disabled"  plain size="small" @click="$emit('click')" :type="btn.type?btn.type:type" v-if="showFlag && hasP ">
+  <el-button v-re-click  @click="on_click"  :disabled="disabled"  plain size="small"  :type="btn.type?btn.type:type" v-if="showFlag && hasP ">
     <template v-if="btn.icon">
       <i v-if="btn.icon.indexOf(`el-icon`)==0" :class="btn.icon"/>
       <svg-icon v-else :icon-class="btn.icon"/>
@@ -55,6 +55,12 @@
         this.$set(this.btn,"disabled",false)
     },
     methods:{
+
+      on_click(){
+        if(event.target.reClick)
+          return;
+        this.$emit('click')
+      }
 
     },
     computed:{

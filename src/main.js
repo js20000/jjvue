@@ -12,6 +12,20 @@ import xinput from './components/jj/forms/xinput'
 
 const comment = {
   install: function(Vue) {
+    Vue.directive('re-click', {
+      inserted(el, binding) {
+        el.addEventListener('click', () => {
+          const target = event.target
+          if (!target.reClick) {
+            target.reClick = true
+            setTimeout(() => {
+              target.reClick = false
+            }, binding.value || 1000)
+          }
+        })
+      }
+    })
+
     Vue.component('jj-table', table)
     Vue.component('jj-dialog', dialog)
     Vue.component('jj-button', button)
