@@ -26,10 +26,12 @@
 
 </style>
 <script>
+  import formitem from '@/components/jj/forms/formitem'
 
 export default {
   name: `jj-checkbox`,
   props: ['data'],
+  components: { 'jj-form-item': formitem },
   computed: {
     fieldValue: {
       get: function() {

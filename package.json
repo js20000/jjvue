@@ -1,7 +1,7 @@
 {
   "name": "jjvue",
   "description": "jj framework for vue",
-  "version": "1.0.268",
+  "version": "1.0.178",
   "author": "fanyijie <fanyijie@frogsing.com>",
   "main": "dist/jjvue.js",
   "license": "MIT",
@@ -12,17 +12,13 @@
     "buildTest": "cross-env NODE_ENV=production env_config=prod node build/build.js",
     "yarninstall": "yarn install",
     "publishIt": " yarn  publish",
-    "outKjys": "cd dist && browserify  jjvue.js >/users/fanyijie/projects/kjys/server/front/src/main/webapp/static/jj/jjvue.js",
     "registry": "yarn  config set registry  http://nexus.frogsing.cn/repository/npm-group/"
   },
   "dependencies": {
-    "axios": "^0.19.0",
     "element-ui": "2.9.1",
     "normalize.css": "^8.0.1",
-    "qs": "6.7.0",
     "sortablejs": "1.7.0",
-    "vue": "^2.6.10",
-    "vuex": "3.0.1"
+    "vue": "^2.6.10"
   },
   "browserslist": [
     "> 1%",

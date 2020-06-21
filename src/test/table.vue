@@ -46,10 +46,10 @@ export default {
       },
       data: {
         searchType: 1,
-        hiddenHeader: true,
+        // hiddenHeader: true,
         sorts: { scode: 'ascending' },
         searchs: [
-          // { field: 'search_like_scode', label: '编号', value: '' }
+          { field: 'keyword', label: '编号', value: '' }
           // { field: 'search_eq_a', label: '日期', value: 0, type: 'jj-date',
           //   data:{
           //       el:"el-date-picker",
@@ -76,12 +76,12 @@ export default {
         page: {}
       },
       columns: [
-        { label: 'a', field: 'a', sort: true, width: 120, type: 'jj-yesno' },
-        { label: 'x', field: 'x', sort: true, width: 120, type: 'jj-image' },
+        { label: 'a', field: 'a', sort: true, width: 120, type: 'jj-yesno', search: true },
+        { label: 'x', field: 'x', sort: true, width: 120, type: 'jj-image', search: true },
         { label: 'b', field: 'b', sort: true, width: 320, templet: function({ row }) {
             return row.b
           } },
-        { label: 'c', field: 'c', sort: true, width: 220, templet: function({ row }) {
+        { label: 'c', field: 'c', sort: true, search: true, width: 220, templet: function({ row }) {
             return row.c
           } },
 

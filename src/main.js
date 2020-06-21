@@ -7,6 +7,7 @@ import xselect from './components/jj/forms/xselect'
 import searchlist from './components/jj/search/searchlist'
 import searchdate from './components/jj/search/searchdate'
 import searchselect from './components/jj/search/searchselect'
+import pagination from './components/jj/pagination/index'
 import xinput from './components/jj/forms/xinput'
 
 const comment = {
@@ -20,6 +21,7 @@ const comment = {
     Vue.component('jj-list', searchlist)
     Vue.component('jj-date', searchdate)
     Vue.component('jj-xselect', searchselect)
+    Vue.component('jj-page', pagination)
     Vue.component('jj-xinput', xinput)
   }
 }
