@@ -11,7 +11,7 @@
       <xlist :url="list" dis-field="name" val-field="id" default-val="" size="large"/>
     </el-form-item>
     <el-form-item  label="medium" >
-      <xlist :url="list" dis-field="name" val-field="id" default-val="" size="medium"/>
+      <xlist :url="list" dis-field="name" val-field="id" default-val="" size="medium" :disabled="true" />
     </el-form-item>
     <el-form-item  label="small" >
       <xlist :url="list" dis-field="name" val-field="id" default-val="" size="small"/>

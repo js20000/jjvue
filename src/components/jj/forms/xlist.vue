@@ -121,7 +121,10 @@
         this.post(this.xname)
       },
       onclick: function() {
+
         event.preventDefault()
+        if(event.target.disabled)
+           return;
         if (this.style.display == 'block') {
            // this.style.display = 'none'
           return
@@ -236,7 +239,7 @@
           } else {
             rs = ''
           }
-          
+
           this.onselected(rs)
           this.$emit('blur')
         }

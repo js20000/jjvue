@@ -9,6 +9,7 @@
     <slot name="tops"/>
     <el-form ref="tableform" :model="vdata" >
       <el-table
+        ref="table"
         :border="border"
         :data="list"
         v-bind="$attrs"
