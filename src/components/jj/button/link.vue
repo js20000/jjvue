@@ -54,7 +54,7 @@
     computed: {
       label() {
         if (typeof this.btn.label === 'function') {
-          return !this.btn.label.apply(this, [{ row: this.row, btn: this.btn }])
+          return this.btn.label.apply(this, [{ row: this.row, btn: this.btn }])
         } else { return this.btn.label }
       },
       showFlag() {
