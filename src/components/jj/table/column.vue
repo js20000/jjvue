@@ -75,15 +75,22 @@ export default {
       }
     },
     formatValue: function() {
+      let rs = ''
       const templet = this.column['templet']
       if (templet) {
         if (typeof templet === 'function') {
-          return templet.apply(this.vm, [{ row: this.row, column: this.column, index: this.index }])
-        }
-        return 'templet not imp'
+          rs = templet.apply(this.vm, [{ row: this.row, column: this.column, index: this.index }])
+        } else { rs = 'templet not imp' }
+      } else {
+        rs = this.getValue()
       }
-
-      return this.getValue()
+      if (this.column.link) {
+        let listType = this.column.link
+        if (typeof this.column.link === 'function') {
+          listType = this.column.link.apply(this.vm, [{ row: this.row, column: this.column, index: this.index }])
+        }
+        return `<a class="el-link el-link--${listType}" ><span class="el-link--inner">${rs}</span></a>`
+      } else { return rs }
     },
    cls() {
      if (this.column.class) {

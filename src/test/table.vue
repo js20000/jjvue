@@ -78,8 +78,10 @@ export default {
       columns: [
         { label: 'a', field: 'a', sort: true, width: 120, type: 'jj-yesno', search: true },
         { label: 'x', field: 'x', sort: true, width: 120, type: 'jj-image', search: true },
-        { label: 'b', field: 'b', sort: true, width: 320, templet: function({ row }) {
-            return row.b
+        { label: 'x', field: 'b', sort: true, width: 320, link: function({ row }) {
+            return "success"
+          }, templet: function({ row }) {
+            return "sadfasdfsdfsdfsdafsdf"
           } },
         { label: 'c', field: 'c', sort: true, search: true, width: 220, templet: function({ row }) {
             return row.c
