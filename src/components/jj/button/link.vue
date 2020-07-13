@@ -48,6 +48,8 @@
     },
     methods: {
       on_click() {
+        if(event.target.reClick)
+          return;
         this.$emit('click')
       }
     },

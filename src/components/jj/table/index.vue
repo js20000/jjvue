@@ -14,6 +14,8 @@
         :data="list"
         v-bind="$attrs"
         :fit="true"
+        :summary-method="getSumRow"
+        :show-summary="showSum"
         :default-sort="defaultSort()"
         tooltip-effect="dark"
         style="width: 100%"
@@ -84,6 +86,9 @@ export default {
     }
   },
   computed: {
+    showSum() {
+      return !!this.$parent.showSum
+    },
     searchType() {
       return this.data.searchType ? this.data.searchType : 0
     },
@@ -114,6 +119,9 @@ export default {
 
   },
   methods: {
+     getSumRow() {
+       if (this.$parent.showSum) { return this.$parent.showSum() } else { return ['合计'] }
+    },
     onSearch(data) {
       if (this.data.searchType == 1) {
         this.refresh()

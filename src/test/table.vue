@@ -118,6 +118,9 @@ export default {
   },
   methods:
       {
+        showSum(){
+          return ["合计",""];
+        },
         refresh: function(data) {
           console.log(JSON.stringify(data))
           this.data.page = [{ a: 1, b: 'bb', c: 1, d: 1, f: { a: 1, b: 2, c: 3 }, x: 'https://www.baidu.com/img/dongd_36a8aab08b12ba911d74444058393b08.gif' }, { a: 2, b: 'bb', c: 1, d: 1 }]
