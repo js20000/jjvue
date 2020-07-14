@@ -95,7 +95,9 @@ export default {
               { label: '编辑', icon: 'edit', event: 'edit', templet: function({ btn, row }) {
                   return true
                 } },
-              { label: '编辑1', icon: 'edit', event: 'editOk', templet: function({ btn, row }) {
+              { label: function () {
+                  return "<i style='color:red'>testtesttest</i>"
+                }, icon: 'edit', event: 'editOk', templet: function({ btn, row }) {
                   return true
                 } },
               { label: '确定', icon: 'ok', event: 'editOk', state: 'edit' },
