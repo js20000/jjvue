@@ -1,7 +1,7 @@
 {
   "name": "jjvue",
   "description": "jj framework for vue",
-  "version": "1.0.319",
+  "version": "1.0.320",
   "author": "fanyijie <fanyijie@frogsing.com>",
   "main": "dist/jjvue.js",
   "license": "MIT",
