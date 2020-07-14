@@ -1,6 +1,6 @@
 <!--suppress ALL -->
 <template>
-  <el-link v-re-click  @click="on_click"  type="primary"  v-if="showFlag && hasP "  :disabled="disabled" style="padding-right: 5px;">{{ label }}</el-link>
+  <el-link v-re-click  @click="on_click"  type="primary"  v-if="showFlag && hasP "  :disabled="disabled" style="padding-right: 5px;"><template v-html="label"></template></el-link>
 <!--  <el-button type="text" :disabled="disabled"  plain size="small" @click="$emit('click')"  v-if="showFlag && hasP " style="padding-right: 5px;" >-->
 <!--    {{ btn.label }}-->
 <!--  </el-button>-->
