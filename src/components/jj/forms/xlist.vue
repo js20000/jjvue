@@ -186,6 +186,8 @@
         if (val == -9999) {
           val = ''
         }
+        if(val)
+          val=val.trim()
 
         if (val == this.keyword) { // 无须提交请求
           this.getValByXname()
