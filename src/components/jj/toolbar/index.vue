@@ -2,7 +2,7 @@
   <el-row >
     <el-col :span="12">
       <el-button-group>
-        <jj-button v-for="(btn) in data " :key="btn.event" :btn="btn" @click="trigger(btn)" />
+        <jj-button v-for="(btn) in data "  :key="btn.event" :btn="btn" @click="trigger(btn)" />
       </el-button-group>
       <slot/>
     </el-col>

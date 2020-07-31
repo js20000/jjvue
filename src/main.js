@@ -10,6 +10,7 @@ import searchselect from './components/jj/search/searchselect'
 import pagination from './components/jj/pagination/index'
 import xinput from './components/jj/forms/xinput'
 
+
 const comment = {
   install: function(Vue) {
     Vue.directive('re-click', {
@@ -32,9 +33,11 @@ const comment = {
     Vue.component('jj-link', link)
     Vue.component('xlist', xlist)
     Vue.component('xselect', xselect)
+
     Vue.component('jj-list', searchlist)
     Vue.component('jj-date', searchdate)
     Vue.component('jj-xselect', searchselect)
+
     Vue.component('jj-page', pagination)
     Vue.component('jj-xinput', xinput)
   }

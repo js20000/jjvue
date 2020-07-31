@@ -1,24 +1,15 @@
 <template>
   <div>
     <jj-form-item v-if="data.index==data.editIndex && data.column.field" :data="data">
-      <el-switch
+      <el-date-picker
         v-model="fieldValue"
-        :active-value="active[0]"
-        :inactive-value="inactive[0]"
-        :active-text="active[1]"
-        :inactive-text="inactive[1]"
+        :type="date"
       />
 
     </jj-form-item>
 
     <template v-else>
-      <el-switch
-        v-model="fieldValue"
-        :disabled="true"
-        :active-value="active[0]"
-        :inactive-value="inactive[0]"
-        :active-text="active[1]"
-        :inactive-text="inactive[1]"/>
+      {{val}}
     </template>
   </div>
 </template>
@@ -27,9 +18,10 @@
 </style>
 <script>
   import formitem from '@/components/jj/forms/formitem'
+  import { parseTime } from '@/utils'
 
 export default {
-  name: `jj-checkbox`,
+  name: `jj-date`,
   props: ['data'],
   components: { 'jj-form-item': formitem },
   computed: {
@@ -41,21 +33,15 @@ export default {
         this.$parent.setValue(value)
       }
     },
-    active() {
-      const data = this.data.column.data
-      if (data) {
-        return data[0][0] ? data[0] : data[1]
-      } else {
-        return [1, '']
-      }
+    val() {
+      return parseTime(this.fieldValue, this.format)
     },
-    inactive() {
-      const data = this.data.column.data
-      if (data) {
-        return data[0][0] ? data[1] : data[0]
-      } else {
-        return [0, '']
-      }
+    date() {
+       return (this.data.column.data && this.data.column.data.type) ? this.data.column.data.type : 'date'
+    },
+    format() {
+      if (this.data.column.data && this.data.column.data.format) { return this.data.column.data.format }
+      return this.date == 'date' ? '{y}-{m}-{d}' : '{y}-{m}-{d} {h}:{i}:{s}'
     }
   },
   mounted: function() {

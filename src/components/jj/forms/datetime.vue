@@ -21,7 +21,7 @@
   import { parseTime } from '@/utils'
 
 export default {
-  name: `jj-date`,
+  name: `jj-datetime`,
   props: ['data'],
   components: { 'jj-form-item': formitem },
   computed: {
@@ -37,11 +37,11 @@ export default {
       return parseTime(this.fieldValue, this.format)
     },
     date() {
-       return (this.data.column.data && this.data.column.data.type) ? this.data.column.data.type : 'date'
+       return (this.data.column.data && this.data.column.data.type) ? this.data.column.data.type : 'datetime'
     },
     format() {
       if (this.data.column.data && this.data.column.data.format) { return this.data.column.data.format }
-      return this.date == 'date' ? '{y}-{m}-{d}' : '{y}-{m}-{d} {h}:{i}:{s}'
+      return this.date == 'datetime' ? '{y}-{m}-{d} {h}:{i}:{s}' : '{y}-{m}-{d}'
     }
   },
   mounted: function() {
