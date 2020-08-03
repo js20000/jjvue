@@ -2,6 +2,7 @@
   <div>
     <jj-form-item v-if="data.index==data.editIndex && data.column.field" :data="data">
       <el-switch
+        @change="rowValueChange"
         v-model="fieldValue"
         :active-value="active[0]"
         :inactive-value="inactive[0]"
@@ -13,6 +14,7 @@
 
     <template v-else>
       <el-switch
+        @change="rowValueChange"
         v-model="fieldValue"
         :disabled="xdisabled"
         :active-value="active[0]"

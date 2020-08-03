@@ -44,7 +44,7 @@
                           :show-overflow-tooltip="column.overflow?true:false"
         >
           <template slot-scope="scope">
-            <jj-column :row="scope.row" :index="scope.$index" :column="column" :vm="$parent" :edit-index="editIndex" @event="event"/>
+            <jj-column :row="scope.row" :index="scope.$index" :column="column" :vm="$parent" :edit-index="editIndex" @event="event" @rowValueChange="rowValueChange"/>
           </template>
         </el-table-column>
 
@@ -119,6 +119,9 @@ export default {
 
   },
   methods: {
+    rowValueChange(data) {
+      this.$emit('rowValueChange', data)
+    },
      getSumRow() {
        if (this.$parent.showSum) { return this.$parent.showSum() } else { return ['合计'] }
     },

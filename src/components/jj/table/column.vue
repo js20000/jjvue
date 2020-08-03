@@ -1,15 +1,15 @@
 <template>
   <div>
     <template v-if="column.type&&(column.type.indexOf('jj-')==0 )" >
-      <component :is="column.type" :data="buildData()" @event="event" :class="cls" :style="style" />
+      <component :is="column.type" :data="buildData()" @event="event" :class="cls" :style="style" @rowValueChange="rowValueChange" />
     </template>
 
     <template v-else-if="column.templet&&(typeof column.templet === 'string')" >
       <template v-if="column.templet.indexOf('sim-')==0 " >
-        <component :is="column.templet" :data="filedValue" @event="event" :class="cls" :style="style" />
+        <component :is="column.templet" :data="filedValue" @event="event" :class="cls" :style="style" @rowValueChange="rowValueChange"/>
       </template>
       <template v-else>
-        <component :is="column.templet" :data="buildData()" @event="event" :class="cls" :style="style" />
+        <component :is="column.templet" :data="buildData()" @event="event" :class="cls" :style="style" @rowValueChange="rowValueChange"/>
       </template>
 
     </template>
@@ -117,6 +117,9 @@ export default {
   watch: {
   },
   methods: {
+    rowValueChange(data) {
+      this.$emit('rowValueChange', data)
+    },
     getValue() {
       let rs = this.row
       const keys = this.column.field.split('.')
