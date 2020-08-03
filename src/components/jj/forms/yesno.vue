@@ -14,7 +14,7 @@
     <template v-else>
       <el-switch
         v-model="fieldValue"
-        :disabled="true"
+        :disabled="xdisabled"
         :active-value="active[0]"
         :inactive-value="inactive[0]"
         :active-text="active[1]"
@@ -33,6 +33,10 @@ export default {
   props: ['data'],
   components: { 'jj-form-item': formitem },
   computed: {
+    xdisabled() {
+       if (typeof this.data.column.disabled == 'undefined') { return true }
+        return !!this.data.column.disabled
+    },
     fieldValue: {
       get: function() {
         return this.$parent.getValue()
