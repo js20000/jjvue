@@ -15,7 +15,7 @@
         v-bind="$attrs"
         :fit="true"
         :summary-method="getSumRow"
-        :show-summary="showSum"
+        :show-summary="_showSum"
         :default-sort="defaultSort()"
         tooltip-effect="dark"
         style="width: 100%"
@@ -73,6 +73,10 @@ export default {
       type: Boolean,
       default: () => true
     },
+    showSum: {
+      type: Function,
+      default: null
+    },
     columns: {
       type: Array,
       default: () => []
@@ -86,7 +90,10 @@ export default {
     }
   },
   computed: {
-    showSum() {
+    _showSum() {
+      if (this.showSum) {
+        return true
+      }
       return !!this.$parent.showSum
     },
     searchType() {
@@ -123,6 +130,9 @@ export default {
       this.$emit('rowValueChange', data)
     },
      getSumRow() {
+       if (this.showSum) {
+         return this.showSum()
+       }
        if (this.$parent.showSum) { return this.$parent.showSum() } else { return ['合计'] }
     },
     onSearch(data) {
