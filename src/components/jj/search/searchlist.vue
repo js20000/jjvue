@@ -1,7 +1,8 @@
 <!--suppress ALL -->
 <template>
 
- <xlist :label="data.label"
+ <xlist
+:label="data.label"
         :url="data.data.url"
         :word="data.data.word"
         v-model="data.value"
@@ -14,15 +15,13 @@
         @xselect="xselect"
         style="width: 100%;"
 
-
  > </xlist>
 
 </template>
 
-
 <script>
   export default {
-    name:"SearchList",
+    name: 'SearchList',
     components: {},
     props: {
       data: {
@@ -41,14 +40,15 @@
         return this.data.data.size ? this.data.data.size : 'medium'
       }
     },
-    mounted(){
-      //console.log(JSON.stringify(this.data))
+    mounted() {
+      // console.log(JSON.stringify(this.data))
     },
     methods: {
-      xselect(){
-        this.$nextTick(function(){
-          this.$emit("onSearch", this.data)
-        })      }
+      xselect() {
+        this.$nextTick(function() {
+          this.$emit('onSearch', this.data)
+        })
+}
       // onselect(obj){
       //   if(this.data.data.valField)
       //     this.data.value=obj[this.data.data.valField]

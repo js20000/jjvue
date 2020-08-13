@@ -9,10 +9,13 @@
     <slot name="tops"/>
     <el-form ref="tableform" :model="vdata" >
       <el-table
+        ref="table"
         :border="border"
         :data="list"
         v-bind="$attrs"
         :fit="true"
+        :summary-method="getSumRow"
+        :show-summary="_showSum"
         :default-sort="defaultSort()"
         tooltip-effect="dark"
         style="width: 100%"
@@ -37,9 +40,11 @@
                           :prop="column.field?column.field:''"
                           :align="column.align?column.align:'left'"
                           :fixed="column.fixed?column.fixed:false"
-                          :sortable="column.sort?'custom':(column.sort==''?true:false)" >
+                          :sortable="column.sort?'custom':(column.sort==''?true:false)"
+                          :show-overflow-tooltip="column.overflow?true:false"
+        >
           <template slot-scope="scope">
-            <jj-column :row="scope.row" :index="scope.$index" :column="column" :vm="$parent" :edit-index="editIndex" @event="event"/>
+            <jj-column :row="scope.row" :index="scope.$index" :column="column" :vm="$parent" :edit-index="editIndex" @event="event" @rowValueChange="rowValueChange"/>
           </template>
         </el-table-column>
 
@@ -68,6 +73,10 @@ export default {
       type: Boolean,
       default: () => true
     },
+    showSum: {
+      type: Function,
+      default: null
+    },
     columns: {
       type: Array,
       default: () => []
@@ -81,6 +90,12 @@ export default {
     }
   },
   computed: {
+    _showSum() {
+      if (this.showSum) {
+        return true
+      }
+      return !!this.$parent.showSum
+    },
     searchType() {
       return this.data.searchType ? this.data.searchType : 0
     },
@@ -111,6 +126,15 @@ export default {
 
   },
   methods: {
+    rowValueChange(data) {
+      this.$emit('rowValueChange', data)
+    },
+     getSumRow() {
+       if (this.showSum) {
+         return this.showSum()
+       }
+       if (this.$parent.showSum) { return this.$parent.showSum() } else { return ['合计'] }
+    },
     onSearch(data) {
       if (this.data.searchType == 1) {
         this.refresh()

@@ -1,15 +1,15 @@
 <template>
   <div>
     <template v-if="column.type&&(column.type.indexOf('jj-')==0 )" >
-      <component :is="column.type" :data="buildData()" @event="event" :class="cls" :style="style" />
+      <component :is="column.type" :data="buildData()" @event="event" :class="cls" :style="style" @rowValueChange="rowValueChange" />
     </template>
 
     <template v-else-if="column.templet&&(typeof column.templet === 'string')" >
       <template v-if="column.templet.indexOf('sim-')==0 " >
-        <component :is="column.templet" :data="filedValue" @event="event" :class="cls" :style="style" />
+        <component :is="column.templet" :data="filedValue" @event="event" :class="cls" :style="style" @rowValueChange="rowValueChange"/>
       </template>
       <template v-else>
-        <component :is="column.templet" :data="buildData()" @event="event" :class="cls" :style="style" />
+        <component :is="column.templet" :data="buildData()" @event="event" :class="cls" :style="style" @rowValueChange="rowValueChange"/>
       </template>
 
     </template>
@@ -31,10 +31,12 @@ import select from '@/components/jj/forms/select'
 import image from '@/components/jj/forms/image'
 import formitem from '@/components/jj/forms/formitem'
 import xinput from '@/components/jj/forms/xinput'
+import date from '@/components/jj/forms/date'
+import datetime from '@/components/jj/forms/datetime'
 
 export default {
   name: 'JjColumn',
-  components: { 'jj-form-item': formitem, 'jj-xinput': xinput, 'jj-listbtn': listbtn, 'jj-listlink': listlink, 'jj-checkbox': checkbox, 'jj-yesno': yesno, 'jj-select': select, 'jj-image': image },
+  components: { 'jj-datetime': datetime, 'jj-date': date, 'jj-form-item': formitem, 'jj-xinput': xinput, 'jj-listbtn': listbtn, 'jj-listlink': listlink, 'jj-checkbox': checkbox, 'jj-yesno': yesno, 'jj-select': select, 'jj-image': image },
   props: {
     vm: {
       type: Object
@@ -75,15 +77,22 @@ export default {
       }
     },
     formatValue: function() {
+      let rs = ''
       const templet = this.column['templet']
       if (templet) {
         if (typeof templet === 'function') {
-          return templet.apply(this.vm, [{ row: this.row, column: this.column, index: this.index }])
-        }
-        return 'templet not imp'
+          rs = templet.apply(this.vm, [{ row: this.row, column: this.column, index: this.index }])
+        } else { rs = 'templet not imp' }
+      } else {
+        rs = this.getValue()
       }
-
-      return this.getValue()
+      if (this.column.link) {
+        let listType = this.column.link
+        if (typeof this.column.link === 'function') {
+          listType = this.column.link.apply(this.vm, [{ row: this.row, column: this.column, index: this.index }])
+        }
+        return `<a class="el-link el-link--${listType}" ><span class="el-link--inner">${rs}</span></a>`
+      } else { return rs }
     },
    cls() {
      if (this.column.class) {
@@ -108,6 +117,9 @@ export default {
   watch: {
   },
   methods: {
+    rowValueChange(data) {
+      this.$emit('rowValueChange', data)
+    },
     getValue() {
       let rs = this.row
       const keys = this.column.field.split('.')

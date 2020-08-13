@@ -78,8 +78,10 @@ export default {
       columns: [
         { label: 'a', field: 'a', sort: true, width: 120, type: 'jj-yesno', search: true },
         { label: 'x', field: 'x', sort: true, width: 120, type: 'jj-image', search: true },
-        { label: 'b', field: 'b', sort: true, width: 320, templet: function({ row }) {
-            return row.b
+        { label: 'x', field: 'b', sort: true, width: 320, link: function({ row }) {
+            return "success"
+          }, templet: function({ row }) {
+            return "sadfasdfsdfsdfsdafsdf"
           } },
         { label: 'c', field: 'c', sort: true, search: true, width: 220, templet: function({ row }) {
             return row.c
@@ -93,7 +95,9 @@ export default {
               { label: '编辑', icon: 'edit', event: 'edit', templet: function({ btn, row }) {
                   return true
                 } },
-              { label: '编辑1', icon: 'edit', event: 'editOk', templet: function({ btn, row }) {
+              { label: function () {
+                  return "<i style='color:red'>testtesttest</i>"
+                }, icon: 'edit', event: 'editOk', templet: function({ btn, row }) {
                   return true
                 } },
               { label: '确定', icon: 'ok', event: 'editOk', state: 'edit' },
@@ -116,6 +120,9 @@ export default {
   },
   methods:
       {
+        showSum(){
+          return ["合计",""];
+        },
         refresh: function(data) {
           console.log(JSON.stringify(data))
           this.data.page = [{ a: 1, b: 'bb', c: 1, d: 1, f: { a: 1, b: 2, c: 3 }, x: 'https://www.baidu.com/img/dongd_36a8aab08b12ba911d74444058393b08.gif' }, { a: 2, b: 'bb', c: 1, d: 1 }]

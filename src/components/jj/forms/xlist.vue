@@ -92,7 +92,7 @@
           this.xname = val
         }
         this.xname = ''
-        this.selected=-1
+        this.selected = -1
         for (let i = 0; i < this.list.length; i++) {
           const xx = this.list[i]
           if (typeof this.valField != 'undefined' && !(this.valField === '')) {
@@ -122,6 +122,7 @@
       },
       onclick: function() {
         event.preventDefault()
+        if (event.target.disabled) { return }
         if (this.style.display == 'block') {
            // this.style.display = 'none'
           return
@@ -183,6 +184,7 @@
         if (val == -9999) {
           val = ''
         }
+        if (val) { val = val.trim() }
 
         if (val == this.keyword) { // 无须提交请求
           this.getValByXname()
@@ -211,9 +213,9 @@
           }
           const rs = await this.$post(this.url, para)
           if (rs.data && rs.data.content) {
-            this.list = rs.data.content
+            if (rs.data.content.length > 0) { this.list = rs.data.content }
           } else {
-            this.list = rs.data
+            if (rs.data.length > 0) { this.list = rs.data }
           }
           this.$emit('ondata', rs.data)
 
@@ -236,7 +238,6 @@
           } else {
             rs = ''
           }
-          
           this.onselected(rs)
           this.$emit('blur')
         }

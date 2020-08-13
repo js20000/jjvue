@@ -1,7 +1,7 @@
 <!--suppress ALL -->
 <template>
 
-  <el-button :disabled="disabled"  plain size="small" @click="$emit('click')" :type="btn.type?btn.type:type" v-if="showFlag && hasP ">
+  <el-button v-re-click  @click="on_click"  :disabled="disabled" :plain="plainEx" :size="sizeEx"  v-bind="$attrs"  :type="btn.type?btn.type:type" v-if="showFlag && hasP ">
     <template v-if="btn.icon">
       <i v-if="btn.icon.indexOf(`el-icon`)==0" :class="btn.icon"/>
       <svg-icon v-else :icon-class="btn.icon"/>
@@ -22,13 +22,21 @@
 <script>
   export default {
     props: {
-      type:{
-        Type: String,
-        default:'primary'
+      plain: {
+        Type: Boolean,
+        default: true
       },
-      row:{
+      type: {
+        Type: String,
+        default: 'primary'
+      },
+      size: {
+        Type: String,
+        default: 'medium'
+      },
+      row: {
         Type: Object,
-        default:null
+        default: null
       },
       btn: {
         Type: Object,
@@ -39,44 +47,54 @@
         }
       }
     },
-    data(){
+    data() {
       return {
-        disabled:false
+        disabled: false
       }
     },
-    mounted(){
-
-
-      if(this.btn.needRow) {
+    mounted() {
+      if (this.btn.needRow) {
         this.disabled = true
-        this.$set(this.btn, "disabled", true)
+        this.$set(this.btn, 'disabled', true)
+      } else { this.$set(this.btn, 'disabled', false) }
+    },
+    methods: {
+
+      on_click() {
+        if (event.target.reClick) { return }
+        this.$emit('click')
       }
-      else
-        this.$set(this.btn,"disabled",false)
-    },
-    methods:{
 
     },
-    computed:{
-
-      showFlag(){
-        if (typeof this.btn.hidden === 'function') {
-          return !this.btn.hidden.apply(this, [{row:this.row,btn:this.btn}])
+    computed: {
+      plainEx() {
+        if (typeof this.btn.plain != 'undefined') {
+          return !!this.btn.plain
+        } else {
+          return this.plain
         }
-        else
-          return !this.btn.hidden
       },
-      hasP(){
-         if(!this.btn.permission)
-           return true
+      sizeEx() {
+        if (typeof this.btn.size != 'undefined') {
+          return this.btn.size
+        } else {
+          return this.size
+        }
+      },
+      showFlag() {
+        if (typeof this.btn.hidden === 'function') {
+          return !this.btn.hidden.apply(this, [{ row: this.row, btn: this.btn }])
+        } else { return !this.btn.hidden }
+      },
+      hasP() {
+         if (!this.btn.permission) { return true }
 
-        if(this.$store)
-           return this.$store.getters.has(this.btn.permission)
+        if (this.$store) { return this.$store.getters.has(this.btn.permission) }
       }
     },
-    watch:{
-      'btn.disabled'(v){
-        this.disabled=v
+    watch: {
+      'btn.disabled'(v) {
+        this.disabled = v
       }
     }
   }

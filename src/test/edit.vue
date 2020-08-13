@@ -1,5 +1,7 @@
 <!--suppress ALL -->
 <template>
+
+
   <el-form ref="dataForm" :model="obj" label-width="80px" size="large">
     <el-form-item label="格式">
       <el-input v-model="obj.sfromat" placeholer="yymmdd0000"/>
@@ -9,7 +11,7 @@
       <xlist :url="list" dis-field="name" val-field="id" default-val="" size="large"/>
     </el-form-item>
     <el-form-item  label="medium" >
-      <xlist :url="list" dis-field="name" val-field="id" default-val="" size="medium"/>
+      <xlist :url="list" dis-field="name" val-field="id" default-val="" size="medium" :disabled="true" />
     </el-form-item>
     <el-form-item  label="small" >
       <xlist :url="list" dis-field="name" val-field="id" default-val="" size="small"/>
@@ -21,7 +23,11 @@
     <el-form-item label="后缀" >
       <xselect v-model="xselect" :force="true" :data="list" val-field="id" dis-field="name" placeholder="请选择" @select="select"/>
     </el-form-item>
+    <jj-button @click="testClick" :btn="{label:'test'}" >
+
+    </jj-button>
   </el-form>
+
 </template>
 <style>
 
@@ -43,6 +49,7 @@ export default {
   data() {
     return {
       rules: {},
+        i:0,
         list:[
             {id:1,name:'选择一'},
             {id:2,name:'选择二'},
@@ -62,6 +69,10 @@ export default {
 
   },
   methods: {
+    testClick(){
+      this.$message('clicked:'+this.i++)
+
+    },
     async validate() {
       await this.$refs.dataForm.validate()
       return this.data
