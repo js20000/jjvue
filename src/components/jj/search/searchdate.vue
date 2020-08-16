@@ -1,17 +1,23 @@
 <!--suppress ALL -->
 <template>
-  <div class="block">
-  <component
-ref="xx"
-:is="jjType"
-              :type="type"
-              :placeholder="data.placeholder?data.placeholder:'日期'"
-              :start-placeholder="data.start_placeholder?data.start_placeholder:'开始日期'"
-              :end-placeholder="data.end_placeholder?data.end_placeholder:'结束日期'"
-              :default-time="data.default_time"
-              v-model="data.value"
-@change="xselect" />
+  <div  class="el-input el-input-group el-input--medium el-input-group--prepend el-input--suffix">
+    <div class="el-input-group__prepend"  v-if="data.label">{{data.label}}</div>
+    <div>
+    <component
+      ref="xx"
+      :is="jjType"
+      :type="type"
+      :placeholder="data.placeholder?data.placeholder:'日期'"
+      :start-placeholder="data.start_placeholder?data.start_placeholder:'开始日期'"
+      :end-placeholder="data.end_placeholder?data.end_placeholder:'结束日期'"
+      :default-time="data.default_time"
+      v-model="data.value"
+      @change="xselect" >
+    </component>
+    </div>
   </div>
+
+
 </template>
 
 <script>
