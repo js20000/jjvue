@@ -17,9 +17,19 @@
     </div>
   </div>
 
-
 </template>
-
+<style>
+  .el-icon-date{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .el-date-editor .el-range__close-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
 <script>
   export default {
     name: 'SearchDate',

@@ -14,7 +14,7 @@
           <jj-button :btn="{label: '重置', icon: 'el-icon-refresh'}" @click="reset" />
         </el-button-group>
       </div>
-      <div style="display:flex;" v-if="searchType == 1 && searchs.length == 1 " v-for="(s) in searchs">
+      <div style="display:flex;" v-if="searchType == 1 && searchs.length == 1 " v-for="(s,index) in searchs" :key="index">
         <template v-if="s.type&&(s.type.indexOf('jj-')==0 )"  >
           <component :is="s.type" :data="buildData(s)"  @onSearch="onSearch"   style="flex:1;">
           </component>
@@ -88,9 +88,11 @@ export default {
       if (btn.event) { this.$emit('event', { btn }) }
     },
     refresh() {
+      this.$emit('resetPage')
       this.$emit('refresh')
     },
     reset() {
+      this.$emit('resetPage')
       this.$emit('reset')
     },
     keyDown(event, data) {
@@ -99,6 +101,7 @@ export default {
       }
     },
     onSearch(data) {
+      this.$emit('resetPage')
       this.$emit('onSearch', data)
     },
     buildData(s) {

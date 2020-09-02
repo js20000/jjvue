@@ -324,6 +324,11 @@ export default {
       }
       this.refresh()
       return rs
+    },
+    resetPage: function() {
+      if (this.data.page && !(this.data.page instanceof Array)) {
+        if (this.data.page.number) { this.data.page.number = 0 }
+      }
     }
   }
 }
