@@ -45,10 +45,15 @@ export default {
         }]
       },
       data: {
-        searchType: 1,
+        searchType: 0,
         // hiddenHeader: true,
         sorts: { scode: 'ascending' },
         searchs: [
+          { field: 'keyword', type: 'jj-date', label: '截止时间', value: '', data: {
+              type: 'daterange'
+            }},
+          { field: 'keyword', label: '其他日期', type: 'jj-date' },
+
           { field: 'keyword', label: '编号', value: '' }
           // { field: 'search_eq_a', label: '日期', value: 0, type: 'jj-date',
           //   data:{
@@ -79,9 +84,9 @@ export default {
         { label: 'a', field: 'a', sort: true, width: 120, type: 'jj-yesno', search: true },
         { label: 'x', field: 'x', sort: true, width: 120, type: 'jj-image', search: true },
         { label: 'x', field: 'b', sort: true, width: 320, link: function({ row }) {
-            return "success"
+            return 'success'
           }, templet: function({ row }) {
-            return "sadfasdfsdfsdfsdafsdf"
+            return 'sadfasdfsdfsdfsdafsdf'
           } },
         { label: 'c', field: 'c', sort: true, search: true, width: 220, templet: function({ row }) {
             return row.c
@@ -95,7 +100,7 @@ export default {
               { label: '编辑', icon: 'edit', event: 'edit', templet: function({ btn, row }) {
                   return true
                 } },
-              { label: function () {
+              { label: function() {
                   return "<i style='color:red'>testtesttest</i>"
                 }, icon: 'edit', event: 'editOk', templet: function({ btn, row }) {
                   return true
@@ -120,8 +125,8 @@ export default {
   },
   methods:
       {
-        showSum(){
-          return ["合计",""];
+        showSum() {
+          return ['合计', '']
         },
         refresh: function(data) {
           console.log(JSON.stringify(data))
