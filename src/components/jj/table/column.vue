@@ -86,7 +86,7 @@ export default {
       } else {
         rs = this.getValue()
       }
-      if (this.column.link) {
+      if (this.column.link && rs !== '') {
         let listType = this.column.link
         if (typeof this.column.link === 'function') {
           listType = this.column.link.apply(this.vm, [{ row: this.row, column: this.column, index: this.index }])
