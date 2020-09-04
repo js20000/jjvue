@@ -1,5 +1,5 @@
 <template>
-  <el-image :src="url" :preview-src-list="urllist">
+  <el-image v-if="url" :src="url" :preview-src-list="urllist">
     <div slot="error" class="image-slot">
       <i class="el-icon-picture-outline"></i>
     </div>
@@ -22,17 +22,17 @@
     export default {
         name: `jj-image`,
         props: ['data'],
-        data(){
+        data() {
             return {
-                url:this.data.row[this.data.column.field],
-                urllist:[
+                url: this.data.row[this.data.column.field],
+                urllist: [
                     this.data.row[this.data.column.field]
                 ]
             }
         },
         computed: {
         },
-        mounted: function () {
+        mounted: function() {
 
         },
         methods: {}
