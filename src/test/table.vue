@@ -50,10 +50,11 @@ export default {
         sorts: { scode: 'ascending' },
         searchs: [
           { field: 'keyword', type: 'jj-date', label: '截止时间', value: '', data: {
-              type: 'daterange'
+              type: 'datetimerange'
             }},
-          { field: 'keyword', label: '其他日期', type: 'jj-date' },
-
+          { field: 'keyword', label: '其他日期', type: 'jj-date', data: {
+              type: 'date', format: 'yyyy年MM月dd日'
+            }},
           { field: 'keyword', label: '编号', value: '' }
           // { field: 'search_eq_a', label: '日期', value: 0, type: 'jj-date',
           //   data:{
@@ -86,7 +87,7 @@ export default {
         { label: 'x', field: 'b', sort: true, width: 320, link: function({ row }) {
             return 'success'
           }, templet: function({ row }) {
-            return 'sadfasdfsdfsdfsdafsdf'
+            return ''
           } },
         { label: 'c', field: 'c', sort: true, search: true, width: 220, templet: function({ row }) {
             return row.c
