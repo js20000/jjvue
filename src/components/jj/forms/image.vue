@@ -1,9 +1,11 @@
 <template>
-  <el-image v-if="url" :src="url" :preview-src-list="urllist">
-    <div slot="error" class="image-slot">
-      <i class="el-icon-picture-outline"></i>
-    </div>
-  </el-image>
+  <div>
+    <el-image v-if="url" :src="url" :preview-src-list="urllist">
+      <div slot="error" class="image-slot">
+        <i class="el-icon-picture-outline"></i>
+      </div>
+    </el-image>
+  </div>
 </template>
 <style>
   .image-slot {
@@ -23,17 +25,17 @@
         name: `jj-image`,
         props: ['data'],
         data() {
+          (this.data == null || typeof this.data == 'undefined')
             return {
                 url: this.data.row[this.data.column.field],
-                urllist: [
-                    this.data.row[this.data.column.field]
+                urllist: (typeof this.data.column.preview !== 'undefined' && this.data.column.preview === false) ? [] : [
+                   this.data.row[this.data.column.field]
                 ]
             }
         },
         computed: {
         },
         mounted: function() {
-
         },
         methods: {}
     }

@@ -23,7 +23,7 @@
       <xselect v-model="xselect" :force="true" :data="list" val-field="id" dis-field="name" placeholder="请选择" @select="select"/>
     </el-form-item>
     <el-form-item label="其它" >
-      <xselect v-model="xselect" :force="true" :url="" val-field="id" dis-field="name" placeholder="请选择" @select="select"/>
+<!--      <xselect v-model="xselect" :force="true" :url="" val-field="id" dis-field="name" placeholder="请选择" @select="select"/>-->
     </el-form-item>
     <jj-button @click="testClick" :btn="{label:'test'}" >
 

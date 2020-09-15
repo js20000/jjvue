@@ -33,6 +33,7 @@ export default {
   components: { edit },
   data() {
     return {
+      img: require('@/assets/logo.png'),
       editObj: {},
       dlg: {
         formData: { sremark: '', id: '', posid: '' },
@@ -84,7 +85,7 @@ export default {
       columns: [
         { label: 'a', field: 'a', sort: true, width: 120, type: 'jj-yesno', search: true },
         { label: 'x', field: 'x', sort: true, width: 120, type: 'jj-image', search: true },
-        { label: 'x', field: 'b', sort: true, width: 320, link: function({ row }) {
+        { label: 'b', field: 'b', sort: true, width: 320, link: function({ row }) {
             return 'success'
           }, templet: function({ row }) {
             return ''
@@ -133,9 +134,10 @@ export default {
           console.log(JSON.stringify(data))
           const dt = []
           for (let i = 0; i < 50; i++) {
-            dt.push({ a: 2, b: 'bb', c: 1, d: 1 })
+            dt.push({ a: 2, b: 'bb', c: 1, d: 1, x: this.img })
           }
-          this.data.page = [{ a: 1, b: 'bb', c: 1, d: 1, f: { a: 1, b: 2, c: 3 }, x: 'https://www.baidu.com/img/dongd_36a8aab08b12ba911d74444058393b08.gif' }, { a: 2, b: 'bb', c: 1, d: 1 }]
+          this.data.page = dt
+          // this.data.page = [{ a: 1, b: 'bb', c: 1, d: 1, f: { a: 1, b: 2, c: 3 }, x: 'https://www.baidu.com/img/dongd_36a8aab08b12ba911d74444058393b08.gif' }, { a: 2, b: 'bb', c: 1, d: 1 }]
         },
         add: function({ btn }) {
           this.dlg.icon = btn.icon
