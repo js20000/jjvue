@@ -1,7 +1,5 @@
 <!--suppress ALL -->
 <template>
-  <div  class="el-input el-input-group el-input--medium el-input-group--prepend el-input--suffix">
-    <div class="el-input-group__prepend"  v-if="data.label">{{data.label}}</div>
     <div>
  <xlist
 :label="data.label"
@@ -18,7 +16,6 @@
         style="width: 100%;"
 
  > </xlist>
-    </div>
     </div>
 </template>
 
