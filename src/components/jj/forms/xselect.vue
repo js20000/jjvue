@@ -63,6 +63,12 @@ v-model="bindfield"
             this.initSelect()
         },
         watch: {
+          data(val) {
+            this.list = val
+          },
+          url(val) {
+            this.initSelect()
+          },
           value(val) {
                 this.bindfield = val
                 if ((this.bindfield == null || this.bindfield == '') &&

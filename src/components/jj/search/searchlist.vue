@@ -19,6 +19,7 @@
 
  > </xlist>
     </div>
+    </div>
 </template>
 
 <script>
