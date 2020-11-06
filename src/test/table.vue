@@ -27,7 +27,6 @@
 
 <script>
 import edit from './edit'
-
 export default {
   name: 'TableIndex',
   components: { edit },
@@ -83,7 +82,7 @@ export default {
         page: {}
       },
       columns: [
-        { label: 'a', field: 'a', sort: true, width: 120, type: 'jj-yesno', search: true },
+        { label: 'a', field: 'a', sort: true, width: 120, type: 'jj-yesno', search: true, type: 'jj-xinput', rules: [{ required: true, message: '这是必填项', trigger: 'blur' }] },
         { label: 'x', field: 'x', sort: true, width: 120, type: 'jj-image', search: true },
         { label: 'b', field: 'b', sort: true, width: 320, link: function({ row }) {
             return 'success'
