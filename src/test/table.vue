@@ -83,7 +83,7 @@ export default {
       },
       columns: [
         { label: 'a', field: 'a', sort: true, width: 120, type: 'jj-yesno', search: true, type: 'jj-xinput', rules: [{ required: true, message: '这是必填项', trigger: 'blur' }] },
-        { label: 'x', field: 'x', sort: true, width: 120, type: 'jj-image', search: true },
+        // { label: 'x', field: 'x', sort: true, width: 120, type: 'jj-image', search: true },
         { label: 'b', field: 'b', sort: true, width: 320, link: function({ row }) {
             return 'success'
           }, templet: function({ row }) {
@@ -95,17 +95,21 @@ export default {
 
         { label: 'd', field: 'd', sort: true, width: 120, type: 'jj-checkbox' },
         { label: 'f.b', field: 'f.b', sort: true, width: 120 },
-        { field: 'f.a', label: 'f.a', sort: true, width: 200 },
-        { label: '操作', width: 500, type: 'jj-listlink', data: {
+        { field: 'f.a', label: 'f.a', sort: true, width: 100 },
+        { label: '操作', width: 600, type: 'jj-listlink', data: {
             buttons: [
-              { label: '编辑', icon: 'edit', event: 'edit', templet: function({ btn, row }) {
-                  return true
-                } },
-              { label: function() {
+              {
+                label: function() {
                   return "<i style='color:red'>testtesttest</i>"
-                }, icon: 'edit', event: 'editOk', templet: function({ btn, row }) {
+                },
+                icon: 'edit', event: 'editOk', templet: function({ btn, row }) {
+                  return true
+                }
+              },
+              { label: '耕作曹总', icon: 'edit', event: 'edit', templet: function({ btn, row }) {
                   return true
                 } },
+
               { label: '确定', icon: 'ok', event: 'editOk', state: 'edit' },
               { label: '撤销', icon: 'cancel', event: 'editCancel', state: 'edit' }
             ],

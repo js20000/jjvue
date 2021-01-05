@@ -37,9 +37,9 @@
           :btn="btn"
           :row="data.row"
           @click="trigger(btn)"/>
-      <el-dropdown>
-        <span class="el-dropdown-link">
-          更多操作<i class="el-icon-arrow-down el-icon--right"></i>
+      <el-dropdown style="line-height: 17px;top: 2px;">
+        <span class="el-dropdown-link" style="font-size:14px;font-weight: 500;">
+          {{data.column.data.label?data.column.data.label:"更多操作"}}<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu v-if="data.editIndex==data.index">
           <el-dropdown-item v-for="(btn) in data.column.data.list ">
