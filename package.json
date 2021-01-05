@@ -1,7 +1,7 @@
 {
   "name": "jjvue",
   "description": "jj framework for vue",
-  "version": "1.0.357",
+  "version": "1.0.358",
   "author": "fanyijie <fanyijie@frogsing.com>",
   "main": "dist/jjvue.js",
   "license": "MIT",
@@ -92,6 +92,6 @@
     "webpack-merge": "4.1.4"
   },
   "publishConfig": {
-    "registry": "http://nexus.frogsing.cn/repository/npm-group/"
+    "registry": "http://nexus.frogsing.cn/repository/npm-hosted"
   }
 }
