@@ -37,7 +37,7 @@
           :btn="btn"
           :row="data.row"
           @click="trigger(btn)"/>
-      <el-dropdown style="line-height: 17px;top: 2px;">
+      <el-dropdown style="line-height: 17px;top: 2px;" v-if="moreCount>0">
         <span class="el-dropdown-link" style="font-size:14px;font-weight: 500;">
           {{data.column.data.label?data.column.data.label:"更多操作"}}<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
@@ -103,11 +103,28 @@
     mounted: function() {
 
     },
+    computed: {
+      moreCount() {
+        for (const btn of this.data.column.data.list) {
+           if (this.showFlag(btn) && this.hasP(btn)) { return 1 }
+        }
+        return 0
+      }
+    },
     methods: {
       trigger(btn) {
         if (btn.event) {
           this.$emit('event', { row: this.data.row, index: this.data.index, btn })
         }
+      },
+      showFlag(btn) {
+        if (typeof btn.hidden === 'function') {
+          return !btn.hidden.apply(this, [{ row: this.data.row, btn: btn }])
+        } else { return !btn.hidden }
+      },
+      hasP(btn) {
+        if (!btn.permission) { return true }
+        if (this.$store) { return this.$store.getters.has(btn.permission) }
       }
 
     }

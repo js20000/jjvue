@@ -114,10 +114,10 @@ export default {
               { label: '撤销', icon: 'cancel', event: 'editCancel', state: 'edit' }
             ],
             list: [
-              { label: '重建表', icon: 'el-icon-refresh', event: 'makeSqlTable' },
-              { label: '修改SQl', icon: 'ok', event: 'makeSqlAddCol' },
-              { label: '生成jpa', icon: 'edit', event: 'makeSingle' },
-              { label: '路由表', icon: 'edit', event: 'routeInfo' },
+              { label: '重建表', icon: 'el-icon-refresh', event: 'makeSqlTable', hidden: x => true },
+              { label: '修改SQl', icon: 'ok', event: 'makeSqlAddCol', hidden: x => true },
+              { label: '生成jpa', icon: 'edit', event: 'makeSingle', hidden: x => true },
+              { label: '路由表', icon: 'edit', event: 'routeInfo', hidden: x => true },
               { label: 'CRUD', icon: 'edit', event: 'makeCrud' }
 
             ]
