@@ -1,7 +1,7 @@
 <template>
   <div>
-    <template v-if="column.type&&(column.type.indexOf('jj-')==0 )" >
-      <component :is="column.type" :data="buildData()" @event="event" :class="cls" :style="style" @rowValueChange="rowValueChange" />
+    <template v-if="xType&&(xType.indexOf('jj-')==0 )" >
+      <component :is="xType" :data="buildData()" @event="event" :class="cls" :style="style" @rowValueChange="rowValueChange" />
     </template>
 
     <template v-else-if="column.templet&&(typeof column.templet === 'string')" >
@@ -111,6 +111,15 @@ export default {
         return this.column.style
       }
       return {}
+    },
+    xType() {
+      if (this.column.type) {
+        if (typeof this.column.type === 'function') {
+          return this.column.type.apply(this.vm, [{ row: this.row, column: this.column, index: this.index }])
+        }
+        return this.column.type
+      }
+      return ''
     }
 
   },

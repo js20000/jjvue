@@ -175,7 +175,7 @@ export default {
       return ''
     },
     getType(column) {
-      if (!column.type || column.type.indexOf('jj-') == 0) { return '' }
+      if (!column.type || typeof column.type === 'function' || column.type.indexOf('jj-') == 0) { return '' }
       return column.type
     },
     setSort() {
