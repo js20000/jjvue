@@ -1,7 +1,7 @@
 {
   "name": "jjvue",
   "description": "jj framework for vue",
-  "version": "1.0.356",
+  "version": "1.0.357",
   "author": "fanyijie <fanyijie@frogsing.com>",
   "main": "dist/jjvue.js",
   "license": "MIT",
@@ -10,9 +10,9 @@
     "Dev": "cross-env BABEL_ENV=development webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "buildTest": "cross-env NODE_ENV=production env_config=prod node build/build.js",
-    "yarninstall": "yarn install",
-    "publishIt": " yarn  publish",
-    "registry": "yarn  config set registry  http://nexus.frogsing.cn/repository/npm-group/"
+    "npminstall": "npm install --registry  http://nexus.frogsing.cn/repository/npm-group/",
+    "publishIt": " npm  publish",
+    "registry": "npm  config set registry  http://nexus.frogsing.cn/repository/npm-group/"
   },
   "dependencies": {
     "element-ui": "2.9.1",
@@ -84,7 +84,7 @@
     "vue-eslint-parser": "^5.0.0",
     "vue-loader": "15.3.0",
     "vue-style-loader": "4.1.2",
-    "vue-template-compiler": "2.6.10",
+    "vue-template-compiler": "^2.6.12",
     "webpack": "4.16.5",
     "webpack-bundle-analyzer": "2.13.1",
     "webpack-cli": "3.1.0",
