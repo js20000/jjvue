@@ -25,6 +25,9 @@
 export default {
   name: `jj-search`,
   props: {
+    vm: {
+      type: Object
+    },
     searchType: {
       type: Number,
       default() { return 0 }
@@ -37,7 +40,9 @@ export default {
     }
   },
   mounted: function() {
-
+      for (const item of this.searchs) {
+        item.vm = this.vm
+      }
   },
   methods: {
     keyDown(event, data) {

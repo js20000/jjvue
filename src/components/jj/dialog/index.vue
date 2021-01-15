@@ -1,6 +1,6 @@
 <!--suppress ALL -->
 <template>
-  <el-dialog :visible.sync="showflag"  v-if="showflag" v-bind="$attrs"
+  <el-dialog  :visible.sync="showflag"  v-if="showflag" v-bind="$attrs"
              :append-to-body="append_to_body"
              :modal-append-to-body="modal_append_to_body"
              :modal="modal"

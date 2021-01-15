@@ -3,7 +3,7 @@
     <div>
  <xlist
 :label="data.label"
-        :url="data.data.url"
+        :url="xUrl"
         :word="data.data.word"
         v-model="data.value"
         :valField="data.data.valField"
@@ -24,7 +24,7 @@
     name: 'SearchList',
     components: {},
     props: {
-      data: {
+      data: {// searchItem
         type: Object,
         default() {
           return {
@@ -36,6 +36,12 @@
       }
     },
     computed: {
+      xUrl: function() {
+        if (typeof this.data.data.url == 'function') {
+           return this.data.data.url.apply(this.data.vm, [this.data])
+        }
+        return this.data.data.url
+      },
       size: function() {
         return this.data.data.size ? this.data.data.size : 'medium'
       }

@@ -1,6 +1,6 @@
 <template>
   <div >
-    <jj-search v-if="!data.hiddenHeader" :searchs="data.searchs" @refresh="refresh" @onSearch="onSearch" :searchType="searchType">
+    <jj-search :vm="$parent" v-if="!data.hiddenHeader" :searchs="data.searchs" @refresh="refresh" @onSearch="onSearch" :searchType="searchType">
       <slot name="searchs"/>
     </jj-search>
     <jj-toolbar v-if="!data.hiddenHeader" :data="data.toolbars"  @onSearch="onSearch" :searchs="data.searchs" @event="toolbarevent" :searchType="searchType" @refresh="refresh" @reset="reset" @resetPage="resetPage">
@@ -41,7 +41,7 @@
                           :align="column.align?column.align:'left'"
                           :fixed="column.fixed?column.fixed:false"
                           :sortable="column.sort?'custom':(column.sort==''?true:false)"
-                          :show-overflow-tooltip="column.overflow?true:false"
+                          :show-overflow-tooltip="column.overflow?false:true"
         >
           <template slot-scope="scope">
             <jj-column :row="scope.row" :index="scope.$index" :column="column" :vm="$parent" :edit-index="editIndex" @event="event" @rowValueChange="rowValueChange"/>
