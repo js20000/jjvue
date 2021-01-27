@@ -41,7 +41,7 @@
                           :align="column.align?column.align:'left'"
                           :fixed="column.fixed?column.fixed:false"
                           :sortable="column.sort?'custom':(column.sort==''?true:false)"
-                          :show-overflow-tooltip="column.overflow?false:true"
+                          :show-overflow-tooltip="typeof column.overflow=='undefined'?true:column.overflow"
         >
           <template slot-scope="scope">
             <jj-column :row="scope.row" :index="scope.$index" :column="column" :vm="$parent" :edit-index="editIndex" @event="event" @rowValueChange="rowValueChange"/>
@@ -272,7 +272,13 @@ export default {
       if (this.data.page && this.data.page.size) { rs = { page: this.data.page.number, limit: this.data.page.size } }
       if (this.data.searchs) {
         for (const s of this.data.searchs) {
-          if (!(s.value === '') && !(typeof s.value == 'undefined')) { rs[s.field] = s.value }
+          if (s.onPost) {
+            s.onPost.apply(this.$parent, [{ search: s, data: rs }])
+            continue
+          }
+          if (!(s.value === '') && !(typeof s.value == 'undefined')) {
+            rs[s.field] = s.value
+          }
         }
       }
       const ss = []
