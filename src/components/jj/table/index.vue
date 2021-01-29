@@ -295,6 +295,7 @@ export default {
           keys.push(item.field)
         }
       })
+      if (this.data.sumcol) { rs.sumcol = this.data.sumcol }
       rs.keys = keys.toString()
       return rs
     },
