@@ -21,6 +21,7 @@ export default {
       },
       set: function(value) {
         this.$parent.setValue(value)
+        this.$emit('rowValueChange', this.data)
       }
     }
   },
@@ -28,9 +29,6 @@ export default {
 
   },
   methods: {
-    rowValueChange() {
-      this.$emit('rowValueChange', this.data)
-    }
 
   }
 }
