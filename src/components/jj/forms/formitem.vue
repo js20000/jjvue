@@ -44,9 +44,9 @@
         } else { b() }
       },
       patternValidate(r, v, b) {
-        if (!r._pattern.test(v)) {
-          b('格式不正确!')
-        } else { b() }
+          if (!!v && !r._pattern.test(v)) {
+            b('格式不正确!')
+          } else { b() }
       },
       validator(r, v, callback) {
         v = r.value

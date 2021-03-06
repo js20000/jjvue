@@ -14,6 +14,7 @@
         :data="list"
         v-bind="$attrs"
         :fit="true"
+        :row-class-name="rowClassName"
         :summary-method="getSumRow"
         :show-summary="_showSum"
         :default-sort="defaultSort()"
@@ -68,6 +69,12 @@ export default {
     data: {
       type: [Object, Array],
       required: true
+    },
+    rowClassName: {
+      type: Function,
+      default: () => {
+        return () => {}
+      }
     },
     border: {
       type: Boolean,
