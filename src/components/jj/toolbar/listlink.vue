@@ -42,7 +42,7 @@
           {{data.column.data.label?data.column.data.label:"更多操作"}}<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu v-if="data.editIndex==data.index">
-          <el-dropdown-item v-for="(btn) in data.column.data.list ">
+          <el-dropdown-item v-for="(btn) in data.column.data.list " :key="btn.event">
             <jj-link
               v-if="btn.state&&btn.state=='edit'"
               :key="btn.event"

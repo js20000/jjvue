@@ -91,6 +91,7 @@ export default {
   },
   data: function() {
     return {
+      lastRefresh: -1,
       bak: {},
       editIndex: -1,
       multipleSelection: []
@@ -314,9 +315,13 @@ export default {
       if (column.sortable == 'custom') { this.refresh() }
     },
     refresh: function() {
-      this.restore()
-      const data = this.search()
-      this.$emit('refresh', data)
+      const i = new Date().getTime()
+      if (i - this.lastRefresh > 500) {
+        this.restore()
+        const data = this.search()
+        this.lastRefresh = i
+        this.$emit('refresh', data)
+      }
     },
     defaultSort: function() {
       if (this.data.sorts) {
