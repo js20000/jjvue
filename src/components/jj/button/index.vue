@@ -62,6 +62,7 @@
 
       on_click() {
         if (event.target.reClick) { return }
+        if (this.$store && this.$store.getters.loading) { return }
         this.$emit('click')
       }
 

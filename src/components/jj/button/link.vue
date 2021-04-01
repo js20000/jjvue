@@ -1,6 +1,11 @@
 <!--suppress ALL -->
 <template>
-  <el-link v-re-click  @click="on_click"  type="primary"  v-if="showFlag && hasP "  :disabled="disabled"
+  <el-link
+v-re-click
+@click="on_click"
+type="primary"
+v-if="showFlag && hasP "
+:disabled="disabled"
            style="padding-right: 5px;"><span v-html="label"></span>
   </el-link>
 <!--  <el-button type="text" :disabled="disabled"  plain size="small" @click="$emit('click')"  v-if="showFlag && hasP " style="padding-right: 5px;" >-->
@@ -50,8 +55,9 @@
     },
     methods: {
       on_click() {
-        if(event.target.reClick)
-          return;
+        if (event.target.reClick) { return }
+        if (this.$store && this.$store.getters.loading) { return }
+
         this.$emit('click')
       }
     },
