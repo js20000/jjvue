@@ -97,3 +97,35 @@
   font-size: 14px;
   border-radius: 4px;
 }
+.el-button [class*=el-icon-]+span {
+  margin-left: 0px;
+}
+.el-button--orange,.el-button--orange:hover{
+  background-color: #ff6a00;
+  border-color: #ff6a00;
+  color: #fff;
+}
+.el-button--orange:hover{
+  opacity: 0.9;
+}
+.el-button--blue,.el-button--blue:hover{
+  background-color: #2362fb;
+  border-color: #2362fb;
+  color: #fff;
+}
+.el-button--blue:hover{
+  opacity: 0.9;
+}
+.el-button--white{
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+  color: #666;
+}
+.el-button--white:hover{
+  color: #2362fb;
+  border-color: #bdd0fe;
+  background-color: #e9efff;
+}
+.el-button--medium {
+  padding: 8px 15px;
+}

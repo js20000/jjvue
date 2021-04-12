@@ -15,7 +15,7 @@
     "registry": "npm  config set registry  http://nexus.frogsing.cn/repository/npm-group/"
   },
   "dependencies": {
-    "element-ui": "2.9.1",
+    "element-ui": "^2.12.0",
     "normalize.css": "^8.0.1",
     "sortablejs": "1.7.0",
     "vue": "^2.6.10"

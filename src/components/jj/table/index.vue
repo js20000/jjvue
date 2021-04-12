@@ -1,6 +1,6 @@
 <template>
   <div >
-    <jj-search :vm="$parent" v-if="!data.hiddenHeader" :searchs="data.searchs" @refresh="refresh" @onSearch="onSearch" :searchType="searchType">
+    <jj-search :vm="$parent" v-if="!data.hiddenHeader" :searchs="data.searchs" @refresh="refresh" @onSearch="onSearch" :searchType="searchType"  @reset="reset">
       <slot name="searchs"/>
     </jj-search>
     <jj-toolbar v-if="!data.hiddenHeader" :data="data.toolbars"  @onSearch="onSearch" :searchs="data.searchs" @event="toolbarevent" :searchType="searchType" @refresh="refresh" @reset="reset" @resetPage="resetPage">

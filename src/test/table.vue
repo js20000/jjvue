@@ -49,54 +49,56 @@ export default {
         // hiddenHeader: true,
         sorts: { scode: 'ascending' },
         searchs: [
-          { field: 'keyword', type: 'jj-date', label: '截止时间', value: '', data: {
-              type: 'datetimerange'
-            }},
-          { field: 'keyword', label: '其他日期', type: 'jj-date', data: {
-              type: 'date', format: 'yyyy年MM月dd日'
-            }},
-          { field: 'keyword', label: '编号', value: '' }
+          // { field: 'keyword', type: 'jj-date', label: '截止时间', value: '', data: {
+          //     type: 'datetimerange'
+          //   }},
+          // { field: 'keyword', label: '其他日期', type: 'jj-date', data: {
+          //     type: 'date', format: 'yyyy年MM月dd日'
+          //   }},
+          { field: 'keyword', label: '编号', value: '' },
           // { field: 'search_eq_a', label: '日期', value: 0, type: 'jj-date',
           //   data:{
           //       el:"el-date-picker",
           //       type:"daterange"
           //   }
-          // }
-          // { field: 'search_eq_swarehouseid', label: '列表', value: 0, type: 'jj-list', disValue: '',
-          //   data: {
-          //     url: [{ val: 0, id: 'a' }, { val: 1, id: 'b' }], word: 'search_like_scnname', disField: 'id', valField: 'val', defaultVal: 1
-          //   }},
-          //   { field: 'search_eq_sotherid', label: '选择', type: 'jj-xselect', placeholder: '请选择', value: 1,
-          //       data: {
-          //           list: [{ val: 0, id: 'a' }, { val: 1, id: 'b' }], disField: 'id', valField: 'val', force: true
-          //       }}
+          // },
+          { field: 'search_eq_swarehouseid', label: '列表', value: 0, type: 'jj-list', disValue: '',
+            data: {
+              url: [{ val: 0, id: 'a' }, { val: 1, id: 'b' }], word: 'search_like_scnname', disField: 'id', valField: 'val', defaultVal: 1
+            }},
+            { field: 'search_eq_sotherid', label: '选择', type: 'jj-xselect', placeholder: '请选择', value: 1,
+                data: {
+                    list: [{ val: 0, id: 'a' }, { val: 1, id: 'b' }], disField: 'id', valField: 'val', force: true
+                }},
+          { field: 'semail', label: '邮箱', value: '' },
+          { field: 'suser', label: '客户名称', value: '' },
         ],
         toolbars: [
-          // {
-          //   label: '新增', icon: 'add', event: 'add'
-          // },
-          // {
-          //   label: '删除', icon: 'cancel', event: 'delit', permission: 'rfid:edit', needRow: 1
-          // }
+          {
+            label: '新增', icon: 'el-icon-circle-plus-outline', event: 'add',plain:false,type:'orange'
+          },
+          {
+            label: '删除', icon: 'el-icon-remove-outline', event: 'delit',plain:false,type:'white'
+          }
         ],
         page: {}
       },
       columns: [
-        { label: 'a', field: 'a', sort: true, width: 120, type: 'jj-yesno', search: true, type: 'jj-xinput', rules: [{ required: true, message: '这是必填项', trigger: 'blur' }] },
+        { label: '姓名', field: 'a', sort: true, width: 120, type: 'jj-yesno', search: true, type: 'jj-xinput', rules: [{ required: true, message: '这是必填项', trigger: 'blur' }] },
         // { label: 'x', field: 'x', sort: true, width: 120, type: 'jj-image', search: true },
-        { label: 'b', field: 'b', sort: true, width: 320, link: function({ row }) {
+        { label: '公司名称', field: 'b', sort: true, width: 320, link: function({ row }) {
             return 'success'
           }, templet: function({ row }) {
             return ''
           } },
-        { label: 'c', field: 'c', sort: true, search: true, width: 220, templet: function({ row }) {
+        { label: '客户名称', field: 'c', sort: true, search: true, width: 220, templet: function({ row }) {
             return row.c
           } },
 
-        { label: 'd', field: 'd', sort: true, width: 120, type: 'jj-checkbox' },
-        { label: 'f.b', field: 'f.b', sort: true, width: 120 },
-        { field: 'f.a', label: 'f.a', sort: true, width: 100 },
-        { label: '操作', width: 600, type: 'jj-listlink', data: {
+        { label: '手机', field: 'd', sort: true, width: 120, type: 'jj-checkbox' },
+        { label: '邮箱', field: 'f.b', sort: true, width: 120 },
+        { field: '备注', label: 'f.a', sort: true, width: 100 },
+        { label: '操作', width: 240, type: 'jj-listlink', fixed: 'right',data: {
             buttons: [
               {
                 label: function() {

@@ -1,18 +1,14 @@
 <template>
   <el-row >
     <el-col :span="12">
-      <el-button-group>
         <jj-button v-for="(btn) in data " :key="btn.event" :btn="btn" @click="trigger(btn)" />
         <slot/>
-      </el-button-group>
     </el-col>
     <el-col :span="12" >
 
       <div style="text-align: right" v-if="searchType == 0">
-        <el-button-group>
-          <jj-button :btn="{label: '查询', icon: 'el-icon-search'}" @click="refresh" />
-          <jj-button :btn="{label: '重置', icon: 'el-icon-refresh'}" @click="reset" />
-        </el-button-group>
+          <jj-button :btn="{label: '查询', icon: 'el-icon-search',plain:false,type:'blue'}" @click="refresh" />
+          <jj-button :btn="{label: '重置', icon: 'el-icon-refresh',plain: false,type:'info'}" @click="reset" />
       </div>
       <div style="display:flex;" v-if="searchType == 1 && searchs.length == 1 " v-for="(s,index) in searchs" :key="index">
         <template v-if="s.type&&(s.type.indexOf('jj-')==0 )"  >
