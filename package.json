@@ -1,7 +1,7 @@
 {
   "name": "jjvue",
   "description": "jj framework for vue",
-  "version": "1.0.516",
+  "version": "1.0.517",
   "author": "fanyijie <fanyijie@frogsing.com>",
   "main": "dist/jjvue.js",
   "license": "MIT",
@@ -17,9 +17,6 @@
   "dependencies": {
     "element-ui": "^2.12.0",
     "normalize.css": "^8.0.1",
-    "sortablejs": "1.7.0",
-    "vue": "^2.6.10"
-  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
@@ -27,8 +24,11 @@
   ],
   "engines": {
     "node": ">= 6.0.0",
-    "npm": ">= 3.0.0"
-  },
+    "npm": ">= 3.0.0",
+    "sortablejs": "1.7.0",
+    "vue": "^2.6.10"
+  }
+},
   "devDependencies": {
     "ace-builds": "^1.4.5",
     "autoprefixer": "8.5.0",
