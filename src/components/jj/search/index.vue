@@ -3,7 +3,7 @@
     <el-row :gutter="10" v-if="searchType==0 && searchs.length>0" :class="screenWidth <1920 ? 'row-con':''">
       <jj-button :btn="{label: '更多筛选', icon: 'el-icon-s-operation',plain:false,type:'blue'}" class="sermore" v-if="screenWidth <1920 && searchs.length > 4" @click="drawer = true" />
       <el-col v-for="(s) in searchs" :xs="24" :sm="12" :md="8" :lg="6" :xl="4" :key="s.label" >
-        <template v-if="s.type&&(s.type.indexOf('jj-')==0 )" >
+        <template v-if="s.type" >
           <component :is="s.type" :data="s"   @onSearch="onSearch"  />
         </template>
         <el-input v-else :placeholder="s.placeholder" v-model="s.value"  @keydown.native="keyDown($event,s)" >
@@ -19,7 +19,7 @@
       :with-header="false">
       <el-row :gutter="10" v-if="searchType==0 && searchs.length>0" class="drawer-con">
         <el-col v-for="(s) in searchs" :xs="24" :sm="24" :md="24" :lg="24" :xl="24" :key="s.label" >
-          <template v-if="s.type&&(s.type.indexOf('jj-')==0 )" >
+          <template v-if="s.type" >
             <component :is="s.type" :data="s"   @onSearch="onSearch"  />
           </template>
           <el-input v-else :placeholder="s.placeholder" v-model="s.value"  @keydown.native="keyDown($event,s)" >
@@ -132,7 +132,7 @@ export default {
     reset() {
       this.$emit('resetPage')
       this.$emit('reset')
-    },
+    }
   }
 }
 </script>
