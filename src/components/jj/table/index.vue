@@ -336,7 +336,7 @@ export default {
       if (this.data.searchs) {
         for (let i = 0; i < this.data.searchs.length; i++) {
           const s = this.data.searchs[i]
-          s.value = s.default || ''
+          if (s.default !== undefined) { s.value = s.default }
           if (s.disValue) { s.disValue = '' }
           this.$set(this.data.searchs, i, s)
         }
