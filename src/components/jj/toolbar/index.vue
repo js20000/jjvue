@@ -1,7 +1,7 @@
 <template>
   <el-row >
     <el-col :span="12">
-        <jj-button v-for="(btn) in data " :key="btn.event" :btn="btn" @click="trigger(btn)" />
+        <jj-button v-for="(btn) in data " :key="btn.event" :btn="btn" @click="trigger(btn)" />&nbsp;
         <slot/>
     </el-col>
     <el-col :span="12" >
