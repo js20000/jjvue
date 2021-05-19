@@ -13,8 +13,18 @@
       </template>
 
     </template>
+
     <jj-xinput v-else-if="index==editIndex && column.field &&!column.readOnly"  :data="buildData()" @event="event" :class="cls" :style="style" >
     </jj-xinput>
+    <el-link
+      :type="column.link"
+      :class="cls"
+      :style="style"
+      v-else-if="column.event"
+      v-re-click
+      @click="on_click">
+      {{formatValue}}
+    </el-link>
     <div v-else v-html="formatValue">
     </div>
   </div>
@@ -86,7 +96,7 @@ export default {
       } else {
         rs = this.getValue()
       }
-      if (this.column.link && rs !== '') {
+      if (!this.column.event && this.column.link && rs !== '') {
         let listType = this.column.link
         if (typeof this.column.link === 'function') {
           listType = this.column.link.apply(this.vm, [{ row: this.row, column: this.column, index: this.index }])
@@ -126,6 +136,11 @@ export default {
   watch: {
   },
   methods: {
+    on_click() {
+      if (event.target.reClick) { return }
+      if (this.$store && this.$store.getters.loading) { return }
+      this.$emit('event', { row: this.row, index: this.index, btn: this.column })
+    },
     rowValueChange(data) {
       this.$emit('rowValueChange', data)
     },

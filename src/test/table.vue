@@ -12,6 +12,7 @@
       @edit="edit"
 @editOk="editOk"
 @editCancel="editCancel"
+@mail="mail"
       @delit="deleteit"/>
 
     <jj-dialog ref="dlg"  :data="dlg">
@@ -71,14 +72,14 @@ export default {
                     list: [{ val: 0, id: 'a' }, { val: 1, id: 'b' }], disField: 'id', valField: 'val', force: true
                 }},
           { field: 'semail', label: '邮箱', value: '' },
-          { field: 'suser', label: '客户名称', value: '' },
+          { field: 'suser', label: '客户名称', value: '' }
         ],
         toolbars: [
           {
-            label: '新增', icon: 'el-icon-circle-plus-outline', event: 'add',plain:false,type:'orange'
+            label: '新增', icon: 'el-icon-circle-plus-outline', event: 'add', plain: false, type: 'orange'
           },
           {
-            label: '删除', icon: 'el-icon-remove-outline', event: 'delit',plain:false,type:'white'
+            label: '删除', icon: 'el-icon-remove-outline', event: 'delit', plain: false, type: 'white'
           }
         ],
         page: {}
@@ -96,9 +97,9 @@ export default {
           } },
 
         { label: '手机', field: 'd', sort: true, width: 120, type: 'jj-checkbox' },
-        { label: '邮箱', field: 'f.b', sort: true, width: 120 },
+        { label: '邮箱', field: 'f.b', sort: true, width: 120, event: 'mail', link: 'danger', align: 'right' },
         { field: '备注', label: 'f.a', sort: true, width: 100 },
-        { label: '操作', width: 240, type: 'jj-listlink', fixed: 'right',data: {
+        { label: '操作', width: 240, type: 'jj-listlink', fixed: 'right', data: {
             buttons: [
               {
                 label: function() {
@@ -139,7 +140,7 @@ export default {
           console.log(JSON.stringify(data))
           const dt = []
           for (let i = 0; i < 50; i++) {
-            dt.push({ a: 2, b: 'bb', c: 1, d: 1, x: this.img })
+            dt.push({ a: 2, b: 'bb', c: 1, d: 1, x: this.img, f: { a: 'mail', b: 'mailb' }})
           }
           this.data.page = dt
           // this.data.page = [{ a: 1, b: 'bb', c: 1, d: 1, f: { a: 1, b: 2, c: 3 }, x: 'https://www.baidu.com/img/dongd_36a8aab08b12ba911d74444058393b08.gif' }, { a: 2, b: 'bb', c: 1, d: 1 }]
@@ -153,6 +154,9 @@ export default {
         },
         ok: function() {
           this.$refs.table.edit(-1)
+        },
+        mail({ row }) {
+          this.$message.success('value:' + row.f.b)
         },
         editCancel() {
           this.$refs.table.edit(-1)

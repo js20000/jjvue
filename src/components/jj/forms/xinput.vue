@@ -21,7 +21,10 @@ export default {
   computed: {
     disabled() {
       if (this.data.column && this.data.column.disabled) {
-        return this.data.column.disabled
+        if (typeof this.data.column.disabled === 'function') {
+          return this.data.column.disabled.apply(this, [{ row: this.data.row, column: this.data.column }])
+        }
+        return !!this.data.column.disabled
       } else {
         return false
       }

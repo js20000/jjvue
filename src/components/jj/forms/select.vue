@@ -10,7 +10,6 @@
       </el-select>
 
     </jj-form-item>
-
     <div v-else v-html="formatValue">
     </div>
   </div>
