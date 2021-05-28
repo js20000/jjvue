@@ -350,6 +350,44 @@ export default {
       if (this.data.page && !(this.data.page instanceof Array)) {
         if (this.data.page.number) { this.data.page.number = 0 }
       }
+    },
+    getExportDom() {
+      const rules = []
+      let d = 0
+      if (!this.data['hiddenIndex']) {
+        rules.push(d++)
+      }
+      if (!this.data['hiddenSelection']) {
+        rules.push(d++)
+      }
+
+      for (let i = 0; i < this.columns.length; i++) {
+        const x = this.columns[i]
+        if (x['noExport'] || x.label == '操作') {
+          rules.push(i + d)
+        }
+      }
+      const tableDom = this.$refs.table.$el.cloneNode(true)
+      const fix = tableDom.querySelector('.el-table__fixed-right')
+      if (fix) { fix.remove() }
+      const tr_objs = tableDom.getElementsByTagName('tr')
+      const removes = []
+      for (let i = 0; i < tr_objs.length; i++) {
+        const x = tr_objs[i]
+        const th_objs = x.getElementsByTagName('th')
+        for (let i1 = 0; i1 < th_objs.length; i1++) {
+          if (rules.includes(i1)) { removes.push(th_objs[i1]) }
+        }
+        const td_objs = x.getElementsByTagName('td')
+        for (let i1 = 0; i1 < td_objs.length; i1++) {
+          if (rules.includes(i1)) { removes.push(td_objs[i1]) }
+        }
+      }
+      for (let i = 0; i < removes.length; i++) {
+        const x = removes[i]
+        x.remove()
+      }
+      return tableDom
     }
   }
 }
