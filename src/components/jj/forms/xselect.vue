@@ -15,6 +15,7 @@ v-model="bindfield"
                :loading="loading"
                @change="onselect"
                @clear="onclear"
+               :multiple="multiple"
       >
       <el-option
         v-for="item in list"
@@ -31,6 +32,7 @@ v-model="bindfield"
         name: 'XSelect',
         components: {},
         props: {
+            multiple: { type: Boolean, default: false },
             value: {},
             label: { type: String, default: '' },
             placeholder: { type: String, default: '' },

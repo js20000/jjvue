@@ -4,6 +4,7 @@
     <div class="el-input-group__prepend"  v-if="data.label">{{data.label}}</div>
     <div>
   <xselect
+    :multiple="data.data.multiple?true:false"
     v-model="data.value"
     :label="data.label"
     :size="data.data.size?data.data.size:'small'"
