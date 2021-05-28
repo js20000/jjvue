@@ -7,6 +7,7 @@
       ref="xx"
       :is="jjType"
       :type="type"
+       style="width: 100%;"
       :placeholder="data.placeholder?data.placeholder:'日期'"
       :start-placeholder="data.start_placeholder?data.start_placeholder:'开始日期'"
       :end-placeholder="data.end_placeholder?data.end_placeholder:'结束日期'"
@@ -20,7 +21,7 @@
   </div>
 
 </template>
-<style>
+<style scoped>
   .el-icon-date{
     display: flex;
     justify-content: center;

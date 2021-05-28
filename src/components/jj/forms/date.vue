@@ -2,7 +2,6 @@
   <div>
     <jj-form-item v-if="data.index==data.editIndex && data.column.field" :data="data">
       <el-date-picker
-        style="width: 100%;"
         v-model="fieldValue"
         :type="date"
       />
