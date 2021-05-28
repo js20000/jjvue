@@ -13,7 +13,7 @@
       :end-placeholder="data.end_placeholder?data.end_placeholder:'结束日期'"
       :default-time="data.default_time"
       :format="fmt"
-       value-format="fmt"
+      :value-format="fmt"
       v-model="data.value"
       @change="xselect" >
     </component>
