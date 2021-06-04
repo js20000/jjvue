@@ -1,5 +1,5 @@
 <template>
-  <el-form size="small">
+  <el-form size="small" @submit.native.prevent>
     <el-form-item label-width="0" style="margin: 0 0;">
     <el-row :gutter="10" v-if="searchType==0 && searchs.length>0" :class="screenWidth <1920 ? 'row-con':''">
       <jj-button :btn="{label: '更多筛选', icon: 'el-icon-s-operation',plain:false,type:'blue'}" class="sermore" v-if="screenWidth <1920 && searchs.length > 4" @click="drawer = true" />
