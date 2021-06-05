@@ -1,5 +1,5 @@
 <template>
-  <el-row >
+  <el-row class="jj_toolbar_row">
     <el-col :span="12">
         <jj-button v-for="(btn) in data " :key="btn.event" :btn="btn" @click="trigger(btn)" />&nbsp;
         <slot/>
@@ -15,7 +15,6 @@
           <component :is="s.type" :data="buildData(s)"  @onSearch="onSearch"   style="flex:1;">
           </component>
 <!--          <el-button style="float:right;display:inline-block;" icon="el-icon-refresh" @click="reset"  size="small"></el-button>-->
-
         </template>
 
         <el-input v-else :placeholder="s.placeholder" v-model="s.value"   clearable  @keydown.native="keyDown($event,s)"  >
@@ -40,11 +39,13 @@
   </el-row>
 </template>
 <style scoped>
-  .el-row {
-    margin-bottom: 10px;
-  :last-child {
-    margin-bottom: 0;
-  }
+  .jj_toolbar_row {
+    :last-child {
+      margin-bottom: 0;
+    }
+    .el-input-group {
+       margin: 0 0!important;
+    }
   }
 </style>
 
