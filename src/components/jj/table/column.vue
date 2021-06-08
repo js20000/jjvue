@@ -17,7 +17,7 @@
     <jj-xinput v-else-if="index==editIndex && column.field &&!column.readOnly"  :data="buildData()" @event="event" :class="cls" :style="style" >
     </jj-xinput>
     <el-link
-      :type="column.link"
+      :type="link"
       :class="cls"
       :style="style"
       v-else-if="column.event"
@@ -97,10 +97,7 @@ export default {
         rs = this.getValue()
       }
       if (!this.column.event && this.column.link && rs !== '') {
-        let listType = this.column.link
-        if (typeof this.column.link === 'function') {
-          listType = this.column.link.apply(this.vm, [{ row: this.row, column: this.column, index: this.index }])
-        }
+        const listType = this.link
         return `<a class="el-link el-link--${listType}" ><span class="el-link--inner">${rs}</span></a>`
       } else { return rs }
     },
@@ -121,6 +118,15 @@ export default {
         return this.column.style
       }
       return {}
+    },
+    link() {
+      if (this.column.link) {
+        if (typeof this.column.link === 'function') {
+          return this.column.link.apply(this.vm, [{ row: this.row, column: this.column, index: this.index }])
+        }
+        return this.column.link
+      }
+      return ''
     },
     xType() {
       if (this.column.type) {
