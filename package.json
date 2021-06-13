@@ -1,7 +1,7 @@
 {
   "name": "jjvue",
   "description": "jj framework for vue",
-  "version": "1.0.545",
+  "version": "1.0.546",
   "author": "fanyijie <fanyijie@frogsing.com>",
   "main": "dist/jjvue.js",
   "license": "MIT",
@@ -15,6 +15,7 @@
     "registry": "npm  config set registry  http://nexus.frogsing.cn/repository/npm-group/"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "browserslist": [
       "> 1%",
       "last 2 versions",

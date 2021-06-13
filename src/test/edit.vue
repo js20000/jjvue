@@ -2,6 +2,11 @@
 <template>
 
   <el-form ref="dataForm" :model="obj" label-width="80px" size="large">
+
+    <el-form-item label="格式">
+      <x-remote v-model="obj.sfromat" dis-field="scnname" :map="function (x){x.scnname=`${x.scnname}${x.smemberno}`;return x}" val-field="id"  url="/project/list.json"/>
+    </el-form-item>
+
     <el-form-item label="格式">
       <el-input v-model="obj.sfromat" placeholer="yymmdd0000"/>
     </el-form-item>
@@ -37,9 +42,10 @@
 
 <script>
 
+import XRemote from '@/components/jj/forms/xremote'
 export default {
   name: 'SequenceEdit',
-  components: {},
+  components: { XRemote },
   props: {
     data: {
       type: Object,

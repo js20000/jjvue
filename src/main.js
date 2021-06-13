@@ -9,7 +9,8 @@ import searchdate from './components/jj/search/searchdate'
 import searchselect from './components/jj/search/searchselect'
 import pagination from './components/jj/pagination/index'
 import xinput from './components/jj/forms/xinput'
-
+import xremote from './components/jj/forms/xremote'
+import jj_xremote from './components/jj/search/searchremote'
 
 const comment = {
   install: function(Vue) {
@@ -40,6 +41,8 @@ const comment = {
 
     Vue.component('jj-page', pagination)
     Vue.component('jj-xinput', xinput)
+    Vue.component('xremote', xremote)
+    Vue.component('jj-xremote', jj_xremote)
   }
 }
 if (typeof window !== 'undefined' && window.Vue) {
