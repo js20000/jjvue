@@ -12,7 +12,8 @@
         :key="item[valField]"
         :label="item[disField]"
         :value="item[valField]"
-      />
+      >
+      </el-option>
   </el-select>
 
 </template>
