@@ -1,5 +1,5 @@
 <template>
-  <div clas="jj_switch">
+  <div class="jj_switch">
     <jj-form-item v-if="data.index==data.editIndex && data.column.field" :data="data">
     <el-switch
         v-model="data.row[data.column.field]"
@@ -15,10 +15,13 @@
 </template>
 <style>
 .jj_switch .el-row {
-    margin-bottom: 10px;
-  :last-child {
-    margin-bottom: 0;
-  }
+  margin-bottom: 10px;
+
+:last-child {
+  margin-bottom: 0;
+}
+
+}
 </style>
 <script>
   import formitem from '@/components/jj/forms/formitem'

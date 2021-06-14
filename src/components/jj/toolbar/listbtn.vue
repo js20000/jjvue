@@ -1,5 +1,5 @@
 <template>
-  <div v-if="data.column.data  instanceof Array">
+  <div class="jj_listbtn" v-if="data.column.data  instanceof Array">
     <el-button-group v-if="data.editIndex==data.index">
       <jj-button
                  v-for="(btn) in data.column.data "
@@ -22,7 +22,7 @@ v-if="!btn.state||btn.state=='normal'"
 
     </div>
   </div>
-  <div v-else>
+  <div class="jj_listbtn" v-else>
     <el-button-group v-if="data.editIndex==data.index">
       <jj-button
 v-for="(btn) in data.column.data.buttons "
@@ -73,24 +73,24 @@ type="text"
   </div>
 
 </template>
-<style>
-  .el-dropdown-link {
+<style scoped>
+.jj_listbtn .el-dropdown-link {
     cursor: pointer;
     color: #409EFF;
   }
 
-  .el-icon-arrow-down {
+.jj_listbtn  .el-icon-arrow-down {
     font-size: 12px;
   }
 
-  .el-row {
+.jj_listbtn .el-row {
     margin-bottom: 10px;
     :last-child {
       margin-bottom: 0;
     }
   }
 
-  .el-button-group .el-button--primary:nth-last-child(1):first-child {
+.jj_listbtn  .el-button-group .el-button--primary:nth-last-child(1):first-child {
     border-left-color: #b3d8ff;
     border-right-color: #b3d8ff;
   }
