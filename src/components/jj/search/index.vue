@@ -2,7 +2,7 @@
   <el-form size="small" @submit.native.prevent>
     <el-form-item label-width="0" style="margin: 0 0;">
     <el-row :gutter="10" v-if="searchType==0 && searchs.length>0" :class="screenWidth <1920 ? 'row-con':''">
-      <jj-button :btn="{label: '更多筛选',style:'margin-top:-5px;', icon: 'el-icon-s-operation',plain:false,type:'blue'}" class="sermore" v-if="screenWidth <1920 && searchs.length > 4" @click="drawer = true" />
+      <jj-button :btn="{label: '更多筛选', icon: 'el-icon-s-operation',plain:false,type:'blue'}" class="sermore" v-if="screenWidth <1920 && searchs.length > 4" @click="drawer = true" />
       <el-col v-for="(s) in searchs" :xs="24" :sm="12" :md="8" :lg="6" :xl="4" :key="s.label" >
         <template v-if="s.type" >
           <component :is="s.type" :data="s"   @onSearch="onSearch"  />
@@ -48,7 +48,7 @@
   .row-con{
     padding-right: 140px;
     position: relative;
-    height: 32px;
+    height: 40px;
     overflow: hidden;
   }
   .sermore{
