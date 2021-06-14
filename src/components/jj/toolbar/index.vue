@@ -40,6 +40,7 @@
 </template>
 <style scoped>
   .jj_toolbar_row {
+    margin-top:10px;
     :last-child {
       margin-bottom: 0;
     }

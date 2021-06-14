@@ -54,7 +54,6 @@
   .sermore{
     position:absolute;
     right: 8px;
-    top:6px
   }
   .drawer-con{
     padding: 0 30px;
