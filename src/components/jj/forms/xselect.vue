@@ -95,7 +95,7 @@ v-model="bindfield"
                         this.list = rs.data
                     }
                     this.loading = false
-                    this.$emit('ondata', rs.data)
+                    this.$emit('onInitSelect', rs.data)
                 }
                 if ((this.bindfield == null || this.bindfield == '') &&
                     this.force === true

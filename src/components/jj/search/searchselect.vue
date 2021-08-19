@@ -19,6 +19,7 @@
     :placeholder="data.placeholder?data.placeholder:data.label"
     @change="onselect"
     @clear="onselect"
+    @ondata="ondata"
     style="width: 100%;"
 
   />
@@ -49,6 +50,9 @@
         mounted() {
         },
         methods: {
+            ondata(rs) {
+              this.$emit('ondata', rs)
+            },
             onselect() {
                this.$nextTick(function() {
                  this.$emit('onSearch', this.data)

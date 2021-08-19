@@ -30,6 +30,7 @@
         <el-table-column
           v-if="!data.hiddenSelection"
           type="selection"
+          :selectable="checkSelectable"
           width="50"/>
         <el-table-column v-for="(column, index) in innerColumns" :type="column.type" :label="column.label" :width="getWidth(column,50)" :key="index" />
         <el-table-column
@@ -134,6 +135,12 @@ export default {
 
   },
   methods: {
+    checkSelectable(row, index) {
+      if (this.data.checkSelectable) {
+        return this.data.checkSelectable(row, index)
+      }
+      return true
+    },
     rowValueChange(data) {
       this.$emit('rowValueChange', data)
     },
