@@ -6,11 +6,14 @@ v-re-click
 type="primary"
 v-if="showFlag && hasP "
 :disabled="disabled"
-           style="padding-right: 5px;"><span v-html="label"></span>
+           style="padding-right: 5px;"
+  >
+    <span v-html="label" v-if="!!label"></span>
+   <template v-else-if="btn.icon">
+     <i v-if="btn.icon.indexOf(`el-icon`)==0" :class="btn.icon"/>
+     <svg-icon v-else :icon-class="btn.icon"/>
+   </template>
   </el-link>
-<!--  <el-button type="text" :disabled="disabled"  plain size="small" @click="$emit('click')"  v-if="showFlag && hasP " style="padding-right: 5px;" >-->
-<!--    {{ btn.label }}-->
-<!--  </el-button>-->
 </template>
 
 <style>
