@@ -20,6 +20,7 @@
         :default-sort="defaultSort()"
         tooltip-effect="dark"
         style="width: 100%"
+        :height="data.height"
         @sort-change="sort"
         @selection-change="SelectionChange">
 
