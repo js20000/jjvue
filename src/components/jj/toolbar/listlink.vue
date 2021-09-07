@@ -4,16 +4,16 @@
       <jj-link
         v-for="(btn,index) in data.column.data "
         v-if="btn.state&&btn.state=='edit'"
-        :key="index"
+        :key="btn.event+index"
         :btn="btn"
         :row="data.row"
         @click="trigger(btn)"/>
     </div>
     <div v-else-if="data.editIndex<0">
         <jj-link
-          v-for="(btn) in data.column.data "
+          v-for="(btn,index) in data.column.data "
           v-if="!btn.state||btn.state=='normal'"
-          :key="btn.event"
+          :key="btn.event+index"
           :btn="btn"
           :row="data.row"
           @click="trigger(btn)"/>
