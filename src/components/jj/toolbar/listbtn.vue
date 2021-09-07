@@ -25,9 +25,9 @@ v-if="!btn.state||btn.state=='normal'"
   <div class="jj_listbtn" v-else>
     <el-button-group v-if="data.editIndex==data.index">
       <jj-button
-v-for="(btn) in data.column.data.buttons "
+v-for="(btn,index) in data.column.data.buttons "
 v-if="btn.state&&btn.state=='edit'"
-:key="btn.event"
+:key="btn.event+index"
                  :btn="btn"
 :row="data.row"
                  @click="trigger(btn)"/>
@@ -35,9 +35,9 @@ v-if="btn.state&&btn.state=='edit'"
     <div v-else-if="data.editIndex<0">
       <el-button-group>
         <jj-button
-v-for="(btn) in data.column.data.buttons "
+v-for="(btn,index) in data.column.data.buttons "
 v-if="!btn.state||btn.state=='normal'"
-:key="btn.event"
+:key="btn.event+index"
                    :btn="btn"
 :row="data.row"
                    @click="trigger(btn)"/>
@@ -45,10 +45,10 @@ v-if="!btn.state||btn.state=='normal'"
       <el-dropdown style="padding-left: 20px">
         <span class="el-dropdown-link">更多操作<i class="el-icon-arrow-down el-icon--right"></i></span>
         <el-dropdown-menu v-if="data.editIndex==data.index">
-          <el-dropdown-item v-for="(btn) in data.column.data.list" :key="btn.event">
+          <el-dropdown-item v-for="(btn,index) in data.column.data.list" :key="btn.event">
             <jj-button
 v-if="btn.state&&btn.state=='edit'"
-:key="btn.event"
+:key="btn.event+index"
 :btn="btn"
 type="text"
 :row="data.row"

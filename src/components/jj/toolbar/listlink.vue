@@ -2,9 +2,9 @@
   <div  class="jj_listlink"  v-if="data.column.data  instanceof Array">
     <div v-if="data.editIndex==data.index">
       <jj-link
-        v-for="(btn) in data.column.data "
+        v-for="(btn,index) in data.column.data "
         v-if="btn.state&&btn.state=='edit'"
-        :key="btn.event"
+        :key="btn.event+index"
         :btn="btn"
         :row="data.row"
         @click="trigger(btn)"/>
