@@ -128,7 +128,7 @@ export default {
       }
     },
     vdata: function() {
-      if (this.editIndex >= 0) { return this.list[this.editIndex] } else { return {} }
+      if (this.list > 0) { return this.list[0] } else return {}
     }
 
   },
