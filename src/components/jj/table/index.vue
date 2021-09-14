@@ -128,7 +128,7 @@ export default {
       }
     },
     vdata: function() {
-      if (this.list > 0) { return this.list[0] } else return {}
+      if (this.list.length > 0) { return this.list[0] } else return {}
     }
 
   },
