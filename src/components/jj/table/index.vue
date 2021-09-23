@@ -22,6 +22,8 @@
         style="width: 100%"
         :height="data.height"
         @sort-change="sort"
+        @select="select"
+        @selectAll="selectAll"
         @selection-change="SelectionChange">
 
         <el-table-column
@@ -114,6 +116,12 @@ export default {
     },
     outerColumns() {
       return this.columns.filter(column => !column.type || (column.type != 'index' && column.type != 'selection'))
+    },
+    select(selection, row) {
+      this.$emit('select', selection, row)
+    },
+    selectAll(selection) {
+      this.$emit('select-all', selection)
     },
     selections() {
       return this.multipleSelection
