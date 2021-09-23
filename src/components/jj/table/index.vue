@@ -117,12 +117,6 @@ export default {
     outerColumns() {
       return this.columns.filter(column => !column.type || (column.type != 'index' && column.type != 'selection'))
     },
-    select(selection, row) {
-      this.$emit('select', selection, row)
-    },
-    selectAll(selection) {
-      this.$emit('select-all', selection)
-    },
     selections() {
       return this.multipleSelection
     },
@@ -144,6 +138,12 @@ export default {
 
   },
   methods: {
+    select(selection, row) {
+      this.$emit('select', selection, row)
+    },
+    selectAll(selection) {
+      this.$emit('select-all', selection)
+    },
     checkSelectable(row, index) {
       if (this.data.checkSelectable) {
         return this.data.checkSelectable(row, index)
