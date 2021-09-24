@@ -23,7 +23,7 @@
         :height="data.height"
         @sort-change="sort"
         @select="select"
-        @selectAll="selectAll"
+        @select-all="selectAll"
         @selection-change="SelectionChange">
 
         <el-table-column
