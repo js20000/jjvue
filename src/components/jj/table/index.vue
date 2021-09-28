@@ -20,7 +20,7 @@
         :default-sort="defaultSort()"
         tooltip-effect="dark"
         style="width: 100%"
-        :height="data.height"
+        :max-height="data.height"
         @sort-change="sort"
         @select="select"
         @select-all="selectAll"
