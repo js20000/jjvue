@@ -3,7 +3,9 @@
       <el-input
         :class="xClass"
         :disabled="disabled"
-        v-model="fieldValue"></el-input>
+        v-model="fieldValue">
+        <template slot="append" v-if="data.column.append">{{append}}</template>
+      </el-input>
   </jj-form-item>
 </template>
 <style>
@@ -19,6 +21,16 @@ export default {
   props: ['data'],
   components: { 'jj-form-item': formitem },
   computed: {
+    append() {
+      if (this.data.column && this.data.column.append) {
+        if (typeof this.data.column.append === 'function') {
+          return this.data.column.append.apply(this, [{ row: this.data.row, column: this.data.column }])
+        }
+        return this.data.column.append
+      } else {
+        return false
+      }
+    },
     disabled() {
       if (this.data.column && this.data.column.disabled) {
         if (typeof this.data.column.disabled === 'function') {

@@ -86,6 +86,16 @@ export default {
         this.setValue(value)
       }
     },
+    append() {
+      if (this.column && this.column.append) {
+        if (typeof this.column.append === 'function') {
+          return this.column.append.apply(this, [{ row: this.row, column: this.column }])
+        }
+        return this.column.append
+      } else {
+        return false
+      }
+    },
     formatValue: function() {
       let rs = ''
       const templet = this.column['templet']
@@ -96,10 +106,15 @@ export default {
       } else {
         rs = this.getValue()
       }
+      if (this.column.append) {
+        rs += this.append
+      }
       if (!this.column.event && this.column.link && rs !== '') {
         const listType = this.link
         return `<a class="el-link el-link--${listType}" ><span class="el-link--inner">${rs}</span></a>`
-      } else { return rs }
+      } else {
+        return rs
+      }
     },
    cls() {
      if (this.column.class) {
