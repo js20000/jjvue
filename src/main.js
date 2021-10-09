@@ -64,7 +64,19 @@ const comment = {
         }
         return data.column.append
       } else {
-        return false
+        return ''
+      }
+    }
+    Vue.prototype.$g = function(f, s) {
+      if (s == 'g' || s == 'G' || s == '克') {
+        return parseFloat(f) / 1000 + 'KG'
+      }
+      return f + s
+    }
+    Vue.prototype.copyFrom = function(a, b) {
+      const keys = Object.keys(b)
+      for (const k of keys) {
+        Vue.set(a, k, b[k])
       }
     }
   }
