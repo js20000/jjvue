@@ -43,6 +43,30 @@ const comment = {
     Vue.component('jj-xinput', xinput)
     Vue.component('xremote', xremote)
     Vue.component('jj-xremote', jj_xremote)
+
+    Vue.prototype.getColValue = function(data) {
+      let value = data.row
+      if (data.column.templet) {
+        value = data.column.templet(data)
+      } else {
+        const _path = data.column.field.split('.')
+        for (let i = 0; i < _path.length; i++) {
+          const x = _path[i]
+          value = value[x] || 0
+        }
+      }
+      return value
+    }
+    Vue.prototype.getAppendValue = function(data) {
+      if (data.column && data.column.append) {
+        if (typeof data.column.append === 'function') {
+          return data.column.append.apply(this, [{ row: data.row, column: data.column }])
+        }
+        return data.column.append
+      } else {
+        return false
+      }
+    }
   }
 }
 if (typeof window !== 'undefined' && window.Vue) {
