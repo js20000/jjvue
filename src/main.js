@@ -46,7 +46,7 @@ const comment = {
 
     Vue.prototype.setFieldValue = function(data, path, value) {
         const _path = path.split('.')
-        let obj
+        let obj = data
         for (let i = 0; i < _path.length; i++) {
           const x = _path[i]
           if (i == _path.length - 1) {
