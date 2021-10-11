@@ -67,18 +67,13 @@ const comment = {
         return ''
       }
     }
-    Vue.prototype.getFormatColValue = function(data) {
-      let rs = ''
-      const templet = data.column['templet']
-      if (templet) {
-        if (typeof templet === 'function') {
-          rs = templet.apply(this, [{ row: data.row, column: data.column, index: data.index }])
-        } else { rs = 'templet not imp' }
-      } else {
-        rs = this.getColValue(data)
+    Vue.prototype.getFormatColValue = function(data, _fmt) {
+      let rs = this.getColValue(data)
+      if (_fmt) {
+        rs += _fmt(rs)
       }
       rs += this.getAppendValue()
-      if (!data.column.event && data.column.link && rs !== '') {
+      if (data.column.link && rs !== '') {
         let listType = ''
         if (data.column.link) {
           if (typeof data.column.link === 'function') {
