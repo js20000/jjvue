@@ -52,7 +52,7 @@ const comment = {
         const _path = data.column.field.split('.')
         for (let i = 0; i < _path.length; i++) {
           const x = _path[i]
-          value = value[x] || 0
+          value = value[x] || ''
         }
       }
       return value
@@ -65,6 +65,30 @@ const comment = {
         return data.column.append
       } else {
         return ''
+      }
+    }
+    Vue.prototype.getFormatColValue = function(data) {
+      let rs = ''
+      const templet = data.column['templet']
+      if (templet) {
+        if (typeof templet === 'function') {
+          rs = templet.apply(this, [{ row: data.row, column: data.column, index: data.index }])
+        } else { rs = 'templet not imp' }
+      } else {
+        rs = this.getColValue(data)
+      }
+      rs += this.getAppendValue()
+      if (!data.column.event && data.column.link && rs !== '') {
+        let listType = ''
+        if (data.column.link) {
+          if (typeof data.column.link === 'function') {
+            return data.column.link.apply(this, [data])
+          }
+          listType = data.column.link
+        }
+        return `<a class="el-link el-link--${listType}" ><span class="el-link--inner">${rs}</span></a>`
+      } else {
+        return rs
       }
     }
     Vue.prototype.$g = function(f, s) {
