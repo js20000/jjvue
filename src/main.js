@@ -74,11 +74,10 @@ const comment = {
       }
       rs += this.getAppendValue(data)
       if (data.column.link && rs !== '') {
-        let listType = ''
-        if (data.column.link) {
-          if (typeof data.column.link === 'function') {
-            listType = data.column.link.apply(this, [data])
-          }
+        let listType
+        if (typeof data.column.link === 'function') {
+          listType = data.column.link.apply(this, [data])
+        } else {
           listType = data.column.link
         }
         return `<a class="el-link el-link--${listType}" ><span class="el-link--inner">${rs}</span></a>`
