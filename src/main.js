@@ -44,6 +44,18 @@ const comment = {
     Vue.component('xremote', xremote)
     Vue.component('jj-xremote', jj_xremote)
 
+    Vue.prototype.setFieldValue = function(data, path, value) {
+        const _path = path.split('.')
+        let obj
+        for (let i = 0; i < _path.length; i++) {
+          const x = _path[i]
+          if (i == _path.length - 1) {
+            obj[x] = value
+          } else {
+            obj = obj[x] || {}
+          }
+        }
+    }
     Vue.prototype.getColValue = function(data) {
       let value = data.row
       if (data.column.templet) {
