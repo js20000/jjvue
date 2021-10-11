@@ -70,7 +70,7 @@ const comment = {
     Vue.prototype.getFormatColValue = function(data, _fmt) {
       let rs = this.getColValue(data)
       if (_fmt) {
-        rs += _fmt(rs)
+        rs = _fmt(rs)
       }
       rs += this.getAppendValue(data)
       if (data.column.link && rs !== '') {
