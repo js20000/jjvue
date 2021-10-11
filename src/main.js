@@ -72,7 +72,7 @@ const comment = {
       if (_fmt) {
         rs += _fmt(rs)
       }
-      rs += this.getAppendValue()
+      rs += this.getAppendValue(data)
       if (data.column.link && rs !== '') {
         let listType = ''
         if (data.column.link) {
