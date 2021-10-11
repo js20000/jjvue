@@ -77,7 +77,7 @@ const comment = {
         let listType = ''
         if (data.column.link) {
           if (typeof data.column.link === 'function') {
-            return data.column.link.apply(this, [data])
+            listType = data.column.link.apply(this, [data])
           }
           listType = data.column.link
         }
