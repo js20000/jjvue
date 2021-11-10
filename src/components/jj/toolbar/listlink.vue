@@ -1,39 +1,32 @@
 <template>
   <div  class="jj_listlink"  v-if="data.column.data  instanceof Array">
     <div v-if="data.editIndex==data.index">
+      <template    v-for="(btn,index) in data.column.data ">
       <jj-link
-        v-for="(btn,index) in data.column.data "
         v-if="btn.state&&btn.state=='edit'"
-        :key="btn.event+index"
         :btn="btn"
         :row="data.row"
         @click="trigger(btn)"/>
+      </template>
     </div>
     <div v-else-if="data.editIndex<0">
+      <template   v-for="(btn,index) in data.column.data ">
         <jj-link
-          v-for="(btn,index) in data.column.data "
           v-if="!btn.state||btn.state=='normal'"
-          :key="btn.event+index"
+
           :btn="btn"
           :row="data.row"
           @click="trigger(btn)"/>
+      </template>
     </div>
   </div>
   <div  class="jj_listlink"  v-else>
-    <div v-if="data.editIndex==data.index">
+
+    <div v-if="data.editIndex<0">
+      <template  v-for="(btn) in data.column.data.buttons ">
       <jj-link
-        v-for="(btn,index) in data.column.data.buttons "
-        v-if="btn.state&&btn.state=='edit'"
-        :key="btn.event+index"
-        :btn="btn"
-        :row="data.row"
-        @click="trigger(btn)"/>
-    </div>
-    <div v-else-if="data.editIndex<0">
-        <jj-link
-          v-for="(btn) in data.column.data.buttons "
           v-if="!btn.state||btn.state=='normal'"
-          :key="btn.event+index"
+
           :btn="btn"
           :row="data.row"
           @click="trigger(btn)"/>
@@ -44,27 +37,38 @@
         <el-dropdown-menu v-if="data.editIndex==data.index">
           <el-dropdown-item v-for="(btn,index) in data.column.data.list " :key="btn.event">
             <jj-link
-              v-if="btn.state&&btn.state=='edit'"
-              :key="btn.event+index"
-              :btn="btn"
-              type="text"
-              :row="data.row"
-              @click="trigger(btn)"/>
+                v-if="btn.state&&btn.state=='edit'"
+                :key="btn.event+index"
+                :btn="btn"
+                type="text"
+                :row="data.row"
+                @click="trigger(btn)"/>
           </el-dropdown-item>
         </el-dropdown-menu>
         <el-dropdown-menu v-else-if="data.editIndex<0">
           <el-dropdown-item v-for="(btn,index) in data.column.data.list " :key="btn.event">
             <jj-link
-              v-if="!btn.state||btn.state=='normal'"
-              :key="btn.event+index"
-              :btn="btn"
-              type="text"
-              :row="data.row"
-              @click="trigger(btn)"/>
+                v-if="!btn.state||btn.state=='normal'"
+                :key="btn.event+index"
+                :btn="btn"
+                type="text"
+                :row="data.row"
+                @click="trigger(btn)"/>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
+      </template>
+    </div>
 
+    <div v-else-if="data.editIndex==data.index">
+      <template   v-for="(btn,index) in data.column.data.buttons ">
+      <jj-link
+        v-if="btn.state&&btn.state=='edit'"
+
+        :btn="btn"
+        :row="data.row"
+        @click="trigger(btn)"/>
+      </template>
     </div>
 
   </div>

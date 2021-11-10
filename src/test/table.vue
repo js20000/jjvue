@@ -13,7 +13,8 @@
 @editOk="editOk"
 @editCancel="editCancel"
 @mail="mail"
-      @delit="deleteit"/>
+      @delit="deleteit">
+    </jj-table>
 
     <jj-dialog ref="dlg"  :data="dlg">
       <edit :data="dlg.formData"/>
@@ -85,7 +86,7 @@ export default {
         page: {}
       },
       columns: [
-        { label: '姓名', field: 'a', sort: true, width: 120, type: 'jj-yesno', search: true, type: 'jj-xinput', rules: [{ required: true, message: '这是必填项', trigger: 'blur' }] },
+        { label: '姓名', field: 'a', sort: true, width: 120, search: true, type: 'jj-xinput', rules: [{ required: true, message: '这是必填项', trigger: 'blur' }] },
         // { label: 'x', field: 'x', sort: true, width: 120, type: 'jj-image', search: true },
         { label: '公司名称', field: 'b', sort: true, width: 320, link: function({ row }) {
             return 'success'

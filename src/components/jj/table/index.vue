@@ -1,15 +1,17 @@
 <template>
-  <div >
+  <div>
     <jj-search :vm="$parent" v-if="!data.hiddenHeader" :searchs="data.searchs" @refresh="refresh" @onSearch="onSearch" :searchType="searchType"  @reset="reset">
       <slot name="searchs"/>
     </jj-search>
     <jj-toolbar v-if="!data.hiddenHeader" :data="data.toolbars"  @onSearch="onSearch" :searchs="data.searchs" @event="toolbarevent" :searchType="searchType" @refresh="refresh" @reset="reset" @resetPage="resetPage">
       <slot name="toolbar"/>
+      <button @click="setting">设置</button>
     </jj-toolbar>
     <slot name="tops"/>
     <el-form ref="tableform" :model="vdata" >
       <el-table
         ref="table"
+        @setting="setting"
         :border="border"
         :data="list"
         v-bind="$attrs"
@@ -52,10 +54,23 @@
             <jj-column :row="scope.row" :index="scope.$index" :column="column" :vm="$parent" :edit-index="editIndex" @event="event" @rowValueChange="rowValueChange"/>
           </template>
         </el-table-column>
-
       </el-table>
     </el-form>
     <jj-pagination v-if="data.page && !(data.page instanceof Array) " :page="data.page" @change="refresh"/>
+    <el-dialog
+        v-if="settingFlag"
+        title="设置"
+        :append-to-body="true"
+        :visible.sync="settingFlag"
+        width="800px"
+        height="100%"
+    >
+      <setting :data="columns"></setting>
+      <span slot="footer" class="dialog-footer">
+            <el-button @click="settingFlag = false">取 消</el-button>
+            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+          </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -65,10 +80,10 @@ import pagination from '@/components/jj/pagination'
 import toolbar from '@/components/jj/toolbar'
 import search from '@/components/jj/search'
 import column from './column'
-
+import setting from './setting'
 export default {
   name: `jj-table`,
-  components: { 'jj-pagination': pagination, 'jj-toolbar': toolbar, 'jj-search': search, 'jj-column': column },
+  components: { setting, 'jj-pagination': pagination, 'jj-toolbar': toolbar, 'jj-search': search, 'jj-column': column },
   props: {
     data: {
       type: [Object, Array],
@@ -95,6 +110,7 @@ export default {
   },
   data: function() {
     return {
+      settingFlag: false,
       lastRefresh: -1,
       bak: {},
       editIndex: -1,
@@ -338,6 +354,9 @@ export default {
         this.lastRefresh = i
         this.$emit('refresh', data)
       }
+    },
+    setting() {
+        this.settingFlag = true
     },
     defaultSort: function() {
       if (this.data.sorts) {
