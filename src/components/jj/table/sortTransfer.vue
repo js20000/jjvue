@@ -46,15 +46,12 @@ export default {
     }
   },
   watch: {
-    value(val) {
-      this.outputListTemp = val
-    },
     outputListTemp(val) {
       this.$emit('input', val)
     }
   },
   mounted() {
-
+    this.outputListTemp = [...this.value]
   },
   methods: {
     filterMethod(query, item) {
@@ -62,7 +59,7 @@ export default {
     },
     rightCheck(selectionKeys, changeKeys) {
       this.tempSelectionKeys = selectionKeys
-      if (selectionKeys.length > 0) {
+      if (selectionKeys.length == 1) {
         this.upDownDisable = false
       } else {
         this.upDownDisable = true

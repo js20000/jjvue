@@ -37,50 +37,6 @@
     </el-form-item>
   </el-form>
 </template>
-<style type="scoped">
-  .el-input-group__prepend {
-    min-width: 100px;
-    text-align: right;
-  }
-  .el-select{
-    width:100%;
-  }
-  .row-con{
-    padding-right: 140px;
-    position: relative;
-    height: 40px;
-    overflow: hidden;
-  }
-  .sermore{
-    position:absolute;
-    right: 8px;
-    top:6px
-  }
-  .drawer-con{
-    padding: 0 30px;
-  }
-  .mydrawer .el-drawer__header{
-    padding: 10px;
-    border-bottom: 1px solid rgb(230, 230, 230);
-    background: #f5f6f9;
-    color: #333;
-  }
-  .mydrawer .el-input-group__prepend{
-    text-align: justify;
-    text-align-last: justify;
-  }
-  .mydrawer-footer{
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    right: 0;
-    padding: 20px;
-    border-bottom: 1px solid rgb(230, 230, 230);
-    background: #f5f6f9;
-    text-align: right;
-  }
-
-</style>
 <script>
 
 export default {
@@ -139,3 +95,47 @@ export default {
 }
 </script>
 
+<style type="scoped">
+.el-input-group__prepend {
+  min-width: 100px;
+  text-align: right;
+}
+.el-select{
+  width:100%;
+}
+.row-con{
+  padding-right: 140px;
+  position: relative;
+  height: 40px;
+  overflow: hidden;
+}
+.sermore{
+  position:absolute;
+  right: 8px;
+  top:6px
+}
+.drawer-con{
+  padding: 0 30px;
+}
+.mydrawer .el-drawer__header{
+  padding: 10px;
+  border-bottom: 1px solid rgb(230, 230, 230);
+  background: #f5f6f9;
+  color: #333;
+}
+.mydrawer .el-input-group__prepend{
+  text-align: justify;
+  text-align-last: justify;
+}
+.mydrawer-footer{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  right: 0;
+  padding: 20px;
+  border-bottom: 1px solid rgb(230, 230, 230);
+  background: #f5f6f9;
+  text-align: right;
+}
+
+</style>

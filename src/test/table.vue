@@ -104,13 +104,13 @@ export default {
             buttons: [
               {
                 label: function() {
-                  return "<i style='color:red'>testtesttest</i>"
+                  return 'aaa'
                 },
                 icon: 'edit', event: 'editOk', templet: function({ btn, row }) {
                   return true
                 }
               },
-              { label: '耕作曹总', icon: 'edit', event: 'edit', templet: function({ btn, row }) {
+              { label: '耕作', icon: 'edit', event: 'edit', templet: function({ btn, row }) {
                   return true
                 } },
 
@@ -119,7 +119,7 @@ export default {
             ],
             list: [
               { label: '重建表', icon: 'el-icon-refresh', event: 'makeSqlTable', hidden: x => true },
-              { label: '修改SQl', icon: 'ok', event: 'makeSqlAddCol', hidden: x => true },
+              { label: '修改SQl', icon: 'ok', event: 'makeSqlAddCol', hidden: x => false },
               { label: '生成jpa', icon: 'edit', event: 'makeSingle', hidden: x => true },
               { label: '路由表', icon: 'edit', event: 'routeInfo', hidden: x => true },
               { label: 'CRUD', icon: 'edit', event: 'makeCrud' }

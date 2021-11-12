@@ -1,55 +1,26 @@
 <template>
-  <div  class="jj_listlink"  v-if="data.column.data  instanceof Array">
-    <div v-if="data.editIndex==data.index">
-      <template    v-for="(btn,index) in data.column.data ">
-      <jj-link
-        v-if="btn.state&&btn.state=='edit'"
-        :btn="btn"
-        :row="data.row"
-        @click="trigger(btn)"/>
-      </template>
-    </div>
-    <div v-else-if="data.editIndex<0">
-      <template   v-for="(btn,index) in data.column.data ">
-        <jj-link
-          v-if="!btn.state||btn.state=='normal'"
 
-          :btn="btn"
-          :row="data.row"
-          @click="trigger(btn)"/>
-      </template>
-    </div>
-  </div>
-  <div  class="jj_listlink"  v-else>
+  <div  class="jj_listlink">
 
     <div v-if="data.editIndex<0">
-      <template  v-for="(btn) in data.column.data.buttons ">
-      <jj-link
-          v-if="!btn.state||btn.state=='normal'"
+      <template  v-for="(btn,index) in data.column.data.buttons|| data.column.data">
+        <jj-link
+            v-if="!btn.state||btn.state=='normal'"
+            :btn="btn"
+            :key="index"
+            :row="data.row"
+            @click="trigger(btn)"/>
+      </template>
 
-          :btn="btn"
-          :row="data.row"
-          @click="trigger(btn)"/>
       <el-dropdown style="line-height: 17px;top: 2px;" v-if="moreCount>0">
-        <span class="el-dropdown-link" style="font-size:14px;font-weight: 500;">
-          {{data.column.data.label?data.column.data.label:"更多操作"}}<i class="el-icon-arrow-down el-icon--right"></i>
-        </span>
-        <el-dropdown-menu v-if="data.editIndex==data.index">
-          <el-dropdown-item v-for="(btn,index) in data.column.data.list " :key="btn.event">
-            <jj-link
-                v-if="btn.state&&btn.state=='edit'"
-                :key="btn.event+index"
-                :btn="btn"
-                type="text"
-                :row="data.row"
-                @click="trigger(btn)"/>
-          </el-dropdown-item>
-        </el-dropdown-menu>
-        <el-dropdown-menu v-else-if="data.editIndex<0">
+          <span class="el-dropdown-link" style="font-size:14px;font-weight: 500;">
+            {{data.column.data.label?data.column.data.label:"更多操作"}}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+        <el-dropdown-menu>
           <el-dropdown-item v-for="(btn,index) in data.column.data.list " :key="btn.event">
             <jj-link
                 v-if="!btn.state||btn.state=='normal'"
-                :key="btn.event+index"
+                :key="btn.event+index+2000"
                 :btn="btn"
                 type="text"
                 :row="data.row"
@@ -57,17 +28,16 @@
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-      </template>
     </div>
 
     <div v-else-if="data.editIndex==data.index">
-      <template   v-for="(btn,index) in data.column.data.buttons ">
-      <jj-link
-        v-if="btn.state&&btn.state=='edit'"
-
-        :btn="btn"
-        :row="data.row"
-        @click="trigger(btn)"/>
+      <template   v-for="(btn,index) in data.column.data.buttons||[] ">
+        <jj-link
+            v-if="btn.state&&btn.state=='edit'"
+            :key="index"
+            :btn="btn"
+            :row="data.row"
+            @click="trigger(btn)"/>
       </template>
     </div>
 
@@ -109,6 +79,7 @@
     },
     computed: {
       moreCount() {
+        if (!this.data.column.data.list) { return 0 }
         for (const btn of this.data.column.data.list) {
            if (this.showFlag(btn) && this.hasP(btn)) { return 1 }
         }

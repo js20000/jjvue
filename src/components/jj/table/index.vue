@@ -5,10 +5,10 @@
     </jj-search>
     <jj-toolbar v-if="!data.hiddenHeader" :data="data.toolbars"  @onSearch="onSearch" :searchs="data.searchs" @event="toolbarevent" :searchType="searchType" @refresh="refresh" @reset="reset" @resetPage="resetPage">
       <slot name="toolbar"/>
-      <button @click="setting">设置</button>
     </jj-toolbar>
     <slot name="tops"/>
     <el-form ref="tableform" :model="vdata" >
+      <el-link icon="el-icon-setting" class="jj-setting" :underline="false" @click="setting" style="float: right;top:35px;z-index: 101;padding-right: 10px;"></el-link>
       <el-table
         ref="table"
         @setting="setting"
@@ -26,12 +26,14 @@
         @sort-change="sort"
         @select="select"
         @select-all="selectAll"
+        @header-dragend="headerDragend"
         @selection-change="SelectionChange">
 
         <el-table-column
           v-if="!data.hiddenIndex"
           type="index"
-          width="50"/>
+          width="50"
+        />
         <el-table-column
           v-if="!data.hiddenSelection"
           type="selection"
@@ -39,7 +41,7 @@
           width="50"/>
         <el-table-column v-for="(column, index) in innerColumns" :type="column.type" :label="column.label" :width="getWidth(column,50)" :key="index" />
         <el-table-column
-                          v-for="(column, index) in outerColumns"
+            v-for="(column, index) in outerColumns"
                           :type="getType(column)"
                           :label="column.label"
                           :width="getWidth(column,'')"
@@ -48,7 +50,9 @@
                           :align="column.align?column.align:'left'"
                           :fixed="column.fixed?column.fixed:false"
                           :sortable="column.sort?'custom':(column.sort==''?true:false)"
-                          :show-overflow-tooltip="typeof column.overflow=='undefined'?true:column.overflow"
+                          :render-header="column.renderHeader"
+
+            :show-overflow-tooltip="typeof column.overflow=='undefined'?true:column.overflow"
         >
           <template slot-scope="scope">
             <jj-column :row="scope.row" :index="scope.$index" :column="column" :vm="$parent" :edit-index="editIndex" @event="event" @rowValueChange="rowValueChange"/>
@@ -57,20 +61,9 @@
       </el-table>
     </el-form>
     <jj-pagination v-if="data.page && !(data.page instanceof Array) " :page="data.page" @change="refresh"/>
-    <el-dialog
-        v-if="settingFlag"
-        title="设置"
-        :append-to-body="true"
-        :visible.sync="settingFlag"
-        width="800px"
-        height="100%"
-    >
-      <setting :data="columns"></setting>
-      <span slot="footer" class="dialog-footer">
-            <el-button @click="settingFlag = false">取 消</el-button>
-            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-          </span>
-    </el-dialog>
+
+    <setting :data="columns" v-model="settingFlag" :id="tableId" v-if="settingFlag"   @reset-col="resetCol"></setting>
+
   </div>
 </template>
 
@@ -110,6 +103,7 @@ export default {
   },
   data: function() {
     return {
+      componentKey: 1,
       settingFlag: false,
       lastRefresh: -1,
       bak: {},
@@ -118,6 +112,9 @@ export default {
     }
   },
   computed: {
+    tableId() {
+      return (this.$route ? this.$route.path : window.location.href.split(/\\?|#/)[0]) + '_frogsing'
+    },
     _showSum() {
       if (this.showSum) {
         return true
@@ -128,10 +125,30 @@ export default {
       return this.data.searchType ? this.data.searchType : 0
     },
     innerColumns() {
-      return this.columns.filter(column => column.type && (column.type == 'index' || column.type == 'selection'))
+      return this.columns.filter(column => (column.type == 'index' || column.type == 'selection'))
     },
     outerColumns() {
-      return this.columns.filter(column => !column.type || (column.type != 'index' && column.type != 'selection'))
+      const rs = JSON.parse(localStorage.getItem(this.tableId) || '[]')
+      // console.log(rs)
+      if (rs.length == 0 && this.componentKey > 0) { return this.columns.filter(column => (column.type != 'index' && column.type != 'selection')) } else {
+        const map = {}
+        for (let i = 0; i < this.columns.length; i++) {
+          const obj = this.columns[i]
+          map[obj.label] = obj
+        }
+        const outCols = []
+        for (const x of rs) {
+          if (!x || !x.label) {
+            return this.columns.filter(column => (column.type != 'index' && column.type != 'selection'))
+          }
+          const col = map[x.label]
+          if (col && col.type != 'index' && col.type != 'selection') {
+            col.width = x.width || 120
+            outCols.push(col)
+          }
+        }
+        if (this.componentKey > 0) { return outCols } else return []
+      }
     },
     selections() {
       return this.multipleSelection
@@ -151,9 +168,34 @@ export default {
 
   },
   mounted() {
-
   },
   methods: {
+    resetCol(result) {
+      const map = {}
+      for (let i = 0; i < this.columns.length; i++) {
+        const obj = this.columns[i]
+        map[obj.label] = obj
+      }
+      const rs = []
+      for (const i of result) {
+        const tmp = map[i]
+        if (tmp) {
+          rs.push({ label: tmp.label, width: tmp.width })
+        }
+      }
+      localStorage.setItem(this.tableId, JSON.stringify(rs))
+     this.$set(this, 'componentKey', ++this.componentKey)
+      // console.log(this.componentKey)
+    },
+    headerDragend(newWidth, oldWidth, column, event) {
+      for (let i = 0; i < this.columns.length; i++) {
+        const col = this.columns[i]
+        if (col.label == column.label) {
+          col.width = newWidth
+          break
+        }
+      }
+    },
     select(selection, row) {
       this.$emit('select', selection, row)
     },
