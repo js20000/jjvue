@@ -89,8 +89,8 @@
       },
       hasP() {
          if (!this.btn.permission) { return true }
-
         if (this.$store) { return this.$store.getters.has(this.btn.permission) }
+        return false
       }
     },
     watch: {

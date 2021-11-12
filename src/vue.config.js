@@ -19,6 +19,7 @@ module.exports = {
   lintOnSave: undefined,
   runtimeCompiler: true,
   chainWebpack: config => {
+    if (process.env.NODE_ENV != 'dev') {
     config.set('externals', {
       'axios': 'axios',
       'babel-polyfill': 'babel-polyfill',
@@ -47,6 +48,7 @@ module.exports = {
       'vuex': 'vuex',
       'xlsx': 'xlsx'
     })
+    }
     config.resolve.extensions.add('.js').add('.vue').add('.css')
     config.resolve.alias
       .set('@assets', resolve('./assets'))

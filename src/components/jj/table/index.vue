@@ -75,7 +75,7 @@ import search from '@/components/jj/search'
 import column from './column'
 import setting from './setting'
 export default {
-  name: `jj-table`,
+  name: 'JjTable',
   components: { setting, 'jj-pagination': pagination, 'jj-toolbar': toolbar, 'jj-search': search, 'jj-column': column },
   props: {
     data: {
@@ -171,30 +171,20 @@ export default {
   },
   methods: {
     resetCol(result) {
-      const map = {}
-      for (let i = 0; i < this.columns.length; i++) {
-        const obj = this.columns[i]
-        map[obj.label] = obj
-      }
-      const rs = []
-      for (const i of result) {
-        const tmp = map[i]
-        if (tmp) {
-          rs.push({ label: tmp.label, width: tmp.width })
-        }
-      }
-      localStorage.setItem(this.tableId, JSON.stringify(rs))
+      localStorage.setItem(this.tableId, JSON.stringify(result))
      this.$set(this, 'componentKey', ++this.componentKey)
       // console.log(this.componentKey)
     },
     headerDragend(newWidth, oldWidth, column, event) {
-      for (let i = 0; i < this.columns.length; i++) {
-        const col = this.columns[i]
+      const rs = []
+      for (let i = 0; i < this.outerColumns.length; i++) {
+        const col = this.outerColumns[i]
         if (col.label == column.label) {
           col.width = newWidth
-          break
         }
+        rs.push({ label: col.label, key: col.label, width: col.width })
       }
+      localStorage.setItem(this.tableId, JSON.stringify(rs))
     },
     select(selection, row) {
       this.$emit('select', selection, row)

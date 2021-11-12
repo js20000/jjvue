@@ -1,28 +1,33 @@
 <template>
   <div>
-    <el-row>
-      <el-col :span="20">
-        <el-transfer
-          v-model="outputListTemp"
-          :data="inputList"
-          :props="alias"
-          target-order="push"
-          @right-check-change="rightCheck"
-          :titles="['Source', 'Target']"
-          filterable
-          :filter-method="filterMethod"
-          filter-placeholder=""
-        ></el-transfer>
-      </el-col>
-      <el-col :span="4" style="margin-top: 95px;">
-        <div style="margin-bottom: 10px;">
-          <el-button icon="el-icon-arrow-up" circle :disabled="upDownDisable" @click="upData"></el-button>
-        </div>
-        <div>
-          <el-button icon="el-icon-arrow-down" circle :disabled="upDownDisable" @click="downData"></el-button>
-        </div>
-      </el-col>
-    </el-row>
+        <el-table
+            ref="table"
+            :data="inputList"
+            @selection-change="selectChange"
+            >
+
+          <el-table-column type="index" width="40"></el-table-column>
+          <el-table-column type="selection" width="50"></el-table-column>
+          <el-table-column label="列名" width="180" prop="label"></el-table-column>
+<!--          <el-table-column label="自定义名称" width="150" >-->
+<!--            <template slot-scope="scope">-->
+<!--             <el-input class="jj-xinput-right" v-model="scope.row.alias"></el-input>-->
+<!--            </template>-->
+<!--          </el-table-column>-->
+<!--          <el-table-column label="宽度" min-width="80">-->
+<!--            <template slot-scope="scope">-->
+<!--              {{scope.row.width}}-->
+<!--            </template>-->
+<!--          </el-table-column>-->
+          <el-table-column label="排序" min-width="180">
+            <template slot-scope="scope">
+                  <el-button size="mini" icon="el-icon-arrow-up" circle  @click="upData(scope.$index)"></el-button>
+                  <el-button size="mini" icon="el-icon-arrow-down" circle  @click="downData(scope.$index)"></el-button>
+            </template>
+          </el-table-column>
+
+        </el-table>
+
   </div>
 </template>
 
@@ -46,57 +51,50 @@ export default {
     }
   },
   watch: {
-    outputListTemp(val) {
-      this.$emit('input', val)
-    }
+
   },
   mounted() {
     this.outputListTemp = [...this.value]
+    const map = {}
+    for (let i = 0; i < this.inputList.length; i++) {
+      const obj = this.inputList[i]
+      map[obj.label] = obj
+    }
+    if (this.outputListTemp.length == 0) {
+      this.$refs.table.toggleAllSelection()
+    }
+    for (const i of this.outputListTemp) {
+        const tmp = map[i.label]
+        if (tmp) { this.$refs.table.toggleRowSelection(tmp, true) }
+    }
   },
   methods: {
+    getResult() {
+      const rs = []
+      for (let i = 0; i < this.inputList.length; i++) {
+          const x = this.inputList[i]
+          if (this.tempSelectionKeys.indexOf(x) >= 0) {
+            rs.push({ label: x.label, alias: x.alias, width: x.width })
+          }
+      }
+      return rs
+    },
     filterMethod(query, item) {
       return true
     },
-    rightCheck(selectionKeys, changeKeys) {
-      this.tempSelectionKeys = selectionKeys
-      if (selectionKeys.length == 1) {
-        this.upDownDisable = false
-      } else {
-        this.upDownDisable = true
+    selectChange(selection) {
+      this.tempSelectionKeys = [...selection]
+    },
+    upData(indexNum) {
+      if (indexNum > 0) {
+        this.inputList.splice(indexNum - 1, 0, this.inputList[indexNum])
+        this.inputList.splice(indexNum + 1, 1)
       }
     },
-    upData() {
-      if (this.tempSelectionKeys.length > 1) {
-        this.$message({
-          type: 'warning',
-          message: '仅支持单选调顺序'
-        })
-        return
-      }
-      let indexNum = 0
-      for (let i = 0; i < this.tempSelectionKeys.length; i++) {
-        indexNum = this.outputListTemp.indexOf(this.tempSelectionKeys[i])
-        if (indexNum > 0) {
-          this.outputListTemp.splice(indexNum - 1, 0, this.tempSelectionKeys[i])
-          this.outputListTemp.splice(indexNum + 1, 1)
-        }
-      }
-    },
-    downData() {
-      if (this.tempSelectionKeys.length > 1) {
-        this.$message({
-          type: 'warning',
-          message: '仅支持单选调顺序'
-        })
-        return
-      }
-      let indexNum = 0
-      for (let i = 0; i < this.tempSelectionKeys.length; i++) {
-        indexNum = this.outputListTemp.indexOf(this.tempSelectionKeys[i])
-        if (indexNum > -1 && indexNum != this.outputListTemp.length - 1) {
-          this.outputListTemp.splice(indexNum + 2, 0, this.tempSelectionKeys[i])
-          this.outputListTemp.splice(indexNum, 1)
-        }
+    downData(indexNum) {
+      if (indexNum > -1 && indexNum != this.outputListTemp.length - 1) {
+        this.inputList.splice(indexNum + 2, 0, this.inputList[indexNum])
+        this.inputList.splice(indexNum, 1)
       }
     }
   }

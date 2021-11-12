@@ -40,7 +40,7 @@
 <script>
 
 export default {
-  name: `jj-search`,
+  name: 'JjSearch',
   props: {
     vm: {
       type: Object

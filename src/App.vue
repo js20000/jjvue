@@ -15,7 +15,6 @@
         <component v-if="node&&node.type" :is="node.type" :dev="node"></component>
         <template v-else>
 
-
         </template>
       </el-main>
     </el-container>
@@ -27,13 +26,13 @@
   }
 </style>
 <script>
- import  {listToTree} from "@/utils"
- import  TableIndex from './test/table'
- import  SequenceEdit from './test/edit'
+ import { listToTree } from '@/utils'
+ import TableIndex from './test/table'
+ import SequenceEdit from './test/edit'
 
  export default {
     name: 'JJVueIndex',
-    components: { TableIndex,SequenceEdit },
+    components: { TableIndex, SequenceEdit },
     data() {
       return {
         treeData: [],
@@ -60,7 +59,7 @@
       },
        menuList() {
         // (list, id, pid, parent, children) {
-        const rs = ["jj-table"]
+        const rs = ['jj-table']
 
         const subs = []
         let i = 0
