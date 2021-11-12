@@ -1,10 +1,17 @@
 <!--suppress ALL -->
 <template>
-  <el-dialog  :visible.sync="showflag"  v-if="showflag" v-bind="$attrs"
+  <el-dialog
+      v-if="showflag"
+      :visible.sync="showflag"
+v-bind="$attrs"
              :append-to-body="append_to_body"
              :modal-append-to-body="modal_append_to_body"
              :modal="modal"
-             :close-on-click-modal="false" :title="data.title" :width="data.width" :fullscreen="data.fullscreen" @close="close"
+             :close-on-click-modal="false"
+:title="data.title"
+:width="data.width"
+:fullscreen="data.fullscreen"
+@close="close"
   >
     <slot />
 
@@ -58,14 +65,14 @@ export default {
     }
   },
   computed: {
-      append_to_body(){
-        return this.data.append_to_body?this.data.append_to_body:false
+      append_to_body() {
+        return this.data.append_to_body ? this.data.append_to_body : false
       },
-      modal_append_to_body(){
-        return this.data.modal_append_to_body?this.data.modal_append_to_body:false
+      modal_append_to_body() {
+        return this.data.modal_append_to_body ? this.data.modal_append_to_body : false
       },
-      modal(){
-        return this.data.modal?this.data.modal:true
+      modal() {
+        return this.data.modal ? this.data.modal : true
       }
   },
   mounted() {

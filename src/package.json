@@ -1,13 +1,17 @@
 {
-  "name": "jjve",
-  "version": "3.0.0",
-  "private": true,
+  "name": "jjvue",
+  "version": "3.0.6",
+  "author": "fanyijie <fanyijie@frogsing.com>",
+  "main": "dist/jjvue.common.js",
+  "license": "MIT",
+  "private": false,
   "scripts": {
     "dev-serve": "vue-cli-service serve --mode dev ",
     "build": "vue-cli-service build --target lib --name jjvue main.js",
     "lint": "vue-cli-service lint",
     "npm:install": "npm --registry http://nexus.frogsing.cn/repository/npm-group/ install",
-    "sassInstall": "SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ && yarn add node-sass"
+    "sassInstall": "SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ && yarn add node-sass",
+    "publish:it": "npm publish --registry http://nexus.frogsing.cn/repository/npm-hosted"
   },
   "dependencies": {
     "axios": "^0.19.2",

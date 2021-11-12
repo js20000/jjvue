@@ -24,7 +24,7 @@
     name: 'SearchList',
     components: {},
     props: {
-      data: {// searchItem
+      data: { // searchItem
         type: Object,
         default() {
           return {

@@ -313,7 +313,7 @@
     },
     computed: {
       loading() {
-        if (this.$store) { return this.$store.getters.myloading } else { false }
+        if (this.$store) { return this.$store.getters.myloading } else { return false }
       },
       updown() {
         if (this.style.display == 'none') {
