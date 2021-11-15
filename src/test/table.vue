@@ -145,7 +145,17 @@ export default {
           for (let i = 0; i < 50; i++) {
             dt.push({ a: 2, b: 'bb', c: 1, d: 1, x: this.img, f: { a: 'mail', b: 'mailb' }})
           }
-          this.data.page = dt
+          this.data.page = {
+            empty: false,
+            first: true,
+            last: true,
+            number: 0,
+            numberOfElements: 10,
+            size: 15,
+            totalElements: 10,
+            totalPages: 1,
+            content: dt
+          }
           // this.data.page = [{ a: 1, b: 'bb', c: 1, d: 1, f: { a: 1, b: 2, c: 3 }, x: 'https://www.baidu.com/img/dongd_36a8aab08b12ba911d74444058393b08.gif' }, { a: 2, b: 'bb', c: 1, d: 1 }]
         },
         add: function({ btn }) {

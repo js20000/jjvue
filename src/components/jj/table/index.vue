@@ -185,7 +185,8 @@ export default {
     calMaxHeight() {
       if (this.data.height == 'auto') {
         const offsetTop = this.$refs.table.$el.getBoundingClientRect().top
-        this.maxHeight = window.innerHeight - offsetTop
+        const sum = this.data.page.content ? 30 : 0
+        this.maxHeight = window.innerHeight - offsetTop - sum
       } else {
         this.maxHeight = this.data.height
       }
