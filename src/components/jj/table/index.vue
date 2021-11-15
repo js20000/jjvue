@@ -7,8 +7,9 @@
       <slot name="toolbar"/>
     </jj-toolbar>
     <slot name="tops"/>
+    <div style="clear: both;"></div>
+    <el-link icon="el-icon-setting" class="jj-setting" :underline="false" @click="setting" style="float: right;top:35px;z-index: 101;padding-right: 10px;"></el-link>
     <el-form ref="tableform" :model="vdata" >
-      <el-link icon="el-icon-setting" class="jj-setting" :underline="false" @click="setting" style="float: right;top:35px;z-index: 101;padding-right: 10px;"></el-link>
       <el-table
         ref="table"
         @setting="setting"
@@ -99,6 +100,10 @@ export default {
     columns: {
       type: Array,
       default: () => []
+    },
+    settingID: {
+      type: String,
+      default: null
     }
   },
   data: function() {
@@ -113,7 +118,7 @@ export default {
   },
   computed: {
     tableId() {
-      return (this.$route ? this.$route.path : window.location.href.split(/\\?|#/)[0]) + '_frogsing'
+      return this.settingID ? this.settingID : '/settingID' + (this.$route ? this.$route.path : window.location.href.split(/\\?|#/)[0])
     },
     _showSum() {
       if (this.showSum) {

@@ -9,7 +9,7 @@
       width="400px"
       height="100%"
   >
-    <div style="max-height: 800px;overflow: auto;">
+    <div style="max-height: 600px;overflow: auto;">
     <sort-transfer   ref="sortTransfer"  v-if="settingFlag" v-model="result" :inputList="columns" :alias="{key: 'label',label: 'label'}"></sort-transfer>
     </div>
       <span slot="footer" class="dialog-footer">
