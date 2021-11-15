@@ -1,7 +1,7 @@
 <!--suppress ALL -->
 <template>
 
-  <el-button :style="btn.style?btn.style:''" v-re-click  @click="on_click"  :disabled="disabled" :plain="plainEx" :size="sizeEx"  v-bind="$attrs"  :type="btn.type?btn.type:type" v-if="showFlag && hasP ">
+  <el-button :style="btn.style?btn.style:''" v-re-click  @click="on_click"  :disabled="disabled" :plain="btn.plain" :size="btn.size"  v-bind="$attrs"  :type="btn.type?btn.type:type" v-if="showFlag && hasP ">
     <template v-if="btn.icon">
       <i v-if="btn.icon.indexOf(`el-icon`)==0" :class="btn.icon"/>
       <svg-icon v-else :icon-class="btn.icon"/>
@@ -22,17 +22,9 @@
 <script>
   export default {
     props: {
-      plain: {
-        Type: Boolean,
-        default: true
-      },
       type: {
         Type: String,
         default: 'primary'
-      },
-      size: {
-        Type: String,
-        default: 'medium'
       },
       row: {
         Type: Object,
@@ -68,20 +60,6 @@
 
     },
     computed: {
-      plainEx() {
-        if (typeof this.btn.plain != 'undefined') {
-          return !!this.btn.plain
-        } else {
-          return this.plain
-        }
-      },
-      sizeEx() {
-        if (typeof this.btn.size != 'undefined') {
-          return this.btn.size
-        } else {
-          return this.size
-        }
-      },
       showFlag() {
         if (typeof this.btn.hidden === 'function') {
           return !this.btn.hidden.apply(this, [{ row: this.row, btn: this.btn }])

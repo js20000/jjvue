@@ -31,7 +31,7 @@
     </div>
 
     <div v-else-if="data.editIndex==data.index">
-      <template   v-for="(btn,index) in data.column.data.buttons||[] ">
+      <template   v-for="(btn,index) in data.column.data.buttons|| data.column.data ">
         <jj-link
             v-if="btn.state&&btn.state=='edit'"
             :key="index"

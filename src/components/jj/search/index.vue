@@ -1,40 +1,24 @@
 <template>
   <el-form size="small" @submit.native.prevent>
-    <el-form-item label-width="0" style="margin: 0 0;">
-    <el-row :gutter="10" v-if="searchType==0 && searchs.length>0" :class="screenWidth <1920 ? 'row-con':''">
-      <jj-button :btn="{label: '更多筛选', icon: 'el-icon-s-operation',plain:false,type:'blue'}" class="sermore" v-if="screenWidth <1920 && searchs.length > 4" @click="drawer = true" />
-      <el-col v-for="(s) in searchs" :xs="24" :sm="12" :md="8" :lg="6" :xl="4" :key="s.label" >
+    <div v-if="searchType==0 && searchs.length>0" :style="rowStyle">
+      <jj-button :btn="moreBtn" class="sermore" v-if="screenWidth <1920 && searchs.length > 4" @click="showSearchAll" />
+      <el-row  type="flex" v-for="(rows,index) in searchRows" :key="index">
+        <template  v-for="(s) in rows"  label-width="0px">
+        <el-form-item :key="s.label" v-if="!s.hidden">
         <template v-if="s.type" >
           <component :is="s.type" :data="s"   @onSearch="onSearch"  />
         </template>
         <el-input v-else :placeholder="s.placeholder" v-model="s.value"  @keydown.native="keyDown($event,s)" >
           <template slot="prepend">{{ s.label }}</template>
         </el-input>
-      </el-col>
-      <slot/>
-    </el-row>
-    <el-drawer
-      title="更多筛选"
-      class="mydrawer"
-      :visible.sync="drawer"
-      :with-header="false">
-      <el-row :gutter="10" v-if="searchType==0 && searchs.length>0" class="drawer-con">
-        <el-col v-for="(s) in searchs" :xs="24" :sm="24" :md="24" :lg="24" :xl="24" :key="s.label" >
-          <template v-if="s.type" >
-            <component :is="s.type" :data="s"   @onSearch="onSearch"  />
-          </template>
-          <el-input v-else :placeholder="s.placeholder" v-model="s.value"  @keydown.native="keyDown($event,s)" >
-            <template slot="prepend">{{ s.label }}</template>
-          </el-input>
-        </el-col>
-        <slot/>
+
+       </el-form-item>
+        </template>
+
       </el-row>
-      <div class="mydrawer-footer" v-if="searchType == 0">
-        <jj-button :btn="{label: '查询', icon: 'el-icon-search',plain:false,type:'blue'}" @click="refresh" />
-        <jj-button :btn="{label: '重置', icon: 'el-icon-refresh',plain: false,type:'info'}" @click="reset" />
-      </div>
-    </el-drawer>
-    </el-form-item>
+      <slot/>
+    </div>
+
   </el-form>
 </template>
 <script>
@@ -58,8 +42,39 @@ export default {
   },
   data() {
     return {
+      moreBtn: { label: '展开', icon: 'el-icon-s-operation', plain: false, type: 'blue' },
+      rowStyle: {
+        'padding-right': '140px',
+        'position': 'relative',
+        'height': ' 46px',
+        'overflow': 'hidden'
+      },
       drawer: false,
       screenWidth: document.body.clientWidth
+    }
+  },
+  computed: {
+    searchRows() {
+        const size = 4
+        const rs = []
+        let r = []
+        let len = 0
+        for (let i = 0; i < this.searchs.length; i++) {
+           const col = this.searchs[i]
+            r.push(col)
+          if (!col.hidden) {
+            len++
+          }
+            if (len == size) {
+              rs.push(r)
+              r = []
+              len = 0
+            }
+        }
+        if (r.length > 0) {
+          rs.push(r)
+        }
+        return rs
     }
   },
   mounted: function() {
@@ -68,6 +83,20 @@ export default {
       }
   },
   methods: {
+    showSearchAll() {
+      if (this.moreBtn.label == '收起') {
+        this.rowStyle.height = '46px'
+        this.moreBtn.label = '展开'
+        this.moreBtn.icon = 'el-icon-s-operation'
+      } else {
+        this.rowStyle.height = 'auto'
+        this.moreBtn.label = '收起'
+        this.moreBtn.icon = 'el-icon-upload2'
+      }
+      this.$nextTick(() => {
+        this.$emit('heightChange')
+      })
+    },
     trigger(btn) {
       if (btn.event) { this.$emit('event', { btn }) }
     },
@@ -112,7 +141,7 @@ export default {
 .sermore{
   position:absolute;
   right: 8px;
-  top:6px
+  top:0px
 }
 .drawer-con{
   padding: 0 30px;

@@ -1,7 +1,6 @@
 <!--suppress ALL -->
 <template>
   <div class="app-container">
-
     <jj-table
 @onSearch="$message.info('search msg ok')"
       ref="table"
@@ -47,6 +46,7 @@ export default {
         }]
       },
       data: {
+        height: 'auto',
         searchType: 0,
         // hiddenHeader: true,
         sorts: { scode: 'ascending' },
@@ -73,14 +73,16 @@ export default {
                     list: [{ val: 0, id: 'a' }, { val: 1, id: 'b' }], disField: 'id', valField: 'val', force: true
                 }},
           { field: 'semail', label: '邮箱', value: '' },
-          { field: 'suser', label: '客户名称', value: '' }
+          { field: 'suser', label: '客户名称', value: '' },
+          { field: 'suser', label: '客户名称1', value: '' },
+          { field: 'suser', label: '客户名称2', value: '' }
         ],
         toolbars: [
           {
-            label: '新增', icon: 'el-icon-circle-plus-outline', event: 'add', plain: false, type: 'orange'
+            label: '新增', icon: 'el-icon-circle-plus-outline', event: 'add', plain: true, type: 'success'
           },
           {
-            label: '删除', icon: 'el-icon-remove-outline', event: 'delit', plain: false, type: 'white'
+            label: '删除', icon: 'el-icon-remove-outline', event: 'delit', plain: true, type: 'success'
           }
         ],
         page: {}

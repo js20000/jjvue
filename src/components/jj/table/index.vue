@@ -1,6 +1,6 @@
 <template>
   <div>
-    <jj-search :vm="$parent" v-if="!data.hiddenHeader" :searchs="data.searchs" @refresh="refresh" @onSearch="onSearch" :searchType="searchType"  @reset="reset">
+    <jj-search @heightChange="calMaxHeight" :vm="$parent" v-if="!data.hiddenHeader" :searchs="data.searchs" @refresh="refresh" @onSearch="onSearch" :searchType="searchType"  @reset="reset">
       <slot name="searchs"/>
     </jj-search>
     <jj-toolbar v-if="!data.hiddenHeader" :data="data.toolbars"  @onSearch="onSearch" :searchs="data.searchs" @event="toolbarevent" :searchType="searchType" @refresh="refresh" @reset="reset" @resetPage="resetPage">
@@ -9,7 +9,7 @@
     <slot name="tops"/>
     <div style="clear: both;"></div>
     <el-link icon="el-icon-setting" class="jj-setting" :underline="false" @click="setting" style="float: right;top:35px;z-index: 101;padding-right: 10px;"></el-link>
-    <el-form ref="tableform" :model="vdata" >
+    <el-form ref="tableform" :model="vdata">
       <el-table
         ref="table"
         @setting="setting"
@@ -23,7 +23,7 @@
         :default-sort="defaultSort()"
         tooltip-effect="dark"
         style="width: 100%"
-        :max-height="data.height"
+        :max-height="_maxHeight"
         @sort-change="sort"
         @select="select"
         @select-all="selectAll"
@@ -108,6 +108,7 @@ export default {
   },
   data: function() {
     return {
+      maxHeight: 300,
       componentKey: 1,
       settingFlag: false,
       lastRefresh: -1,
@@ -117,6 +118,9 @@ export default {
     }
   },
   computed: {
+    _maxHeight() {
+      return this.maxHeight
+    },
     tableId() {
       return this.settingID ? this.settingID : '/settingID' + (this.$route ? this.$route.path : window.location.href.split(/\\?|#/)[0])
     },
@@ -173,8 +177,19 @@ export default {
 
   },
   mounted() {
+    this.$nextTick(() => {
+      this.calMaxHeight()
+    })
   },
   methods: {
+    calMaxHeight() {
+      if (this.data.height == 'auto') {
+        const offsetTop = this.$refs.table.$el.getBoundingClientRect().top
+        this.maxHeight = window.innerHeight - offsetTop
+      } else {
+        this.maxHeight = this.data.height
+      }
+    },
     resetCol(result) {
       localStorage.setItem(this.tableId, JSON.stringify(result))
      this.$set(this, 'componentKey', ++this.componentKey)
