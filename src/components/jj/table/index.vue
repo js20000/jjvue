@@ -8,8 +8,8 @@
     </jj-toolbar>
     <slot name="tops"/>
     <div style="clear: both;"></div>
-    <el-link icon="el-icon-setting" class="jj-setting" :underline="false" @click="setting" style="float: right;top:35px;z-index: 101;padding-right: 10px;"></el-link>
     <el-form ref="tableform" :model="vdata">
+     <el-link icon="el-icon-setting" class="jj-setting" :underline="false" @click="setting" style="float: right;top:35px;z-index: 101;padding-right: 10px;"></el-link>
       <el-table
         ref="table"
         @setting="setting"
@@ -108,7 +108,7 @@ export default {
   },
   data: function() {
     return {
-      maxHeight: '',
+      maxHeight: 300,
       componentKey: 1,
       settingFlag: false,
       lastRefresh: -1,
@@ -119,7 +119,8 @@ export default {
   },
   computed: {
     _maxHeight() {
-      return this.maxHeight
+      if (this.data.height) { return this.maxHeight }
+      return this.data.height
     },
     tableId() {
       return this.settingID ? this.settingID : '/settingID' + (this.$route ? this.$route.path : window.location.href.split(/\\?|#/)[0])
@@ -185,8 +186,8 @@ export default {
     calMaxHeight() {
       if (this.data.height == 'auto') {
         const offsetTop = this.$refs.table.$el.getBoundingClientRect().top
-        const sum = this.data.page.content ? 30 : 0
-        this.maxHeight = window.innerHeight - offsetTop - sum
+        const sum = this.data.page instanceof Array ? 0 : 35
+        this.maxHeight = window.innerHeight - offsetTop - sum - 10
       } else {
         this.maxHeight = this.data.height
       }
