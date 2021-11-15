@@ -1,10 +1,10 @@
 <template>
-  <el-form size="small" @submit.native.prevent>
+  <el-form size="small" @submit.native.prevent class="jj-search-form">
     <div v-if="searchType==0 && searchs.length>0" :style="rowStyle">
       <jj-button :btn="moreBtn" class="sermore" v-if="screenWidth <1920 && searchs.length > 4" @click="showSearchAll" />
       <el-row  type="flex" v-for="(rows,index) in searchRows" :key="index">
-        <template  v-for="(s) in rows"  label-width="0px">
-        <el-form-item :key="s.label" v-if="!s.hidden">
+        <template  v-for="(s) in rows"  >
+        <el-form-item :key="s.label" v-if="!s.hidden" label-width="0px">
         <template v-if="s.type" >
           <component :is="s.type" :data="s"   @onSearch="onSearch"  />
         </template>
@@ -124,13 +124,24 @@ export default {
 }
 </script>
 
-<style type="scoped">
-.el-input-group__prepend {
-  min-width: 100px;
-  text-align: right;
-}
-.el-select{
-  width:100%;
+<style>
+
+.jj-search-form{
+    .el-input-group__prepend{
+      padding-right: 2px;
+      padding-left: 0px;
+      width: 110px;
+    }
+    .el-select .el-input__inner {
+      padding-right: 15px!important;
+    }
+    .el-input--suffix .el-input__inner {
+      padding-right: 15px!important;
+    }
+    .el-select{
+      width:100%;
+    }
+
 }
 .row-con{
   padding-right: 140px;
@@ -142,29 +153,6 @@ export default {
   position:absolute;
   right: 8px;
   top:0px
-}
-.drawer-con{
-  padding: 0 30px;
-}
-.mydrawer .el-drawer__header{
-  padding: 10px;
-  border-bottom: 1px solid rgb(230, 230, 230);
-  background: #f5f6f9;
-  color: #333;
-}
-.mydrawer .el-input-group__prepend{
-  text-align: justify;
-  text-align-last: justify;
-}
-.mydrawer-footer{
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  right: 0;
-  padding: 20px;
-  border-bottom: 1px solid rgb(230, 230, 230);
-  background: #f5f6f9;
-  text-align: right;
 }
 
 </style>

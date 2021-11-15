@@ -108,7 +108,7 @@ export default {
   },
   data: function() {
     return {
-      maxHeight: 300,
+      maxHeight: '',
       componentKey: 1,
       settingFlag: false,
       lastRefresh: -1,

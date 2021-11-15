@@ -46,9 +46,9 @@ export default {
         }]
       },
       data: {
-        height: 'auto',
         searchType: 0,
         // hiddenHeader: true,
+        height: 'auto',
         sorts: { scode: 'ascending' },
         searchs: [
           // { field: 'keyword', type: 'jj-date', label: '截止时间', value: '', data: {

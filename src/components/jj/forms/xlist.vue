@@ -16,7 +16,7 @@
           autocomplete="off"
           v-bind="$attrs"
         >
-            <template slot="prepend" v-if="label">{{ label }} </template>
+        <template slot="prepend" v-if="label">{{ label }} </template>
           <i class="el-input__icon" :class="updown" slot="suffix" @click="onclick">
           </i>
         </el-input>
