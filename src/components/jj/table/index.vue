@@ -64,7 +64,6 @@
     <jj-pagination v-if="data.page && !(data.page instanceof Array) " :page="data.page" @change="refresh"/>
 
     <setting :data="columns" v-model="settingFlag" :id="tableId" v-if="settingFlag"   @reset-col="resetCol"></setting>
-
   </div>
 </template>
 

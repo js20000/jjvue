@@ -46,7 +46,7 @@ export default {
       rowStyle: {
         'padding-right': '140px',
         'position': 'relative',
-        'height': ' 46px',
+        'height': ' 40px',
         'overflow': 'hidden'
       },
       drawer: false,
@@ -85,7 +85,7 @@ export default {
   methods: {
     showSearchAll() {
       if (this.moreBtn.label == '收起') {
-        this.rowStyle.height = '46px'
+        this.rowStyle.height = '40px'
         this.moreBtn.label = '展开'
         this.moreBtn.icon = 'el-icon-s-operation'
       } else {
@@ -151,7 +151,7 @@ export default {
 }
 .sermore{
   position:absolute;
-  right: 8px;
+  right: 0px;
   top:0px
 }
 
