@@ -33,11 +33,13 @@
         <el-table-column
           v-if="!data.hiddenIndex"
           type="index"
+          fixed="left"
           width="50"
         />
         <el-table-column
           v-if="!data.hiddenSelection"
           type="selection"
+          fixed="left"
           :selectable="checkSelectable"
           width="50"/>
         <el-table-column v-for="(column, index) in innerColumns" :type="column.type" :label="column.label" :width="getWidth(column,50)" :key="index" />
