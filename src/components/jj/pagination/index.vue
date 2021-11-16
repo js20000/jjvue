@@ -1,5 +1,5 @@
 <template>
-  <div style="text-align: center;">
+  <div v-bind="$attrs">
     <el-pagination
       v-if="page.totalElements >page.size || page.size<999"
       :current-page="page.number+1"
@@ -9,7 +9,6 @@
       layout="total, sizes, prev, pager, next, jumper"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"/>
-
   </div>
 </template>
 

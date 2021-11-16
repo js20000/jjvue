@@ -63,7 +63,7 @@
         </el-table-column>
       </el-table>
     </el-form>
-    <jj-pagination v-if="data.page && !(data.page instanceof Array) " :page="data.page" @change="refresh"/>
+    <jj-pagination v-if="data.page && !(data.page instanceof Array) " :page="data.page" @change="refresh" :class="this.data.height == 'auto'?'jj-pagination-fixed':'jj-pagination'"/>
 
     <setting :data="columns" v-model="settingFlag" :id="tableId" v-if="settingFlag"   @reset-col="resetCol"></setting>
   </div>
@@ -187,8 +187,8 @@ export default {
     calMaxHeight() {
       if (this.data.height == 'auto') {
         const offsetTop = this.$refs.table.$el.getBoundingClientRect().top
-        const sum = this.data.page instanceof Array ? 0 : 35
-        this.maxHeight = window.innerHeight - offsetTop - sum - 10
+
+        this.maxHeight = window.innerHeight - offsetTop - 32
       } else {
         this.maxHeight = this.data.height
       }
