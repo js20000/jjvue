@@ -52,7 +52,7 @@ clearable
 </template>
 <style scoped>
   .jj_toolbar_row {
-    margin-top:10px;
+    margin-top:0px;
     :last-child {
       margin-bottom: 0;
     }
