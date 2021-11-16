@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="jj-table">
     <jj-search @heightChange="calMaxHeight" :vm="$parent" v-if="!data.hiddenHeader" :searchs="data.searchs" @refresh="refresh" @onSearch="onSearch" :searchType="searchType"  @reset="reset">
       <slot name="searchs"/>
     </jj-search>
