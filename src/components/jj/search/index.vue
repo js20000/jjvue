@@ -42,7 +42,7 @@ export default {
   },
   data() {
     return {
-      moreBtn: { label: '展开', icon: 'el-icon-s-operation', plain: false, type: 'blue' },
+      moreBtn: { label: '展开', icon: 'el-icon-s-operation', plain: false, type: 'blue', size: 'small' },
       rowStyle: {
         'padding-right': '140px',
         'position': 'relative',

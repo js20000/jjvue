@@ -10,6 +10,7 @@
     <div style="clear: both;"></div>
     <el-form ref="tableform" :model="vdata">
      <el-link icon="el-icon-setting" class="jj-setting" :underline="false" @click="setting" style="float: right;top:35px;z-index: 101;padding-right: 10px;"></el-link>
+      <div class="jj-table-div">
       <el-table
         ref="table"
         @setting="setting"
@@ -62,6 +63,7 @@
           </template>
         </el-table-column>
       </el-table>
+      </div>
     </el-form>
     <jj-pagination v-if="data.page && !(data.page instanceof Array) " :page="data.page" @change="refresh" :class="this.data.height == 'auto'?'jj-pagination-fixed':'jj-pagination'"/>
 
