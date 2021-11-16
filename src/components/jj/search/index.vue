@@ -1,7 +1,7 @@
 <template>
   <el-form size="small" @submit.native.prevent class="jj-search-form">
     <div v-if="searchType==0 && searchs.length>0" :style="rowStyle">
-      <jj-button :btn="moreBtn" class="sermore" v-if="screenWidth <1920 && searchs.length > 4" @click="showSearchAll" />
+      <jj-button :btn="moreBtn" class="sermore" v-if="searchRows.length > 1" @click="showSearchAll" />
       <el-row  type="flex" v-for="(rows,index) in searchRows" :key="index">
         <template  v-for="(s) in rows"  >
         <el-form-item :key="s.label" v-if="!s.hidden" label-width="0px">
@@ -54,8 +54,11 @@ export default {
     }
   },
   computed: {
+    colCount() {
+     return Math.floor((this.screenWidth - 180) / 300)
+    },
     searchRows() {
-        const size = 4
+        const size = this.colCount
         const rs = []
         let r = []
         let len = 0
@@ -126,23 +129,34 @@ export default {
 
 <style>
 
-.jj-search-form{
-    .el-input-group__prepend{
-      padding-right: 2px;
-      padding-left: 0px;
-      width: 110px;
-    }
-    .el-select .el-input__inner {
-      padding-right: 15px!important;
-    }
-    .el-input--suffix .el-input__inner {
-      padding-right: 15px!important;
-    }
-    .el-select{
-      width:100%;
-    }
+.jj-search-form {
+.el-input--suffix .el-input__inner {
+  padding-right: 15px!important;
+}
+.el-select{
+  width:100%;
+}
+.el-row{
+  height: 40px;
+}
+.el-button--small, .el-button--small.is-round {
+  padding: 7px 10px;
+}
+.el-input-group__prepend {
+  min-width: 100px;
+  text-align: right;
+  background: none;
+  border: none;
+}
+.el-input-group--prepend .el-input__inner, .el-input-group__append {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  height: 32px;
+  line-height: 32px;
+}
 
 }
+
 .row-con{
   padding-right: 140px;
   position: relative;
