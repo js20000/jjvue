@@ -130,8 +130,12 @@ export default {
 <style>
 
 .jj-search-form {
+
+.el-input-group__prepend:after{
+  content: "：";
+}
 .el-input--suffix .el-input__inner {
-  padding-right: 15px!important;
+  padding-right: 5px!important;
 }
 .el-select{
   width:100%;
@@ -143,18 +147,20 @@ export default {
   padding: 7px 10px;
 }
 .el-input-group__prepend {
-  min-width: 100px;
+  width: 110px;
   text-align: right;
   background: none;
   border: none;
+  padding-right: 0px!important;
+  padding-left: 5px!important;
 }
+
 .el-input-group--prepend .el-input__inner, .el-input-group__append {
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   height: 32px;
   line-height: 32px;
 }
-
 }
 
 .row-con{

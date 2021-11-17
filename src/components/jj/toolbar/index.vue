@@ -1,4 +1,6 @@
 <template>
+  <div style="height: 20px;position: relative;width: 100%;">
+
   <el-row class="jj_toolbar_row">
     <el-col :span="12">
         <jj-button v-for="(btn) in data " :key="btn.event" :btn="btn" @click="trigger(btn)" />&nbsp;
@@ -49,9 +51,15 @@ clearable
           </el-row>
     </el-col>
   </el-row>
+  </div>
 </template>
 <style scoped>
   .jj_toolbar_row {
+    width: 100%;
+    position:absolute;
+    right: 0px;
+    top:0px;
+    height: 32px;
     margin-top:0px;
     :last-child {
       margin-bottom: 0;

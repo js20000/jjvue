@@ -65,7 +65,7 @@ export default {
     }
     for (const i of this.outputListTemp) {
         const tmp = map[i.label]
-        if (tmp) { this.$refs.table.toggleRowSelection(tmp, true) }
+        if (tmp && i._show) { this.$refs.table.toggleRowSelection(tmp, true) }
     }
   },
   methods: {
@@ -73,9 +73,11 @@ export default {
       const rs = []
       for (let i = 0; i < this.inputList.length; i++) {
           const x = this.inputList[i]
+          let _show = false
           if (this.tempSelectionKeys.indexOf(x) >= 0) {
-            rs.push({ label: x.label, alias: x.alias, width: x.width })
+           _show = true
           }
+        rs.push({ label: x.label, alias: x.alias, width: x.width, _show: _show })
       }
       return rs
     },

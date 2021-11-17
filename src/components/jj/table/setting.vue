@@ -35,7 +35,7 @@ export default {
     }
   },
   computed: {
-    columns() {
+    columns() { // 排序显示
        const map = {}
        const rs = []
        for (let i = 0; i < this.data.length; i++) {

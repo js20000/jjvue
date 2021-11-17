@@ -8,9 +8,8 @@
     </jj-toolbar>
     <slot name="tops"/>
     <div style="clear: both;"></div>
+    <el-link icon="el-icon-setting" class="jj-setting" :underline="false" @click="setting" ></el-link>
     <el-form ref="tableform" :model="vdata">
-     <el-link icon="el-icon-setting" class="jj-setting" :underline="false" @click="setting" style="float: right;top:35px;z-index: 101;padding-right: 10px;"></el-link>
-      <div class="jj-table-div">
       <el-table
         ref="table"
         @setting="setting"
@@ -63,7 +62,6 @@
           </template>
         </el-table-column>
       </el-table>
-      </div>
     </el-form>
     <jj-pagination v-if="data.page && !(data.page instanceof Array) " :page="data.page" @change="refresh" :class="this.data.height == 'auto'?'jj-pagination-fixed':'jj-pagination'"/>
 
@@ -147,7 +145,7 @@ export default {
         const map = {}
         for (let i = 0; i < this.columns.length; i++) {
           const obj = this.columns[i]
-          map[obj.label] = obj
+         map[obj.label] = obj
         }
         const outCols = []
         for (const x of rs) {
@@ -155,7 +153,7 @@ export default {
             return this.columns.filter(column => (column.type != 'index' && column.type != 'selection'))
           }
           const col = map[x.label]
-          if (col && col.type != 'index' && col.type != 'selection') {
+          if (x._show && col && col.type != 'index' && col.type != 'selection') {
             col.width = x.width || 120
             outCols.push(col)
           }
@@ -488,6 +486,12 @@ export default {
   .sortable-ghost {
     opacity: 0.4;
     background-color: #F4E2C9;
+  }
+  .jj-setting{
+    float: right;
+    top:30px;
+    z-index: 101;
+    padding-right: 10px;
   }
 
 </style>
