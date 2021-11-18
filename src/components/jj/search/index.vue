@@ -4,11 +4,11 @@
       <jj-button :btn="moreBtn" class="sermore" v-if="searchRows.length > 1" @click="showSearchAll" />
       <el-row  type="flex" v-for="(rows,index) in searchRows" :key="index">
         <template  v-for="(s) in rows"  >
-        <el-form-item :key="s.label" v-if="!s.hidden" label-width="0px">
+        <el-form-item :key="s.label" v-if="!s.hidden" label-width="0px" >
         <template v-if="s.type" >
-          <component :is="s.type" :data="s"   @onSearch="onSearch"  />
+          <component :is="s.type" :data="s"   @onSearch="onSearch"  :style="{width: s.width+'px'}" />
         </template>
-        <el-input v-else :placeholder="s.placeholder" v-model="s.value"  @keydown.native="keyDown($event,s)" >
+        <el-input v-else :placeholder="s.placeholder" v-model="s.value"  @keydown.native="keyDown($event,s)" :style="{width: s.width+'px'}">
           <template slot="prepend">{{ s.label }}</template>
         </el-input>
 
@@ -64,6 +64,12 @@ export default {
         let len = 0
         for (let i = 0; i < this.searchs.length; i++) {
            const col = this.searchs[i]
+           if (col.type == '|') {
+             rs.push(r)
+             r = []
+             len = 0
+             continue
+           }
             r.push(col)
           if (!col.hidden) {
             len++
