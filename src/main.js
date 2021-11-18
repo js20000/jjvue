@@ -11,6 +11,7 @@ import pagination from './components/jj/pagination/index'
 import xinput from './components/jj/forms/xinput'
 import xremote from './components/jj/forms/xremote'
 import jj_xremote from './components/jj/search/searchremote'
+import jj_form_item from './components/jj/forms/formitem'
 
 const comment = {
   install: function(Vue) {
@@ -43,6 +44,7 @@ const comment = {
     Vue.component('jj-xinput', xinput)
     Vue.component('xremote', xremote)
     Vue.component('jj-xremote', jj_xremote)
+    Vue.component('jj--form-item', jj_form_item)
 
     Vue.prototype.setFieldValue = function(data, path, value) {
         const _path = path.split('.')

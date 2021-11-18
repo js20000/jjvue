@@ -1,8 +1,9 @@
 <template>
   <el-form-item v-if="data.column.field" :prop="data.column.field" :rules="rules" style="margin-bottom: 0;">
-    <el-tooltip class="item" effect="dark" v-model="tooltips.show" :content="tooltips.tips" placement="top-start" :manual="true">
+    <el-tooltip class="item" effect="dark" :content="tooltips.tips" placement="top-start" v-if="tooltips.show">
       <slot />
     </el-tooltip>
+    <slot v-else />
   </el-form-item>
 </template>
 <style>
@@ -19,7 +20,7 @@
     computed: {
       rules() {
         if (typeof this.data.column.rules == 'function') {
-          return [{ validator: this.validator, _validator: this.data.column.rules, value: this.$parent.fieldValue, tooltips: this.tooltips }]
+          return [{ row: this.data.row, validator: this.validator, _validator: this.data.column.rules, value: this.$parent.fieldValue, tooltips: this.tooltips }]
         }
         if (this.data.column.rules) {
           return this.data.column.rules.map(x => {
