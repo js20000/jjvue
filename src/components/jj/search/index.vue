@@ -171,7 +171,7 @@ export default {
 }
 .sermore{
   position:absolute;
-  right: 0px;
+  right: 10px;
   top:0px
 }
 
