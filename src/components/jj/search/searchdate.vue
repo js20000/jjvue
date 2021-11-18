@@ -1,6 +1,6 @@
 <!--suppress ALL -->
 <template>
-  <div  class="el-input el-input-group el-input--medium el-input-group--prepend el-input--suffix">
+  <div  class="el-input el-input-group el-input-group--prepend el-input--suffix">
     <div class="el-input-group__prepend"  v-if="data.label">{{data.label}}</div>
     <div>
     <component

@@ -2,7 +2,7 @@
   <div style="height: 20px;position: relative;width: 100%;">
   <el-form size="small">
     <el-form-item label-width="0"  style="width: 100%;">
-  <el-row class="jj_toolbar_row">
+  <el-row class="jj-toolbar-row">
     <el-col :span="12">
         <jj-button v-for="(btn) in data " :key="btn.event" :btn="btn" @click="trigger(btn)" />&nbsp;
         <slot/>
@@ -38,13 +38,14 @@
   </div>
 </template>
 <style scoped>
-  .jj_toolbar_row {
+  .jj-toolbar-row {
     width: 100%;
     position:absolute;
     right: 0px;
     top:0px;
     height: 32px;
     margin-top:0px;
+    padding:0px 10px;
     :last-child {
       margin-bottom: 0;
     }
