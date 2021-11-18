@@ -1,9 +1,9 @@
 <template>
   <el-form-item v-if="data.column.field" :prop="data.column.field" :rules="rules" style="margin-bottom: 0;">
-    <el-tooltip class="item" effect="dark" :content="tooltips.tips" placement="top-start" v-if="tooltips.show">
+    <el-tooltip class="item" :disabled="!tooltips.show" effect="dark" :content="tooltips.tips" placement="top-start" v-if="rules.length>0">
       <slot />
     </el-tooltip>
-    <slot v-else />
+
   </el-form-item>
 </template>
 <style>
@@ -20,7 +20,7 @@
     computed: {
       rules() {
         if (typeof this.data.column.rules == 'function') {
-          return [{ row: this.data.row, validator: this.validator, _validator: this.data.column.rules, value: this.$parent.fieldValue, tooltips: this.tooltips }]
+          return [{ row: this.data.row, validator: this.validator, _validator: this.data.column.rules, value: this.$parent.fieldValue, tooltips: this.tooltips, trigger: 'blur' }]
         }
         if (this.data.column.rules) {
           return this.data.column.rules.map(x => {
@@ -50,7 +50,6 @@
           } else { b() }
       },
       validator(r, v, callback) {
-        v = r.value
         r._validator(r, v, function(obj) {
           if (obj) {
             r.tooltips.show = true

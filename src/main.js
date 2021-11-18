@@ -44,7 +44,7 @@ const comment = {
     Vue.component('jj-xinput', xinput)
     Vue.component('xremote', xremote)
     Vue.component('jj-xremote', jj_xremote)
-    Vue.component('jj--form-item', jj_form_item)
+    Vue.component('jj-form-item', jj_form_item)
 
     Vue.prototype.setFieldValue = function(data, path, value) {
         const _path = path.split('.')
