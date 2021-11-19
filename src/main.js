@@ -46,6 +46,19 @@ const comment = {
     Vue.component('jj-xremote', jj_xremote)
     Vue.component('jj-form-item', jj_form_item)
 
+    Vue.prototype.getFieldValue = function(data, path, value) {
+      const _path = path.split('.')
+      let obj = data
+      for (let i = 0; i < _path.length; i++) {
+        const x = _path[i]
+        if (i == _path.length - 1) {
+          return obj[x]
+        } else {
+          obj = obj[x] || {}
+        }
+      }
+      return null
+    }
     Vue.prototype.setFieldValue = function(data, path, value) {
         const _path = path.split('.')
         let obj = data

@@ -1,8 +1,11 @@
 <template>
-  <el-form-item v-if="data.column.field" :prop="data.column.field" :rules="rules" style="margin-bottom: 0;">
+  <el-form-item v-if="data.column.field" :prop="data.column.field" :rules="rules" style="margin-bottom: 0;" v-bind="$attrs">
     <el-tooltip class="item" :disabled="!tooltips.show" effect="dark" :content="tooltips.tips" placement="top-start" v-if="rules.length>0">
       <slot />
     </el-tooltip>
+    <template v-else>
+      <slot />
+    </template>
 
   </el-form-item>
 </template>
