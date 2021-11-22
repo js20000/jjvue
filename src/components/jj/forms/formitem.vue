@@ -22,11 +22,13 @@
     },
     computed: {
       rules() {
-        if (typeof this.data.column.rules == 'function') {
-          return [{ row: this.data.row, validator: this.validator, _validator: this.data.column.rules, value: this.$parent.fieldValue, tooltips: this.tooltips, trigger: 'blur' }]
+        const _rules = this.data.column.rules || this.data.rules
+        if (typeof _rules == 'function') {
+          return [{ row: this.data.row, validator: this.validator, _validator: _rules, value: this.$parent.fieldValue, tooltips: this.tooltips, trigger: 'blur' }]
         }
-        if (this.data.column.rules) {
-          return this.data.column.rules.map(x => {
+
+        if (_rules) {
+          return _rules.map(x => {
             return { trigger: x.trigger, message: x.message, _pattern: x.pattern, validator: this.validator, _validator: this.getValidator(x), value: this.$parent.fieldValue, tooltips: this.tooltips }
           })
         } else { return [] }
