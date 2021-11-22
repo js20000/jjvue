@@ -1,5 +1,5 @@
 <template>
-  <el-form-item v-if="data.column.field" :prop="data.column.field" :rules="rules" style="margin-bottom: 0;" v-bind="$attrs">
+  <el-form-item v-if="data.field||data.column.field" :prop="data.field||data.column.field" :rules="rules" style="margin-bottom: 0;" v-bind="$attrs">
     <el-tooltip class="item" :disabled="!tooltips.show" effect="dark" :content="tooltips.tips" placement="top-start" v-if="rules.length>0">
       <slot />
     </el-tooltip>
@@ -24,12 +24,12 @@
       rules() {
         const _rules = this.data.column.rules || this.data.rules
         if (typeof _rules == 'function') {
-          return [{ row: this.data.row, validator: this.validator, _validator: _rules, value: this.$parent.fieldValue, tooltips: this.tooltips, trigger: 'blur' }]
+          return [{ row: this.data.row, validator: this.validator, _validator: _rules, tooltips: this.tooltips, trigger: 'blur' }]
         }
 
         if (_rules) {
           return _rules.map(x => {
-            return { trigger: x.trigger, message: x.message, _pattern: x.pattern, validator: this.validator, _validator: this.getValidator(x), value: this.$parent.fieldValue, tooltips: this.tooltips }
+            return { row: this.data.row, trigger: x.trigger, message: x.message, _pattern: x.pattern, validator: this.validator, _validator: this.getValidator(x), tooltips: this.tooltips }
           })
         } else { return [] }
       }
@@ -55,6 +55,7 @@
           } else { b() }
       },
       validator(r, v, callback) {
+        v = this.getFieldValue(r.row, r.field)
         r._validator(r, v, function(obj) {
           if (obj) {
             r.tooltips.show = true

@@ -1,19 +1,8 @@
 <template>
   <div>
-    <template v-if="xType&&(xType.indexOf('jj-')==0 )" >
+    <template v-if="xType" >
       <component :is="xType" :data="buildData()" @event="event" :class="cls" :style="style" @rowValueChange="rowValueChange" />
     </template>
-
-    <template v-else-if="column.templet&&(typeof column.templet === 'string')" >
-      <template v-if="column.templet.indexOf('sim-')==0 " >
-        <component :is="column.templet" :data="filedValue" @event="event" :class="cls" :style="style" @rowValueChange="rowValueChange"/>
-      </template>
-      <template v-else>
-        <component :is="column.templet" :data="buildData()" @event="event" :class="cls" :style="style" @rowValueChange="rowValueChange"/>
-      </template>
-
-    </template>
-
     <jj-xinput v-else-if="index==editIndex && column.field &&!column.readOnly"  :data="buildData()" @event="event" :class="cls" :style="style" >
     </jj-xinput>
     <el-link
