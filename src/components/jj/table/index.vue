@@ -139,15 +139,15 @@ export default {
       return this.columns.filter(column => (column.type == 'index' || column.type == 'selection'))
     },
     outerColumns() {
+      let outCols = []
       const rs = JSON.parse(localStorage.getItem(this.tableId) || '[]')
       // console.log(rs)
-      if (rs.length == 0 && this.componentKey > 0) { return this.columns.filter(column => (column.type != 'index' && column.type != 'selection')) } else {
+      if (rs.length == 0 && this.componentKey > 0) { outCols = this.columns.filter(column => (column.type != 'index' && column.type != 'selection')) } else {
         const map = {}
         for (let i = 0; i < this.columns.length; i++) {
           const obj = this.columns[i]
          map[obj.label] = obj
         }
-        const outCols = []
         for (const x of rs) {
           if (!x || !x.label) {
             return this.columns.filter(column => (column.type != 'index' && column.type != 'selection'))
@@ -158,8 +158,12 @@ export default {
             outCols.push(col)
           }
         }
-        if (this.componentKey > 0) { return outCols } else return []
+        if (this.componentKey < 0) { outCols = [] }
       }
+      // if (outCols.length > 0) {
+      //   outCols[outCols.length - 1].label = outCols[outCols.length - 1].label + '  '
+      // }
+      return outCols
     },
     selections() {
       return this.multipleSelection
