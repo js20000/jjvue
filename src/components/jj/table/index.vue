@@ -160,9 +160,6 @@ export default {
         }
         if (this.componentKey < 0) { outCols = [] }
       }
-      // if (outCols.length > 0) {
-      //   outCols[outCols.length - 1].label = outCols[outCols.length - 1].label + '  '
-      // }
       return outCols
     },
     selections() {
@@ -230,9 +227,62 @@ export default {
     },
      getSumRow() {
        if (this.showSum) {
-         return this.showSum()
+         return this.showSum(this)
        }
-       if (this.$parent.showSum) { return this.$parent.showSum() } else { return ['合计'] }
+       if (this.$parent.showSum) { return this.$parent.showSum(this) } else { return ['合计'] }
+    },
+    getColIndex(field, label) {
+      let d = 0
+      if (!this.data['hiddenIndex']) {
+        d++
+      }
+      if (!this.data['hiddenSelection']) {
+       d++
+      }
+      let pos = -1
+      let left = 0
+      let right = 0
+      let allLeft = 0
+      let allRight = 0
+      for (let i = 0; i < this.outerColumns.length; i++) {
+        const x = this.outerColumns[i]
+
+        if (x.field && x.field == field) {
+          pos = i
+        } else if (x.label && x.label == label) {
+          pos = i
+        }
+        if (pos < 0) {
+          if (x.fixed == 'right') {
+            right++
+          } else if (x.fixed == 'left') {
+            left++
+          }
+        }
+        if (x.fixed == 'right') {
+          allRight++
+        } else if (x.fixed == 'left') {
+          allLeft++
+        }
+      }
+      if (pos >= 0) {
+        const x = this.outerColumns[pos]
+        if (x.fixed == 'right') {
+          return this.outerColumns.length - allRight + right + d
+        } else {
+          if (x.fixed == 'left') {
+            console.log('left:' + (left))
+            console.log('right:' + (right))
+              return left + d
+          } else {
+            console.log('1left:' + (left))
+            console.log('1right:' + (right))
+            return pos - right + (allLeft - left) + d
+          }
+        }
+      }
+
+      return -1
     },
     onSearch(data) {
       if (this.data.searchType == 1) {

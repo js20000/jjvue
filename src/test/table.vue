@@ -89,20 +89,26 @@ export default {
         page: {}
       },
       columns: [
+        { label: '公司名称1', field: 'b111', sort: true, width: 320, link: function({ row }) {
+            return 'success'
+          }, templet: function({ row }) {
+            return ''
+          }, fixed: 'left' },
         { label: '姓名', field: 'a', sort: true, width: 120, search: true, type: 'jj-xinput', rules: [{ required: true, message: '这是必填项', trigger: 'blur' }] },
         // { label: 'x', field: 'x', sort: true, width: 120, type: 'jj-image', search: true },
         { label: '公司名称', field: 'b', sort: true, width: 320, link: function({ row }) {
             return 'success'
           }, templet: function({ row }) {
             return ''
-          } },
+          }, fixed: 'left' },
+        { field: '备注', label: '备注', sort: true, width: 100, fixed: 'right' },
+
         { label: '客户名称', field: 'c', sort: true, search: true, width: 220, templet: function({ row }) {
             return row.c
           } },
 
         { label: '手机', field: 'd', sort: true, width: 120, type: 'jj-checkbox' },
         { label: '邮箱', field: 'f.b', sort: true, width: 120, event: 'mail', link: 'danger', align: 'right' },
-        { field: '备注', label: 'f.a', sort: true, width: 100 },
         { label: '操作', width: 240, type: 'jj-listlink', fixed: 'right', data: {
             buttons: [
               {
@@ -137,8 +143,16 @@ export default {
   },
   methods:
       {
-        showSum() {
-          return ['合计', '']
+        showSum(_this) {
+          const rs = []
+          rs.length = this.columns.length + 2
+          rs[3] = 'hi'
+        //  rs[_this.getColIndex('备注')] = _this.getColIndex('备注')
+          rs[_this.getColIndex('', '公司名称')] = '公司名称'
+
+          rs[_this.getColIndex('', '姓名')] = '姓名'
+
+          return rs
         },
         refresh: function(data) {
           console.log(JSON.stringify(data))
