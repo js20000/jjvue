@@ -271,12 +271,8 @@ export default {
           return this.outerColumns.length - allRight + right + d
         } else {
           if (x.fixed == 'left') {
-            console.log('left:' + (left))
-            console.log('right:' + (right))
               return left + d
           } else {
-            console.log('1left:' + (left))
-            console.log('1right:' + (right))
             return pos - right + (allLeft - left) + d
           }
         }

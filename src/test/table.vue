@@ -96,14 +96,21 @@ export default {
           }, fixed: 'left' },
         { label: '姓名', field: 'a', sort: true, width: 120, search: true, type: 'jj-xinput', rules: [{ required: true, message: '这是必填项', trigger: 'blur' }] },
         // { label: 'x', field: 'x', sort: true, width: 120, type: 'jj-image', search: true },
+
+        { field: '备注', label: '备注', sort: true, width: 100, fixed: 'right' },
+
+        { label: '客户名称', field: 'c', sort: true, search: true, width: 220, templet: function({ row }) {
+            return row.c
+          } },
+        { label: '客户名称1', field: 'c', sort: true, search: true, width: 220, templet: function({ row }) {
+            return row.c
+          } },
         { label: '公司名称', field: 'b', sort: true, width: 320, link: function({ row }) {
             return 'success'
           }, templet: function({ row }) {
             return ''
           }, fixed: 'left' },
-        { field: '备注', label: '备注', sort: true, width: 100, fixed: 'right' },
-
-        { label: '客户名称', field: 'c', sort: true, search: true, width: 220, templet: function({ row }) {
+        { label: '客户名称2', field: 'c', sort: true, search: true, width: 220, templet: function({ row }) {
             return row.c
           } },
 
@@ -150,7 +157,8 @@ export default {
         //  rs[_this.getColIndex('备注')] = _this.getColIndex('备注')
           rs[_this.getColIndex('', '公司名称')] = '公司名称'
 
-          rs[_this.getColIndex('', '姓名')] = '姓名'
+          rs[_this.getColIndex('', '客户名称1')] = '客户名称1'
+          rs[_this.getColIndex('', '客户名称2')] = '客户名称2'
 
           return rs
         },
