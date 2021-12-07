@@ -6,7 +6,7 @@
       :append-to-body="true"
       :visible.sync="settingFlag"
       @close="$emit('input',false)"
-      width="400px"
+      width="600px"
       height="100%"
   >
     <div style="max-height: 600px;overflow: auto;">
@@ -25,45 +25,19 @@
 import SortTransfer from './sortTransfer'
 
 export default {
-  props: ['id', 'data', 'value'],
+  props: ['value', 'columns', 'result'],
   components: { SortTransfer },
 
   data() {
     return {
-      settingFlag: false,
-      result: []
+      settingFlag: false
     }
   },
   computed: {
-    columns() { // 排序显示
-       const map = {}
-       const rs = []
-       for (let i = 0; i < this.data.length; i++) {
-          const col = this.data[i]
-          map[col.label] = col
-       }
-        for (const x of this.result) {
-           const col = map[x.label]
-          if (col) {
-            rs.push({ label: col.label, width: col.width })
-            map[x.label] = null
-          }
-        }
-      for (let i = 0; i < this.data.length; i++) {
-        const col = this.data[i]
-        if (map[col.label]) {
-          rs.push({ label: col.label, width: col.width })
-        }
-      }
-        return rs
-    }
+
   },
   mounted() {
     this.settingFlag = this.value
-    const rs = JSON.parse(localStorage.getItem(this.id) || '[]')
-    for (const x of rs) {
-        this.result.push(x)
-    }
   },
   methods: {
     resetAll() {

@@ -19,6 +19,12 @@
 <!--              {{scope.row.width}}-->
 <!--            </template>-->
 <!--          </el-table-column>-->
+          <el-table-column label="固定" min-width="80">
+            <template slot-scope="scope">
+            <el-button size="mini" :type="scope.row.fixed=='left'?'primary':''"  circle  @click="lData(scope.$index)">L</el-button>
+            <el-button size="mini" :type="scope.row.fixed=='right'?'primary':''"  circle  @click="rData(scope.$index)">R</el-button>
+            </template>
+          </el-table-column>
           <el-table-column label="排序" min-width="180">
             <template slot-scope="scope">
                   <el-button size="mini" icon="el-icon-arrow-up" circle  @click="upData(scope.$index)"></el-button>
@@ -77,7 +83,7 @@ export default {
           if (this.tempSelectionKeys.indexOf(x) >= 0) {
            _show = true
           }
-        rs.push({ label: x.label, alias: x.alias, width: x.width, _show: _show })
+        rs.push({ label: x.label, alias: x.alias, fixed: x.fixed ? x.fixed : '', width: x.width, _show: _show })
       }
       return rs
     },
@@ -86,6 +92,22 @@ export default {
     },
     selectChange(selection) {
       this.tempSelectionKeys = [...selection]
+    },
+    lData(indexNum) {
+      const row = this.inputList[indexNum]
+      if (row.fixed == 'left') {
+        row.fixed = ''
+      } else {
+        this.$set(row, 'fixed', 'left')
+      }
+    },
+    rData(indexNum) {
+      const row = this.inputList[indexNum]
+      if (row.fixed == 'right') {
+        row.fixed = ''
+      } else {
+        this.$set(row, 'fixed', 'right')
+      }
     },
     upData(indexNum) {
       if (indexNum > 0) {

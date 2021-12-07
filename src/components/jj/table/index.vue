@@ -65,7 +65,7 @@
     </el-form>
     <jj-pagination v-if="data.page && !(data.page instanceof Array) " :page="data.page" @change="refresh" :class="this.data.height == 'auto'?'jj-pagination-fixed':'jj-pagination'"/>
 
-    <setting :data="columns" v-model="settingFlag" :id="tableId" v-if="settingFlag"   @reset-col="resetCol"></setting>
+    <setting :result="settingResult" v-model="settingFlag" :id="tableId" v-if="settingFlag"  :columns="settingColumns"  @reset-col="resetCol"></setting>
   </div>
 </template>
 
@@ -155,6 +155,7 @@ export default {
           const col = map[x.label]
           if (x._show && col && col.type != 'index' && col.type != 'selection') {
             col.width = x.width || 120
+            col.fixed = x.fixed || ''
             outCols.push(col)
           }
         }
@@ -176,6 +177,32 @@ export default {
     },
     vdata: function() {
       if (this.list.length > 0) { return this.list[0] } else return {}
+    },
+    settingResult() {
+      if (this.settingFlag) { return JSON.parse(localStorage.getItem(this.tableId) || '[]') } else { return JSON.parse(localStorage.getItem(this.tableId) || '[]') }
+    },
+    settingColumns() { // 排序显示
+      const settings = this.settingResult
+      const map = {}
+      const rs = []
+      for (let i = 0; i < this.columns.length; i++) {
+        const col = this.columns[i]
+        map[col.label] = col
+      }
+      for (const x of settings) {
+        const col = map[x.label]
+        if (col) {
+          rs.push({ label: col.label, width: x.width, fixed: x.fixed ? x.fixed : '', _show: x._show })
+          map[x.label] = null
+        }
+      }
+      for (let i = 0; i < this.columns.length; i++) {
+        const col = this.columns[i]
+        if (map[col.label]) {
+          rs.push({ label: col.label, width: col.width, fixed: col.fixed ? col.fixed : '', _show: (settings.length == 0) })
+        }
+      }
+      return rs
     }
 
   },
@@ -196,17 +223,17 @@ export default {
     },
     resetCol(result) {
       localStorage.setItem(this.tableId, JSON.stringify(result))
-     this.$set(this, 'componentKey', ++this.componentKey)
+      this.$set(this, 'componentKey', ++this.componentKey)
       // console.log(this.componentKey)
     },
     headerDragend(newWidth, oldWidth, column, event) {
       const rs = []
-      for (let i = 0; i < this.outerColumns.length; i++) {
-        const col = this.outerColumns[i]
+      for (let i = 0; i < this.settingColumns.length; i++) {
+        const col = this.settingColumns[i]
         if (col.label == column.label) {
           col.width = newWidth
         }
-        rs.push({ label: col.label, key: col.label, width: col.width })
+        rs.push({ label: col.label, key: col.label, fixed: col.fixed ? col.fixed : '', width: col.width, _show: col._show })
       }
       localStorage.setItem(this.tableId, JSON.stringify(rs))
     },
