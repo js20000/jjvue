@@ -1,6 +1,6 @@
 {
   "name": "jjvue",
-  "version": "3.0.119",
+  "version": "3.0.124",
   "author": "fanyijie <fanyijie@frogsing.com>",
   "main": "dist/jjvue.common.js",
   "license": "MIT",

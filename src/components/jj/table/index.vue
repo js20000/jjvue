@@ -7,7 +7,6 @@
       <slot name="toolbar"/>
     </jj-toolbar>
     <slot name="tops"/>
-    <div style="clear: both;"></div>
     <el-link icon="el-icon-setting" class="jj-setting" :underline="false" @click="setting" ></el-link>
     <el-form ref="tableform" :model="vdata">
       <el-table
