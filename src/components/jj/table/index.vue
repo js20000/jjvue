@@ -534,8 +534,13 @@ export default {
         }
       }
       const tableDom = this.$refs.table.$el.cloneNode(true)
-      const fix = tableDom.querySelector('.el-table__fixed-right')
+      let fix = tableDom.querySelector('.el-table__fixed-right')
       if (fix) { fix.remove() }
+      fix = tableDom.querySelector('.el-table__fixed-body-wrapper')
+      if (fix) { fix.remove() }
+      fix = tableDom.querySelector('.el-table__fixed')
+      if (fix) { fix.remove() }
+
       const tr_objs = tableDom.getElementsByTagName('tr')
       const removes = []
       for (let i = 0; i < tr_objs.length; i++) {
