@@ -7,8 +7,8 @@
       <slot name="toolbar"/>
     </jj-toolbar>
     <slot name="tops"/>
-    <el-link icon="el-icon-setting" class="jj-setting" :underline="false" @click="setting" ></el-link>
-    <el-form ref="tableform" :model="vdata">
+    <el-form ref="tableform" :model="vdata"  style="position: relative;">
+      <el-link icon="el-icon-setting" class="jj-setting" :underline="false" @click="setting" ></el-link>
       <el-table
         ref="table"
         @setting="setting"
@@ -221,8 +221,10 @@ export default {
       }
     },
     resetCol(result) {
-      localStorage.setItem(this.tableId, JSON.stringify(result))
+      const rs = JSON.stringify(result)
+      localStorage.setItem(this.tableId, rs)
       this.$set(this, 'componentKey', ++this.componentKey)
+      if (this.$post) { this.$post('/jj-vue/save.json', { id: this.tableId, item: rs }) }
       // console.log(this.componentKey)
     },
     headerDragend(newWidth, oldWidth, column, event) {
@@ -569,10 +571,10 @@ export default {
     background-color: #F4E2C9;
   }
   .jj-setting{
-    float: right;
-    top:30px;
+    position: absolute;
+    right: 10px;
+    top:15px;
     z-index: 101;
-    padding-right: 10px;
   }
 
 </style>

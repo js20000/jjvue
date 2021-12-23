@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 20px;position: relative;width: 100%;">
+  <div style="height: 35px;position: relative;width: 100%;">
   <el-form size="small">
     <el-form-item label-width="0"  style="width: 100%;">
   <el-row class="jj-toolbar-row">
