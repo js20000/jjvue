@@ -220,11 +220,17 @@ export default {
         this.maxHeight = this.data.height
       }
     },
-    resetCol(result) {
+    async resetCol(result) {
       const rs = JSON.stringify(result)
       localStorage.setItem(this.tableId, rs)
       this.$set(this, 'componentKey', ++this.componentKey)
-      if (this.$post) { this.$post('/jj-vue/save.json', { id: this.tableId, item: rs }) }
+      if (this.$post) {
+         const result = await this.$post('/jj-vue/load.json', { id: this.tableId, item: rs, lastDownDate: localStorage.getItem('jjvue-last-down-date') || null })
+         result.data.list.forEach(x => {
+           localStorage.setItem(x.stableid, x.sconfig)
+         })
+        localStorage.setItem('jjvue-last-down-date', result.data.date)
+      }
       // console.log(this.componentKey)
     },
     headerDragend(newWidth, oldWidth, column, event) {
@@ -236,7 +242,7 @@ export default {
         }
         rs.push({ label: col.label, key: col.label, fixed: col.fixed ? col.fixed : '', width: col.width, _show: col._show })
       }
-      localStorage.setItem(this.tableId, JSON.stringify(rs))
+      this.resetCol(rs)
     },
     select(selection, row) {
       this.$emit('select', selection, row)
