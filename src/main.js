@@ -39,12 +39,13 @@ const comment = {
     Vue.component('jj-list', searchlist)
     Vue.component('jj-date', searchdate)
     Vue.component('jj-xselect', searchselect)
-
     Vue.component('jj-page', pagination)
-    Vue.component('jj-xinput', xinput)
     Vue.component('xremote', xremote)
     Vue.component('jj-xremote', jj_xremote)
-    Vue.component('jj-form-item', jj_form_item)
+
+    Vue.component('xx-form-item', jj_form_item)
+    Vue.component('xx-input', xinput)
+
 
     Vue.prototype.getFieldValue = function(data, path, value) {
       const _path = path.split('.')

@@ -1,15 +1,15 @@
 <template>
-  <jj-form-item  :data="data">
+  <xx-form-item  :data="data">
       <el-input
         :class="xClass"
         :disabled="disabled"
         v-model="fieldValue">
         <template slot="append" v-if="data.column.append">{{append}}</template>
       </el-input>
-  </jj-form-item>
+  </xx-form-item>
 </template>
 <style>
-.jj-xinput-right input{
+.xx-input-right input{
   text-align: right;
 }
 </style>
@@ -17,9 +17,9 @@
 import formitem from '@/components/jj/forms/formitem'
 
 export default {
-  name: `jj-xinput`,
+  name: `xx-input`,
   props: ['data'],
-  components: { 'jj-form-item': formitem },
+  components: { 'xx-form-item': formitem },
   computed: {
     append() {
       if (this.data.column && this.data.column.append) {
@@ -48,7 +48,7 @@ export default {
           cls = this.data.column.xclass
         }
         if (this.data.column.align == 'right') {
-          cls += 'jj-xinput-right'
+          cls += 'xx-input-right'
         }
       }
       return cls

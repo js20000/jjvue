@@ -72,7 +72,7 @@
 <script>
 
   export default {
-    name: `jj-listlink`,
+    name: `xx-listlink`,
     props: ['data'],
     mounted: function() {
 

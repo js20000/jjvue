@@ -1,12 +1,12 @@
 <template>
   <div>
-    <jj-form-item v-if="data.index==data.editIndex && data.column.field" :data="data">
+    <xx-form-item v-if="data.index==data.editIndex && data.column.field" :data="data">
       <el-date-picker
         v-model="fieldValue"
         :type="date"
       />
 
-    </jj-form-item>
+    </xx-form-item>
 
     <template v-else>
       {{val}}
@@ -21,9 +21,9 @@
   import { parseTime } from '@/utils'
 
 export default {
-  name: `jj-date`,
+  name: `xx-date`,
   props: ['data'],
-  components: { 'jj-form-item': formitem },
+  components: { 'xx-form-item': formitem },
   computed: {
     fieldValue: {
       get: function() {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <jj-form-item :data="data" v-if="data.index==data.editIndex && data.column.field" >
+    <xx-form-item :data="data" v-if="data.index==data.editIndex && data.column.field" >
       <el-select v-model="fieldValue" filterable placeholder="请选择">
         <el-option
           v-for="item in options"
@@ -9,7 +9,7 @@
           :value="item.val"/>
       </el-select>
 
-    </jj-form-item>
+    </xx-form-item>
     <div v-else v-html="formatValue">
     </div>
   </div>
@@ -21,7 +21,7 @@
   import formitem from '@/components/jj/forms/formitem'
   export default {
     name: `jj-select`,
-    components: { 'jj-form-item': formitem },
+    components: { 'xx-form-item': formitem },
     props: ['data'],
     data() {
       return {

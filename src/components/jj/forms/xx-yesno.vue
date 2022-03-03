@@ -1,6 +1,6 @@
 <template>
   <div>
-    <jj-form-item v-if="data.index==data.editIndex && data.column.field" :data="data">
+    <xx-form-item v-if="data.index==data.editIndex && data.column.field" :data="data">
       <el-switch
         @change="rowValueChange"
         v-model="fieldValue"
@@ -10,7 +10,7 @@
         :inactive-text="inactive[1]"
       />
 
-    </jj-form-item>
+    </xx-form-item>
 
     <template v-else>
       <el-switch
@@ -33,7 +33,7 @@
 export default {
   name: `jj-checkbox`,
   props: ['data'],
-  components: { 'jj-form-item': formitem },
+  components: { 'xx-form-item': formitem },
   computed: {
     xdisabled() {
        if (typeof this.data.column.disabled == 'undefined') { return true }

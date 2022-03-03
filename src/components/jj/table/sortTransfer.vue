@@ -11,7 +11,7 @@
           <el-table-column label="列名" width="180" prop="label"></el-table-column>
 <!--          <el-table-column label="自定义名称" width="150" >-->
 <!--            <template slot-scope="scope">-->
-<!--             <el-input class="jj-xinput-right" v-model="scope.row.alias"></el-input>-->
+<!--             <el-input class="xx-input-right" v-model="scope.row.alias"></el-input>-->
 <!--            </template>-->
 <!--          </el-table-column>-->
 <!--          <el-table-column label="宽度" min-width="80">-->

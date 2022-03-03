@@ -3,8 +3,8 @@
     <template v-if="xType" >
       <component :is="xType" :data="buildData()" @event="event" :class="cls" :style="style" @rowValueChange="rowValueChange" />
     </template>
-    <jj-xinput v-else-if="index==editIndex && column.field &&!column.readOnly"  :data="buildData()" @event="event" :class="cls" :style="style" >
-    </jj-xinput>
+    <xx-input v-else-if="index==editIndex && column.field &&!column.readOnly"  :data="buildData()" @event="event" :class="cls" :style="style" >
+    </xx-input>
     <el-link
       :type="link"
       :class="cls"
@@ -35,7 +35,7 @@ import datetime from '@/components/jj/forms/datetime'
 
 export default {
   name: 'JjColumn',
-  components: { 'jj-datetime': datetime, 'jj-date': date, 'jj-form-item': formitem, 'jj-xinput': xinput, 'jj-listbtn': listbtn, 'jj-listlink': listlink, 'jj-checkbox': checkbox, 'jj-yesno': yesno, 'jj-select': select, 'jj-image': image },
+  components: { 'xx-datetime': datetime, 'xx-date': date, 'xx-form-item': formitem, 'xx-input': xinput, 'xx-listbtn': listbtn, 'xx-listlink': listlink, 'jj-checkbox': checkbox, 'jj-yesno': yesno, 'jj-select': select, 'jj-image': image },
   props: {
     vm: {
       type: Object

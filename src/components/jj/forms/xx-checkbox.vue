@@ -1,13 +1,13 @@
 <template>
   <div class="jj_switch">
-    <jj-form-item v-if="data.index==data.editIndex && data.column.field" :data="data">
+    <xx-form-item v-if="data.index==data.editIndex && data.column.field" :data="data">
     <el-switch
         v-model="data.row[data.column.field]"
         active-value="1"
         inactive-value="0"
         active-text="是"
         inactive-text="否"/>
-    </jj-form-item>
+    </xx-form-item>
     <template v-else>
       {{ $parent.formatValue }}
     </template>
@@ -28,7 +28,7 @@
 export default {
   name: `jj-checkbox`,
   props: ['data'],
-  components: { 'jj-form-item': formitem },
+  components: { 'xx-form-item': formitem },
   mounted: function() {
 
   },

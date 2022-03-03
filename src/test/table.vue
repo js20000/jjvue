@@ -51,14 +51,14 @@ export default {
         height: 'auto',
         sorts: { scode: 'ascending' },
         searchs: [
-          // { field: 'keyword', type: 'jj-date', label: '截止时间', value: '', data: {
+          // { field: 'keyword', type: 'xx-date', label: '截止时间', value: '', data: {
           //     type: 'datetimerange'
           //   }},
-          // { field: 'keyword', label: '其他日期', type: 'jj-date', data: {
+          // { field: 'keyword', label: '其他日期', type: 'xx-date', data: {
           //     type: 'date', format: 'yyyy年MM月dd日'
           //   }},
           { field: 'keyword', label: '编号', value: '' },
-          // { field: 'search_eq_a', label: '日期', value: 0, type: 'jj-date',
+          // { field: 'search_eq_a', label: '日期', value: 0, type: 'xx-date',
           //   data:{
           //       el:"el-date-picker",
           //       type:"daterange"
@@ -94,7 +94,7 @@ export default {
           }, templet: function({ row }) {
             return ''
           }, fixed: 'left' },
-        { label: '姓名', field: 'a', sort: true, width: 120, search: true, type: 'jj-xinput', rules: [{ required: true, message: '这是必填项', trigger: 'blur' }] },
+        { label: '姓名', field: 'a', sort: true, width: 120, search: true, type: 'xx-input', rules: [{ required: true, message: '这是必填项', trigger: 'blur' }] },
         // { label: 'x', field: 'x', sort: true, width: 120, type: 'jj-image', search: true },
 
         { field: '备注', label: '备注', sort: true, width: 100, fixed: 'right' },
@@ -116,7 +116,7 @@ export default {
 
         { label: '手机', field: 'd', sort: true, width: 120, type: 'jj-checkbox' },
         { label: '邮箱', field: 'f.b', sort: true, width: 120, event: 'mail', link: 'danger', align: 'right' },
-        { label: '操作', width: 240, type: 'jj-listlink', fixed: 'right', data: {
+        { label: '操作', width: 240, type: 'xx-listlink', fixed: 'right', data: {
             buttons: [
               {
                 label: function() {

@@ -68,7 +68,7 @@
 <script>
 
     export default {
-        name: `jj-listbtn`,
+        name: `xx-listbtn`,
         props: ['data'],
         mounted: function() {
 
