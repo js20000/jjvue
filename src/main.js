@@ -4,14 +4,14 @@ import dialog from './components/jj/dialog'
 import table from './components/jj/table'
 import xlist from './components/jj/forms/xlist'
 import xselect from './components/jj/forms/xselect'
-import searchlist from './components/jj/search/searchlist'
-import searchdate from './components/jj/search/searchdate'
-import searchselect from './components/jj/search/searchselect'
+import searchlist from './components/jj/search/jj-list'
+import searchdate from './components/jj/search/jj-date'
+import searchselect from './components/jj/search/jj-select'
 import pagination from './components/jj/pagination/index'
-import xinput from './components/jj/forms/xinput'
+import xinput from './components/jj/forms/xx-input'
 import xremote from './components/jj/forms/xremote'
-import jj_xremote from './components/jj/search/searchremote'
-import jj_form_item from './components/jj/forms/formitem'
+import jj_xremote from './components/jj/search/jj-remote'
+import jj_form_item from './components/jj/forms/xx-form-item'
 
 const comment = {
   install: function(Vue) {
@@ -45,7 +45,6 @@ const comment = {
 
     Vue.component('xx-form-item', jj_form_item)
     Vue.component('xx-input', xinput)
-
 
     Vue.prototype.getFieldValue = function(data, path, value) {
       const _path = path.split('.')

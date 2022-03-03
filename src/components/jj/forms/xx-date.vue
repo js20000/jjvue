@@ -17,7 +17,7 @@
 
 </style>
 <script>
-  import formitem from '@/components/jj/forms/formitem'
+  import formitem from '@/components/jj/forms/xx-form-item'
   import { parseTime } from '@/utils'
 
 export default {

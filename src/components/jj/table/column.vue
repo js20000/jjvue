@@ -24,14 +24,14 @@
 import listbtn from '@/components/jj/toolbar/listbtn'
 import listlink from '@/components/jj/toolbar/listlink'
 
-import checkbox from '@/components/jj/forms/checkbox'
-import yesno from '@/components/jj/forms/yesno'
-import select from '@/components/jj/forms/select'
-import image from '@/components/jj/forms/image'
-import formitem from '@/components/jj/forms/formitem'
-import xinput from '@/components/jj/forms/xinput'
-import date from '@/components/jj/forms/date'
-import datetime from '@/components/jj/forms/datetime'
+import checkbox from '@/components/jj/forms/xx-checkbox'
+import yesno from '@/components/jj/forms/xx-yesno'
+import select from '@/components/jj/forms/xx-select'
+import image from '@/components/jj/forms/xx-image'
+import formitem from '@/components/jj/forms/xx-form-item'
+import xinput from '@/components/jj/forms/xx-input'
+import date from '@/components/jj/forms/xx-date'
+import datetime from '@/components/jj/forms/xx-datetime'
 
 export default {
   name: 'JjColumn',

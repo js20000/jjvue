@@ -28,7 +28,7 @@
 
 </style>
 <script>
-  import formitem from '@/components/jj/forms/formitem'
+  import formitem from '@/components/jj/forms/xx-form-item'
 
 export default {
   name: `jj-checkbox`,
