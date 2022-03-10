@@ -35,7 +35,7 @@ import datetime from '@/components/jj/forms/xx-datetime'
 
 export default {
   name: 'JjColumn',
-  components: { 'xx-datetime': datetime, 'xx-date': date, 'xx-form-item': formitem, 'xx-input': xinput, 'xx-listbtn': listbtn, 'xx-listlink': listlink, 'jj-checkbox': checkbox, 'jj-yesno': yesno, 'jj-select': select, 'jj-image': image },
+  components: { 'xx-datetime': datetime, 'xx-date': date, 'xx-form-item': formitem, 'xx-input': xinput, 'xx-listbtn': listbtn, 'xx-listlink': listlink, 'xx-checkbox': checkbox, 'xx-yesno': yesno, 'xx-select': select, 'xx-image': image },
   props: {
     vm: {
       type: Object
