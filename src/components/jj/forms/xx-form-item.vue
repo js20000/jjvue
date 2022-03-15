@@ -58,8 +58,8 @@
         v = this.getFieldValue(r.row, r.field)
         r._validator(r, v, function(obj) {
           if (obj) {
-            r.tooltips.show = true
             r.tooltips.tips = r.message ? r.message : obj
+            r.tooltips.show = !!r.tooltips.tips
             callback(obj)
           } else {
             r.tooltips.show = false
