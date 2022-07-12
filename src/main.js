@@ -12,6 +12,8 @@ import xinput from './components/jj/forms/xx-input'
 import xremote from './components/jj/forms/xremote'
 import jj_xremote from './components/jj/search/jj-remote'
 import jj_form_item from './components/jj/forms/xx-form-item'
+import XxDate from '@/components/jj/forms/xx-date'
+import XxDatetime from '@/components/jj/forms/xx-datetime'
 
 const comment = {
   install: function(Vue) {
@@ -45,6 +47,8 @@ const comment = {
 
     Vue.component('xx-form-item', jj_form_item)
     Vue.component('xx-input', xinput)
+    Vue.component('xx-date', XxDate)
+    Vue.component('xx-datetime', XxDatetime)
 
     Vue.prototype.getFieldValue = function(data, path, value) {
       const _path = path.split('.')
