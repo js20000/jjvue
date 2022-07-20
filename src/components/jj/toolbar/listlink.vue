@@ -99,7 +99,13 @@
       },
       hasP(btn) {
         if (!btn.permission) { return true }
-        if (this.$store) { return this.$store.getters.has(btn.permission) }
+        if (this.$store) {
+          const rs = this.$store.getters.has(btn.permission)
+          if (!rs) {
+            this.$store.dispatch('JJ_BUTTON_CHECK', btn)
+          }
+          return rs
+        }
       }
 
     }
