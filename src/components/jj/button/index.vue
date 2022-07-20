@@ -45,6 +45,8 @@
       }
     },
     mounted() {
+      if (this.btn.permission) { this.$store.dispatch('JJ_BUTTON_CHECK', this.btn) }
+
       if (this.btn.needRow) {
         this.disabled = true
         this.$set(this.btn, 'disabled', true)
@@ -68,7 +70,6 @@
       hasP() {
          if (!this.btn.permission) { return true }
         if (this.$store) {
-           this.$store.dispatch('JJ_BUTTON_CHECK', this.btn)
            return this.$store.getters.has(this.btn.permission)
         }
         return false

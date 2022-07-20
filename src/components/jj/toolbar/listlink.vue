@@ -100,7 +100,6 @@
       hasP(btn) {
         if (!btn.permission) { return true }
         if (this.$store) {
-          this.$store.dispatch('JJ_BUTTON_CHECK', btn)
           return this.$store.getters.has(btn.permission)
         }
       }
