@@ -68,11 +68,8 @@
       hasP() {
          if (!this.btn.permission) { return true }
         if (this.$store) {
-          const rs = this.$store.getters.has(this.btn.permission)
-          if (!rs) {
-            this.$store.dispatch('JJ_BUTTON_CHECK', this.btn)
-          }
-          return rs
+           this.$store.dispatch('JJ_BUTTON_CHECK', this.btn)
+           return this.$store.getters.has(this.btn.permission)
         }
         return false
       }
