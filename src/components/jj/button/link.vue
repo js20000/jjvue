@@ -81,7 +81,7 @@ v-if="showFlag && hasP "
            return true
          }
          if (this.$store) {
-           return this.$store.getters.has(this.btn.permission)
+           return this.$store.getters.has(this.$router.history.current.path + '#' + this.btn.event)
          }
          return false
       }

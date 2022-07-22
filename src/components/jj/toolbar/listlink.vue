@@ -100,7 +100,7 @@
       hasP(btn) {
         if (!btn.permission) { return true }
         if (this.$store) {
-          return this.$store.getters.has(btn.permission)
+          return this.$store.getters.has(this.$router.history.current.path + '#' + btn.event)
         }
       }
 
