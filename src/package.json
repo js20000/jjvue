@@ -1,6 +1,6 @@
 {
   "name": "jjvue",
-  "version": "3.0.151",
+  "version": "4.0.154",
   "author": "fanyijie <fanyijie@frogsing.com>",
   "main": "dist/jjvue.common.js",
   "license": "MIT",
@@ -14,7 +14,7 @@
     "publish:it": "npm version patch &&vue-cli-service build --target lib --name jjvue main.js && npm publish --registry http://nx.frogsing.cn/repository/npm-hosted"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
     "clipboard": "^2.0.6",
     "codemirror": "^5.62.2",
@@ -50,7 +50,7 @@
     "@vue/cli-service": "^4.2.3",
     "@vue/eslint-config-standard": "^5.1.0",
     "babel-eslint": "^10.1.0",
-    "babel-polyfill": "^6.26.0",
+    "babel-polyfill": "^6.23.0",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-node": "^11.0.0",
