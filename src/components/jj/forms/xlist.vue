@@ -29,7 +29,7 @@
         :class="selected==index?'ct':''"
         v-for="(i,index) in list"
         :key="index">
-        {{templet?templet(i):(disField?i[disField]:i)}}
+        {{getDisName(i)}}
       </li>
     </ul>
 </div>
@@ -70,7 +70,7 @@
       }, valField: {}, disField: {},
       defaultVal: {
         default() { return '' }
-      }, templet: {}, url: {},
+      }, url: {},
       para: {
         type: Object, default() {
           return {}
@@ -87,6 +87,38 @@
       }
     },
     methods: {
+      getVal(row) {
+        if (this.disField && this.valField) {
+          if (typeof this.valField == 'function') {
+            return this.valField(row)
+          }
+          return row[this.valField]
+        } else {
+          return ''
+        }
+      },
+      getDisName(row) {
+        if (this.disField && this.valField) {
+          if (typeof this.disField == 'function') {
+            return this.disField(row)
+          }
+          return row[this.disField]
+        } else {
+          return ''
+        }
+      },
+      getNullRow() {
+        const rs = {}
+        if (this.disField && this.valField) {
+          if (typeof this.disField != 'function') {
+            rs[this.disField] = ''
+          }
+          if (typeof this.disField != 'function') {
+            rs[this.valField] = ''
+          }
+          return rs
+        } else { return '' }
+      },
       initVal(val) {
         if (!this.force) {
           this.xname = val
@@ -95,19 +127,11 @@
         this.selected = -1
         for (let i = 0; i < this.list.length; i++) {
           const xx = this.list[i]
-          if (typeof this.valField != 'undefined' && !(this.valField === '')) {
-            if (xx[this.valField] === val) {
-              this.selected = i
-              if (this.disField) {
-                this.xname = xx[this.disField]
-              }
-              break
-            }
-          } else {
-            if (xx === val) {
-              this.selected = i
-              this.xname = xx
-            }
+          const rs = this.getVal(xx)
+          if (rs === val) {
+            this.selected = i
+            this.xname = this.getDisName(xx)
+            break
           }
         }
       },
@@ -156,7 +180,7 @@
         const lastSelected = this.selected
         this.selected = -1
         for (let i = 0; i < this.list.length; i++) {
-          const xx = (this.disField ? this.list[i][this.disField] : this.list[i])
+          const xx = this.getDisName(this.list[i])
 
           if (xx == this.xname) {
             this.selected = i
@@ -226,18 +250,7 @@
         this.style.display = 'none'
         this.getValByXname()
         if (this.selected < 0 && this.force == true) {
-          let rs = {}
-          if (this.disField) {
-            rs[this.disField] = ''
-          } else {
-            rs = ''
-          }
-
-          if (typeof this.valField != 'undefined') {
-            rs[this.valField] = ''
-          } else {
-            rs = ''
-          }
+          const rs = this.getNullRow()
           this.onselected(rs)
           this.$emit('blur')
         }
@@ -252,16 +265,9 @@
         this.selected = index
       },
       onselected: function(obj) {
-        let rs = {}
-        if (this.disField) {
-          this.xname = obj[this.disField]
-        } else { this.xname = obj }
-        if (this.valField) {
-          rs = obj[this.valField]
-        } else {
-          rs = obj
-        }
-        this.$emit('input', rs)
+        const rs = {}
+        this.xname = this.getDisName(obj)
+        this.$emit('input', this.getVal(obj))
         this.$emit('xselect', obj)
       },
       scrollto: function() {

@@ -91,7 +91,9 @@ export default {
       if (templet) {
         if (typeof templet === 'function') {
           rs = templet.apply(this.vm, [{ row: this.row, column: this.column, index: this.index }])
-        } else { rs = 'templet not imp' }
+        } else {
+          if (templet.label) { rs = templet.label(this.getValue()) } else { rs = 'templet error' }
+        }
       } else {
         rs = this.getValue()
       }
