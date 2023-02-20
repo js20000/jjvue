@@ -82,7 +82,7 @@ v-if="showFlag && hasP "
          if (this.$store) {
            const b = this.$store.getters.has(this.$router.history.current.path + '#' + this.btn.event)
            if (!b) { this.$store.dispatch('JJ_BUTTON_CHECK', this.btn) }
-           return b;
+           return b
          }
          return false
       }
