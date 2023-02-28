@@ -29,7 +29,7 @@
 
         if (_rules) {
           return _rules.map(x => {
-            return { row: this.data.row, trigger: x.trigger, message: x.message, _pattern: x.pattern, validator: this.validator, _validator: this.getValidator(x), tooltips: this.tooltips }
+            return { _field: this.data.column.field, row: this.data.row, trigger: x.trigger, message: x.message, _pattern: x.pattern, validator: this.validator, _validator: this.getValidator(x), tooltips: this.tooltips }
           })
         } else { return [] }
       }
@@ -55,7 +55,7 @@
           } else { b() }
       },
       validator(r, v, callback) {
-        v = this.getFieldValue(r.row, r.field)
+        v = this.getFieldValue(r.row, r._field)
         r._validator(r, v, function(obj) {
           if (obj) {
             r.tooltips.tips = r.message ? r.message : obj
