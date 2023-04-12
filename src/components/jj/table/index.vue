@@ -123,7 +123,7 @@ export default {
       return this.data.height
     },
     tableId() {
-      return (this.$route ? this.$route.path : window.location.href.split(/\\?|#/)[0]) + this.settingID || ''
+      return (this.$route ? this.$route.path : window.location.href.split(/\\?|#/)[0]) + (this.settingID || '')
     },
     _showSum() {
       if (this.showSum) {
