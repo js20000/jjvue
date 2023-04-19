@@ -220,11 +220,11 @@ export default {
         this.maxHeight = this.data.height
       }
     },
-    async resetCol(result) {
+    async resetCol(result, noSaveFlag) {
       const rs = JSON.stringify(result)
       localStorage.setItem(this.tableId, rs)
       this.$set(this, 'componentKey', ++this.componentKey)
-      if (this.$post) {
+      if (this.$post && !noSaveFlag) {
          const result = await this.$post('/cs/jj-vue-config/list.json', { id: this.tableId, item: rs, lastDownDate: localStorage.getItem('jjvue-last-down-date') || null })
          result.data.list.forEach(x => {
            localStorage.setItem(x.stableid, x.sconfig)
