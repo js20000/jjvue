@@ -72,7 +72,7 @@ export default {
         return this.data.modal_append_to_body ? this.data.modal_append_to_body : false
       },
       modal() {
-        return this.data.modal ? this.data.modal : true
+        return this.data.modal ? this.data.modal : false
       }
   },
   mounted() {
