@@ -1,7 +1,17 @@
 <!--suppress ALL -->
 <template>
 
-  <el-button :style="btn.style?btn.style:''" v-re-click  @click="on_click"  :disabled="disabled" :plain="btn.plain" :size="btn.size?btn.size:'small'"  v-bind="$attrs"  :type="btn.type?btn.type:type" v-if="showFlag && hasP ">
+  <el-button
+      :event="btn.event"
+      :style="btn.style?btn.style:''"
+      v-re-click
+      @click="on_click"
+      :disabled="disabled"
+      :plain="btn.plain"
+      :size="btn.size?btn.size:'small'"
+      v-bind="$attrs"
+      :type="btn.type?btn.type:type"
+      v-if="showFlag && hasP ">
     <template v-if="btn.icon">
       <i v-if="btn.icon.indexOf(`el-icon`)==0" :class="btn.icon"/>
       <svg-icon v-else :icon-class="btn.icon"/>

@@ -1,6 +1,7 @@
 <!--suppress ALL -->
 <template>
   <el-link
+      :event="btn.event"
 v-re-click
 @click="on_click"
 type="primary"
