@@ -41,11 +41,12 @@ export default {
   },
   data() {
     return {
-      moreBtn: { label: '展开', icon: 'el-icon-s-operation', plain: false, type: 'blue', size: 'small' },
+     // moreBtn: { label: '展开', icon: 'el-icon-s-operation', plain: false, type: 'blue', size: 'small' },
+      moreBtn: { label: '收起', icon: 'el-icon-upload2', plain: false, type: 'blue', size: 'small' },
       rowStyle: {
         'padding-right': '140px',
         'position': 'relative',
-        'height': ' 40px',
+        'height': ' auto',
         'overflow': 'hidden'
       },
       drawer: false,
