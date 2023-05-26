@@ -78,7 +78,7 @@
       hasP() {
          if (!this.btn.permission) { return true }
         if (this.$store) {
-          const b = this.$store.getters.has(this.$router.history.current.path + '#' + this.btn.event)
+          const b = this.$store.getters.has(this.$router.history.current.path + '#' + (this.btn.event || this.btn.permission))
           if (!b) {
             this.$store.dispatch('JJ_BUTTON_CHECK', this.btn)
           }
