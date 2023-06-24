@@ -30,7 +30,10 @@
   }
 </style>
 <script>
+  import mixin from '@/components/jj/mixin'
+
   export default {
+    mixins: [mixin],
     props: {
       type: {
         Type: String,
@@ -72,7 +75,7 @@
     computed: {
       showFlag() {
         if (typeof this.btn.hidden === 'function') {
-          return !this.btn.hidden.apply(this, [{ row: this.row, btn: this.btn }])
+          return !this.btn.hidden.apply(this.vm, [{ row: this.row, btn: this.btn }])
         } else { return !this.btn.hidden }
       },
       hasP() {

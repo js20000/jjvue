@@ -4,7 +4,7 @@
     <el-form-item label-width="0"  style="width: 100%;">
   <el-row class="jj-toolbar-row">
     <el-col :span="12">
-        <jj-button v-for="(btn) in data " :key="btn.event" :btn="btn" @click="trigger(btn)" />&nbsp;
+        <jj-button :parent="vm" v-for="(btn) in data " :key="btn.event" :btn="btn" @click="trigger(btn)" />&nbsp;
         <slot/>
     </el-col>
     <el-col :span="12" >
@@ -58,8 +58,11 @@
 
 <script>
 
+import mixin from '@/components/jj/mixin'
+
 export default {
   name: `jj-toolbar`,
+  mixins: [mixin],
   props: {
     data: {
       type: Array,

@@ -1,9 +1,9 @@
 <template>
   <div>
     <template v-if="xType" >
-      <component :is="xType" :data="buildData()" @event="event" :class="cls" :style="style" @rowValueChange="rowValueChange" />
+      <component :parent="vm" :is="xType" :data="buildData()" @event="event" :class="cls" :style="style" @rowValueChange="rowValueChange" />
     </template>
-    <xx-input v-else-if="index==editIndex && column.field &&!column.readOnly"  :data="buildData()" @event="event" :class="cls" :style="style" >
+    <xx-input :parent="vm" v-else-if="index==editIndex && column.field &&!column.readOnly"  :data="buildData()" @event="event" :class="cls" :style="style" >
     </xx-input>
     <el-link
       :type="link"
@@ -32,14 +32,13 @@ import formitem from '@/components/jj/forms/xx-form-item'
 import xinput from '@/components/jj/forms/xx-input'
 import date from '@/components/jj/forms/xx-date'
 import datetime from '@/components/jj/forms/xx-datetime'
+import mixin from '@/components/jj/mixin'
 
 export default {
   name: 'JjColumn',
+  mixins: [mixin],
   components: { 'xx-datetime': datetime, 'xx-date': date, 'xx-form-item': formitem, 'xx-input': xinput, 'xx-listbtn': listbtn, 'xx-listlink': listlink, 'xx-checkbox': checkbox, 'xx-yesno': yesno, 'xx-select': select, 'xx-image': image },
   props: {
-    vm: {
-      type: Object
-    },
     column: {
       type: Object,
       default() {

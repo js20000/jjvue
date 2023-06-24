@@ -22,12 +22,12 @@
 </template>
 <script>
 
+import mixin from '@/components/jj/mixin'
+
 export default {
   name: 'JjSearch',
+  mixins: [mixin],
   props: {
-    vm: {
-      type: Object
-    },
     searchType: {
       type: Number,
       default() { return 0 }

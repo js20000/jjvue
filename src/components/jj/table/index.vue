@@ -1,6 +1,6 @@
 <template>
   <div class="jj-table">
-    <jj-search @heightChange="calMaxHeight" :vm="$parent" v-if="!data.hiddenHeader" :searchs="data.searchs" @refresh="refresh" @onSearch="onSearch" :searchType="searchType"  @reset="reset">
+    <jj-search :parent="vm" @heightChange="calMaxHeight"  v-if="!data.hiddenHeader" :searchs="data.searchs" @refresh="refresh" @onSearch="onSearch" :searchType="searchType"  @reset="reset">
       <slot name="searchs"/>
     </jj-search>
     <jj-toolbar v-if="!data.hiddenHeader" :data="data.toolbars"  @onSearch="onSearch" :searchs="data.searchs" @event="toolbarevent" :searchType="searchType" @refresh="refresh" @reset="reset" @resetPage="resetPage">
@@ -57,7 +57,7 @@
             :show-overflow-tooltip="typeof column.overflow=='undefined'?true:column.overflow"
         >
           <template slot-scope="scope">
-            <jj-column :row="scope.row" :index="scope.$index" :column="column" :vm="$parent" :edit-index="editIndex" @event="event" @rowValueChange="rowValueChange"/>
+            <jj-column :parent="vm" :row="scope.row" :index="scope.$index" :column="column" :edit-index="editIndex" @event="event" @rowValueChange="rowValueChange"/>
           </template>
         </el-table-column>
       </el-table>
@@ -75,8 +75,10 @@ import toolbar from '@/components/jj/toolbar'
 import search from '@/components/jj/search'
 import column from './column'
 import setting from './setting'
+import mixin from '@/components/jj/mixin'
 export default {
   name: 'JjTable',
+  mixins: [mixin],
   components: { setting, 'jj-pagination': pagination, 'jj-toolbar': toolbar, 'jj-search': search, 'jj-column': column },
   props: {
     data: {
@@ -129,7 +131,7 @@ export default {
       if (this.showSum) {
         return true
       }
-      return !!this.$parent.showSum
+      return !!this.vm.showSum
     },
     searchType() {
       return this.data.searchType ? this.data.searchType : 0
@@ -266,7 +268,7 @@ export default {
        if (this.showSum) {
          return this.showSum(this)
        }
-       if (this.$parent.showSum) { return this.$parent.showSum(this) } else { return ['合计'] }
+       if (this.vm.showSum) { return this.vm.showSum(this) } else { return ['合计'] }
     },
     getColIndex(field, label) {
       let d = 0
@@ -455,7 +457,7 @@ export default {
       if (this.data.searchs) {
         for (const s of this.data.searchs) {
           if (s.onPost) {
-            s.onPost.apply(this.$parent, [{ search: s, data: rs }])
+            s.onPost.apply(this.vm, [{ search: s, data: rs }])
             continue
           }
           if (!(s.value === '') && !(typeof s.value == 'undefined')) {
