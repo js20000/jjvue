@@ -88,6 +88,9 @@ export default {
   },
   mounted: function() {
       for (const item of this.searchs) {
+        if (this.$route.params[item.field] !== undefined) {
+          item.value = this.$route.params[item.field]
+        }
         item.vm = this.vm
       }
   },
