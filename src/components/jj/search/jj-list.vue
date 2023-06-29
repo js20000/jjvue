@@ -13,6 +13,7 @@
         :defaultDis="data.data.defaultDis"
         :size="size"
         @xselect="xselect"
+        :force="!!data.data.force"
         style="width: 100%;"
 
  > </xlist>
