@@ -320,10 +320,6 @@ export default {
       return -1
     },
     onSearch(data) {
-      if (this.data.searchType == 1) {
-        this.refresh()
-        return
-      }
       this.$emit('onSearch', data)
     },
     getValue(row, column) {
