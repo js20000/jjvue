@@ -14,7 +14,6 @@ import jj_xremote from './components/jj/search/jj-remote'
 import jj_form_item from './components/jj/forms/xx-form-item'
 import XxDate from '@/components/jj/forms/xx-date'
 import XxDatetime from '@/components/jj/forms/xx-datetime'
-
 const comment = {
   install: function(Vue) {
     Vue.directive('re-click', {
