@@ -1,5 +1,6 @@
 ## jjvue是一个基于elementui的vue组件套装，核心组件是jj-table。
 ## 根据json渲染table
+## 目标是用一套组件标准化后台管理系统的开发，减少重复工作，提高开发效率。
 
 
 ## Vue Component Example
