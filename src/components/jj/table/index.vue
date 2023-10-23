@@ -1,6 +1,6 @@
 <template>
   <div class="jj-table">
-    <jj-search :parent="vm" @heightChange="calMaxHeight"  v-if="!data.hiddenHeader" :searchs="data.searchs" @refresh="refresh" @onSearch="onSearch" :searchType="searchType"  @reset="reset">
+    <jj-search :mother="vm" @heightChange="calMaxHeight"  v-if="!data.hiddenHeader" :searchs="data.searchs" @refresh="refresh" @onSearch="onSearch" :searchType="searchType"  @reset="reset">
       <slot name="searchs"/>
     </jj-search>
     <jj-toolbar v-if="!data.hiddenHeader" :data="data.toolbars"  @onSearch="onSearch" :searchs="data.searchs" @event="toolbarevent" :searchType="searchType" @refresh="refresh" @reset="reset" @resetPage="resetPage">
@@ -57,7 +57,7 @@
             :show-overflow-tooltip="typeof column.overflow=='undefined'?true:column.overflow"
         >
           <template slot-scope="scope">
-            <jj-column :parent="vm" :row="scope.row" :index="scope.$index" :column="column" :edit-index="editIndex" @event="event" @rowValueChange="rowValueChange"/>
+            <jj-column :mother="vm" :row="scope.row" :index="scope.$index" :column="column" :edit-index="editIndex" @event="event" @rowValueChange="rowValueChange"/>
           </template>
         </el-table-column>
       </el-table>

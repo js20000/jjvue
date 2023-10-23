@@ -1,6 +1,6 @@
 export default {
     props: {
-        parent: {
+        mother: {
             type: Object,
             default: null
         }
@@ -11,7 +11,7 @@ export default {
     },
     computed: {
         vm() {
-            return this.parent || this.$parent
+            return this.mother || this.$parent
         }
     },
     methods: {

@@ -1,9 +1,9 @@
 <template>
   <div>
     <template v-if="xType" >
-      <component :parent="vm" :is="xType" :data="buildData()" @event="event" :class="cls" :style="style" @rowValueChange="rowValueChange" />
+      <component :mother="vm" :is="xType" :data="buildData()" @event="event" :class="cls" :style="style" @rowValueChange="rowValueChange" />
     </template>
-    <xx-input :parent="vm" v-else-if="index==editIndex && column.field &&!column.readOnly"  :data="buildData()" @event="event" :class="cls" :style="style" >
+    <xx-input :mother="vm" v-else-if="index==editIndex && column.field &&!column.readOnly"  :data="buildData()" @event="event" :class="cls" :style="style" >
     </xx-input>
     <el-link
       :type="link"
